@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello</title>
-</head>
-<body>
-    <h1>Home Page</h1>
-</body>
-</html>
+@extends("layouts.app")
+@section('content')
+@include('components.header')
+@include('components.hero')
+@include('components.category')
+@include('components.new-product')
+@include('components.promotion')
+@include('components.blog')
+@include('components.footer')
+@endsection

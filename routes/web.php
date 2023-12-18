@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [HomeController::class, 'index']);
+
+// Route::group(['prefix'=>'admin'],function () {
+//     Route::get('/', [AdminController::class, 'index'])->name('index');
+ 
+//     Route::get('/customer/profile', function () {
+//         // Uses first & second middleware...
+//     });
+// });
