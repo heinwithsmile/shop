@@ -3,14 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
-use DB;
 
 class HomeController extends Controller
 {
-    public function index(){
-        $products = Product::latest()->paginate(5); //Using Eloquent Model
-        // $products = DB::table('products')->get(); //Using Database Class
-        return view('index', ['products'=>$products]);
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('home');
     }
 }

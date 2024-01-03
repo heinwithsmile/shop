@@ -22,3 +22,6 @@ Route::get('/', [HomeController::class, 'index']);
 //         // Uses first & second middleware...
 //     });
 // });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
