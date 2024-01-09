@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,3 +31,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Admin Routes
 Route::get('/admin', [AdminController::class, 'index']);
+
+Route::get('/products', [ProductController::class, 'index']);
