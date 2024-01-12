@@ -13,9 +13,6 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        // foreach($products as $product){
-        //     echo $product->name . "<br>";
-        // }
         return view('index')->with("products", $products);
     }
 
@@ -40,7 +37,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('detail')->with('product', $product);
     }
 
     /**

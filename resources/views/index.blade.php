@@ -10,6 +10,7 @@
 <table>
         @foreach ($products as $product)
         <tr>
+            <th>ID</th>
             <th>Product ID</th>
             <th>Name</th>
             <th>Category ID</th>
@@ -18,6 +19,7 @@
             <th>Price</th>
         </tr>
         <tr>
+            <td>{{$product->id}}</td>
             <td>{{$product->product_id}}</td>
             <td>{{$product->name}}</td>
             <td>{{$product->category_id}}</td>

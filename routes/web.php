@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -16,20 +17,19 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
-
-// Route::group(['prefix'=>'admin'],function () {
-//     Route::get('/', [AdminController::class, 'index'])->name('index');
- 
-//     Route::get('/customer/profile', function () {
-//         // Uses first & second middleware...
-//     });
-// });
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Admin Routes
-Route::get('/admin', [AdminController::class, 'index']);
+/* ----------- Admin Routes -------------- */
 
-Route::get('/products', [ProductController::class, 'index']);
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(){
+    Route::get('/', [AdminController::class, 'index'])->name('admin');
+    Route::resource('users', CustomerController::class);
+    // Route::controller(ProductController::class)->group(function () {
+    //     Route::get('/products', 'index');
+    //     Route::get('/products/{id}', 'show');
+    //     Route::post('/product', 'store');
+    // });
+    Route::resource('product', ProductController::class);
+});
