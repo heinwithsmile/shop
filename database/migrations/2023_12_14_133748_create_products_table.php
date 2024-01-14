@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('category_id')->nullable()->default(NULL);
             $table->text('description');
+            $table->text('photo')->nullable()->default(NULL);
             $table->string('stock')->nullable()->default(NULL);
             $table->float('price');
             $table->timestamps();

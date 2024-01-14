@@ -1,4 +1,4 @@
 @extends('admin.layouts.master')
 @section('main-content')
-    Hello World
+    Admin Home Page
 @endsection
