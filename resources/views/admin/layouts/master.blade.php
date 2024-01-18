@@ -8,25 +8,27 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
+    <!-- Sidebar -->
+    {{-- @include('admin.layouts.sidebar') --}}
+    <!-- End of Sidebar -->
+
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="">
+    <div id="content-wrapper" class="d-flex flex-column">
 
       <!-- Main Content -->
       <div id="content">
 
         <!-- Topbar -->
-        @include('admin.layouts.header')
+        {{-- @include('admin.layouts.header') --}}
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        @yield('main-content')
+        @yield('content')
         <!-- /.container-fluid -->
 
       </div>
-    </div>
       <!-- End of Main Content -->
-      {{-- @include('admin.layouts.footer') --}}
-    
-</body>
+      @include('admin.layouts.footer')
 
+</body>
 </html>

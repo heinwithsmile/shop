@@ -18,18 +18,15 @@ use App\Http\Controllers\ProductController;
 */
 
 Auth::routes();
-
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::controller(HomeController::class)->group(function(){
+    Route::get('/', 'index');
+    Route::get('/shop', 'shop');
+});
 
 /* ----------- Admin Routes -------------- */
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(){
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::resource('users', CustomerController::class);
-    // Route::controller(ProductController::class)->group(function () {
-    //     Route::get('/products', 'index');
-    //     Route::get('/products/{id}', 'show');
-    //     Route::post('/product', 'store');
-    // });
     Route::resource('product', ProductController::class);
 });

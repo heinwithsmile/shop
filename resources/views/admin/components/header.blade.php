@@ -1,3 +1,5 @@
+{{-- {{asset('/css/backend/style.css')}}
+{{dd()}} --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard | Furniture Store</title>
+    <link rel="stylesheet" href="{{asset('css/backend/style.css')}}">
 </head>
 <body>
     @yield('content')

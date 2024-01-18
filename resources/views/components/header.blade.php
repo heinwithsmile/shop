@@ -2,7 +2,7 @@
     <div class="topbar"></div>
     <div class="navbar">
         <img src="#" alt="Brand Logo" class="brand-logo" />
-        <nav>
+        {{-- <nav>
             <ul>
                 <li>Home</li>
                 <li>Shop</li>
@@ -11,6 +11,6 @@
                 <li>About Us</li>
                 <li>Contact Us</li>
             </ul>
-        </nav>
+        </nav> --}}
     </div>
 </header>

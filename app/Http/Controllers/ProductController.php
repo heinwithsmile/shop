@@ -12,8 +12,10 @@ class ProductController extends Controller
      */
     public function index()
     {
+        // echo "Hello";die;
         $products = Product::all();
-        return view('index')->with("products", $products);
+        // dd($products);
+        return view('admin.product.list')->with("products", $products);
     }
 
     /**
@@ -21,7 +23,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.product.add');
     }
 
     /**
@@ -37,7 +39,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('detail')->with('product', $product);
+        return view('admin.pages.detail')->with('product', $product);
     }
 
     /**

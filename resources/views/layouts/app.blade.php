@@ -18,7 +18,7 @@
 
     {{-- CSS --}}
     <link rel="stylesheet" href="{{url('/css/frontend/frontend.css')}}">
-
+     
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -82,5 +82,8 @@
             @yield('content')
         </main>
     </div>
+    {{-- JavaScript  --}}
+    <script src="{{url('/js/frontend/script.js')}}"></script>
+    <script src="{{url('/js/frontend/shop.js')}}"></script>
 </body>
 </html>

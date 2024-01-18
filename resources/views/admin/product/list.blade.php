@@ -1,5 +1,5 @@
-@extends("layouts.app")
-@section('title', 'Furniture Store || Home')
+@extends("admin.layouts.master")
+@section('title', 'Furniture Store | Product List')
 @section('content')
 {{-- @include('components.header')
 @include('components.hero')
@@ -23,7 +23,7 @@
         <tr>
             <td>{{$product->id}}</td>
             <td>{{$product->product_id}}</td>
-            <td>{{$product->name}}</td>
+            <td><a href="{{route('product.show', ['product'=>$product->id])}}">{{$product->name}}</a></td>
             <td>{{$product->category_id ?? "NULL"}}</td>
             <td>{{$product->description}}</td>
             <td><img src="{{asset($product->photo)}}" alt="product image" width="150" height="150"></td>
