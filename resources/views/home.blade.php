@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -19,13 +18,5 @@
             </div>
         </div>
     </div>
-    {{-- Here --}}
-    @include('components.header')
-    @include('components.hero')
-    @include('components.category')
-    {{-- @include('components.new-product') --}}
-    @include('components.promotion')
-    @include('components.blog')
-    @include('components.footer')
 </div>
 @endsection

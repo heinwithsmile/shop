@@ -1,13 +1,6 @@
-@extends("layouts.app")
-@section('title', 'Furniture Store || Home')
+@extends("admin.layouts.master")
+@section('title', 'Furniture Store | Detail')
 @section('content')
-{{-- @include('components.header')
-@include('components.hero')
-@include('components.category')
-@include('components.new-product')
-@include('components.promotion')
-@include('components.blog')
-@include('components.footer') --}}
 <a href="{{url()->previous()}}">Back</a>
 <table>
         <tr>

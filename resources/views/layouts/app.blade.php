@@ -15,7 +15,6 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-
     {{-- CSS --}}
     <link rel="stylesheet" href="{{url('/css/frontend/frontend.css')}}">
      
@@ -83,7 +82,5 @@
         </main>
     </div>
     {{-- JavaScript  --}}
-    <script src="{{url('/js/frontend/script.js')}}"></script>
-    <script src="{{url('/js/frontend/shop.js')}}"></script>
 </body>
 </html>

@@ -19,7 +19,7 @@ class Admin
         if($request->user()->role == 'admin'){
             return $next($request);
         }else{
-            return redirect('/');
+            return redirect('login');
         }
     }
 }

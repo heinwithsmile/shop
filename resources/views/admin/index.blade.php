@@ -1,4 +1,4 @@
 @extends('admin.layouts.master')
-@section('main-content')
-    
+@section('content')
+    <h1>Admin Home</h1>
 @endsection

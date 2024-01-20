@@ -31,7 +31,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        echo "Product Store";
     }
 
     /**
@@ -39,7 +39,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('admin.pages.detail')->with('product', $product);
+        return view('admin.product.detail')->with('product', $product);
     }
 
     /**
