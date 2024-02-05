@@ -1,31 +1,31 @@
 <nav class="nav-link">
     <ul>
         <li>
-            <a href=""><img id="facebook" src="images/facebook.svg" alt="" /></a>
+            <a href=""><img id="facebook" src="{{asset('storage/frontend/images/facebook.svg')}}" alt="Facebook" /></a>
         </li>
         <li>
-            <a href=""><img src="images/instagram.png" alt="" /></a>
+            <a href=""><img src="{{asset('storage/frontend/images/instagram.svg')}}" alt="Instagram" /></a>
         </li>
         <li>
-            <a href=""><img src="images/youtube.svg" alt="" /></a>
+            <a href=""><img src="{{asset('storage/frontend/images/youtube.svg')}}" alt="Youtube" /></a>
         </li>
         <li>
-            <a href=""><img src="images/telegram-original.svg" alt="" /></a>
+            <a href=""><img src="{{asset('storage/frontend/images/telegram-original.svg')}}" alt="Telegram" /></a>
         </li>
     </ul>
     <div>
-        <p><img src="images/Mobile-Phone-icon.png" alt="" />+959 555-444-333</p>
+        <p><img src="{{asset('storage/frontend/images/Mobile-Phone-icon.png')}}" alt="Phone" />+959 555-444-333</p>
     </div>
 </nav>
 <div class="navbar">
     <div class="first-nav-icon">
-        <a href="home.html">LOGO</a>
-        <a href="home.html">Home</a>
-        <a href="shop.html">Shop</a>
+        <a href="{{route('home')}}">LOGO</a>
+        <a href="{{route('home')}}">Home</a>
+        <a href="{{route('shop')}}">Shop</a>
         <div class="dropdown">
             <button class="dropbtn">
                 <a href="catagory.html">Catagory</a>
-                <img src="images/greater-than-symbol.png" alt="" />
+                <img src="{{asset('storage/frontend/images/greater-than-symbol.png')}}" alt="" />
             </button>
             <div class="dropdown-content">
                 <div class="row">
@@ -49,27 +49,38 @@
                         </div>
                     </div>
                     <div class="column-2">
-                        <img src="images/banner.jpg" alt="" />
+                        <img src="{{asset('storage/frontend/images/banner.jpg')}}" alt="" />
                         <br />
-                        <img src="images/Rectangle 48.jpg" alt="" />
+                        <img src="{{asset('storage/frontend/images/Rectangle 48.jpg')}}" alt="" />
                     </div>
                 </div>
             </div>
         </div>
-        <a href="Blog.html">Blog</a>
+        {{-- <a href="Blog.html">Blog</a> --}}
         <a href="about.html">About Us</a>
         <a href="contact.html">Contact Us</a>
     </div>
 
     <div class="sec-nav-icon">
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('logout') }}"
+               onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </div>
         <a href="">
-            <img src="images/search.svg" alt="" />
+            <img src="{{asset('storage/frontend/images/search.svg')}}" alt="" />
         </a>
         <a href="">
-            <img src="images/user.svg" alt="" />
+            <img src="{{asset('storage/frontend/images/user.svg')}}" alt="" />
         </a>
         <a class="cart-img" href="">
-            <img src="images/cart.png" alt="" />
+            <img src="{{asset('storage/frontend/images/cart.png')}}" alt="" />
             <span>2</span>
         </a>
     </div>

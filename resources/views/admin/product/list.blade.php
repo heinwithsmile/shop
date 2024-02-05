@@ -8,11 +8,11 @@
             </div>
             <div class="add-product-heading-right">
                 <div class="noti-bell">
-                    <img src="{{asset('storage/backend/images/icons/noti_bell.png')}}" alt="">
+                    <img src="{{ asset('storage/backend/images/icons/noti_bell.png') }}" alt="">
                     <span></span>
                 </div>
 
-                <img src="{{asset('storage/backend/images/profile.png')}}" alt="">
+                <img src="{{ asset('storage/backend/images/profile.png') }}" alt="">
             </div>
         </div>
     </div>
@@ -20,11 +20,13 @@
         <div class="product-mng">
             <div class="product-mng-search">
                 <input type="text" placeholder="Search...">
-                <img src="{{asset('storage/backend/images/icons/search.png')}}" alt="">
+                <img src="{{ asset('storage/backend/images/icons/search.png') }}" alt="">
             </div>
 
             <div class="new-product-btn">
-                <button><a href="{{}}">New Product</a> <img src="{{asset('storage/backend/images/icons/new_product.png')}}" alt=""></button>
+                <button><a href="{{ route('product.create') }}"><img
+                            src="{{ asset('storage/backend/images/icons/new_product.png') }}" alt=""> New Product
+                    </a></button>
             </div>
         </div>
 
@@ -35,7 +37,7 @@
                         <input type="checkbox" name="" id="">
                     </th>
                     <th>
-                        <img src="{{asset('storage/backend/images/icons/sample_image.png')}}" alt="">
+                        <img src="{{ asset('storage/backend/images/icons/sample_image.png') }}" alt="">
                     </th>
                     <th>
                         ID
@@ -50,6 +52,9 @@
                         Description
                     </th>
                     <th>
+                        Photo
+                    </th>
+                    <th>
                         Stock
                     </th>
                     <th>
@@ -62,237 +67,29 @@
                         Action
                     </th>
                 </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="" id="">
-                    </td>
-                    <td>
-                        <img src="{{asset('storage/backend/images/plush-paradise sofa.png')}}" alt="">
-                    </td>
-                    <td>
-                        EE72823
-                    </td>
-                    <td>
-                        Plus-Paradise Sofa
-                    </td>
-                    <td>
-                        Sofa
-                    </td>
-                    <td id="description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </td>
-                    <td>
-                        In Stock
-                    </td>
-                    <td>
-                        205
-                    </td>
-                    <td>
-                        2023 Nov 22
-                    </td>
-                    <td>
-                        <a href="Edit_product.html"><img src="{{asset('storage/backend/images/icons/action.png')}}" alt=""></a>
-                        <img src="{{asset('storage/backend/images/icons/bin.png')}}" alt="">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="" id="">
-                    </td>
-                    <td>
-                        <img src="{{asset('storage/backend/images/2024.png')}}" alt="">
-                    </td>
-                    <td>
-                        EE72823
-                    </td>
-                    <td>
-                        Plus-Paradise Sofa
-                    </td>
-                    <td>
-                        Sofa
-                    </td>
-                    <td id="description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </td>
-                    <td>
-                        In Stock
-                    </td>
-                    <td>
-                        205
-                    </td>
-                    <td>
-                        2023 Nov 22
-                    </td>
-                    <td>
-                        <a href="Edit_product.html"><img src="{{asset('storage/backend/images/icons/action.png')}}" alt=""></a>
-                        <img src="{{asset('storage/backend/images/icons/bin.png')}}" alt="">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="" id="">
-                    </td>
-                    <td>
-                        <img src="{{asset('storage/backend/images/20-410x492 1.png')}}" alt="">
-                    </td>
-                    <td>
-                        EE72823
-                    </td>
-                    <td>
-                        Plus-Paradise Sofa
-                    </td>
-                    <td>
-                        Sofa
-                    </td>
-                    <td id="description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </td>
-                    <td>
-                        In Stock
-                    </td>
-                    <td>
-                        205
-                    </td>
-                    <td>
-                        2023 Nov 22
-                    </td>
-                    <td>
-                        <a href="Edit_product.html"><img src="{{asset('storage/backend/images/icons/action.png')}}" alt=""></a>
-                        <img src="{{asset('storage/backend/images/icons/bin.png')}}" alt="">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="" id="">
-                    </td>
-                    <td>
-                        <img src="{{asset('storage/backend/images/2025.png')}}" alt="">
-                    </td>
-                    <td>
-                        EE72823
-                    </td>
-                    <td>
-                        Plus-Paradise Sofa
-                    </td>
-                    <td>
-                        Sofa
-                    </td>
-                    <td id="description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </td>
-                    <td>
-                        In Stock
-                    </td>
-                    <td>
-                        205
-                    </td>
-                    <td>
-                        2023 Nov 22
-                    </td>
-                    <td>
-                        <a href="Edit_product.html"><img src="{{asset('storage/backend/images/icons/action.png')}}" alt=""></a>
-                        <img src="{{asset('storage/backend/images/icons/bin.png')}}" alt="">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="" id="">
-                    </td>
-                    <td>
-                        <img src="{{asset('storage/backend/images/2026.png')}}" alt="">
-                    </td>
-                    <td>
-                        EE72823
-                    </td>
-                    <td>
-                        Plus-Paradise Sofa
-                    </td>
-                    <td>
-                        Sofa
-                    </td>
-                    <td id="description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </td>
-                    <td>
-                        In Stock
-                    </td>
-                    <td>
-                        205
-                    </td>
-                    <td>
-                        2023 Nov 22
-                    </td>
-                    <td>
-                        <a href="Edit_product.html"><img src="{{asset('storage/backend/images/icons/action.png')}}" alt=""></a>
-                        <img src="{{asset('storage/backend/images/icons/bin.png')}}" alt="">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="" id="">
-                    </td>
-                    <td>
-                        <img src="{{asset('storage/backend/images/2027.png')}}" alt="">
-                    </td>
-                    <td>
-                        EE72823
-                    </td>
-                    <td>
-                        Plus-Paradise Sofa
-                    </td>
-                    <td>
-                        Sofa
-                    </td>
-                    <td id="description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </td>
-                    <td>
-                        In Stock
-                    </td>
-                    <td>
-                        205
-                    </td>
-                    <td>
-                        2023 Nov 22
-                    </td>
-                    <td>
-                        <a href="Edit_product.html"><img src="{{asset('storage/backend/images/icons/action.png')}}" alt=""></a>
-                        <img src="{{asset('storage/backend/images/icons/bin.png')}}" alt="">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="" id="">
-                    </td>
-                    <td>
-                        <img src="{{asset('storage/backend/images/2028.png')}}" alt="">
-                    </td>
-                    <td>
-                        EE72823
-                    </td>
-                    <td>
-                        Plus-Paradise Sofa
-                    </td>
-                    <td>
-                        Sofa
-                    </td>
-                    <td id="description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </td>
-                    <td>
-                        In Stock
-                    </td>
-                    <td>
-                        205
-                    </td>
-                    <td>
-                        2023 Nov 22
-                    </td>
-                    <td>
-                        <a href="Edit_product.html"><img src="{{asset('storage/backend/images/icons/action.png')}}" alt=""></a>
-                        <img src="{{asset('storage/backend/images/icons/bin.png')}}" alt="">
-                    </td>
-                </tr>
+                @foreach ($products as $product)
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="" id="">
+                        </td>
+                        <td>
+                            <img src="{{ asset('storage/' . $product->photo) }}" alt="" width="100" height="100">
+                        </td>
+                        <td>{{ $product->product_id }}</td>
+                        <td>{{ $product->name }}</td>
+                        <td>{{ $product->category_id }}</td>
+                        <td>{{ $product->description }}</td>
+                        <td>{{ $product->photo }}</td>
+                        <td>{{ $product->stock }}</td>
+                        <td>{{ $product->price }}</td>
+                        <td>{{ $product->created_at }}</td>
+                        <td>
+                            <a href="{{ route('product.edit', ['product' => $product->id]) }}"><img
+                                    src="{{ asset('storage/backend/images/icons/action.png') }}" alt=""></a>
+                            <img src="{{ asset('storage/backend/images/icons/bin.png') }}" alt="">
+                        </td>
+                    </tr>
+                @endforeach
             </table>
         </div>
     </div>

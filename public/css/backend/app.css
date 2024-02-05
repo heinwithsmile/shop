@@ -366,7 +366,7 @@ tr th img {
     margin: 10px 0;
 }
 
-#cancle-btn {
+#cancel-btn {
     cursor: pointer;
 }
 
@@ -404,7 +404,7 @@ label {
     color: red;
 }
 
-#description {
+.Description #description {
     border: 1px solid white;
     outline: none;
     height: 100px;
@@ -459,7 +459,7 @@ label {
     right: 8%;
 }
 
-.cancle-btn {
+.cancel-btn {
     color: white;
     border-radius: 5px;
     padding: 10px 30px;

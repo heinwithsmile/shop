@@ -19,39 +19,53 @@
 
         <!-- add-image -->
         <div class="add-image-container">
-            <div class="add-image">
-            </div>
-            <div class="product-detail">
-                <form action="{{ route('product.store') }}" method="post">
-                    @csrf
+            <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="add-image">
+                    <input type="file" name="photo" id="photo">
+                    @error('photo')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="product-detail">
                     <div class="input product-name form-group">
                         <label for="name">Product Name</label>
-                        <input type="text" id="name">
+                        <input type="text" name="name" id="name">
+                        @error('name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="input cartagory form-group">
                         <label for="category">category</label>
-                        <select name="category" id="category">
-                            <option value="">Bed</option>
-                            <option value="">Sofa</option>
-                            <option value="">Chair</option>
-                            <option value="">Lamp</option>
+                        <select name="category_id" id="category">
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
                         </select>
+                        @error('category')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="input price form-group">
                         <label for="price">Price</label>
-                        <input type="text" id="price">
+                        <input type="text" name="price" id="price">
+                        @error('price')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="input Description form-group">
                         <label for="description">Description</label>
                         <textarea name="description" id="description"></textarea>
+                        @error('description')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
-            </div>
+                </div>
         </div>
     </div>
 
     <div class="add-product-btn form-group">
-        <button class="cancle-btn">Cancle</button>
-        {{-- <button type="submit" class="publish-btn">Publish</button> --}}
+        <button class="cancel-btn">Cancel</button>
         <input type="submit" value="Publish" class="publish-btn">
     </div>
     </form>

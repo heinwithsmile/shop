@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,6 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // echo "Hello";die;
         $products = Product::all();
         // dd($products);
         return view('admin.product.list')->with("products", $products);
@@ -23,7 +23,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.add');
+        $categories = Category::all();
+        // dd($categories);
+        return view('admin.product.add')->with("categories" ,$categories);
     }
 
     /**
@@ -31,7 +33,29 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        echo "Product Store";
+        // ddd($request->all());
+        $data = $this->validate($request, [
+            'photo' => 'required',
+            'name' => 'string|required',
+            'category_id' => 'required',
+            'price' => 'required|numeric',
+            'description' => 'string|required',
+        ]);
+        // dd($request->all());
+        // $data = $request->all();
+        if($request->hasFile('photo')){
+            $data['photo'] = $request->file('photo')->store('images/products/', 'public');
+        }
+
+        Product::create($data);
+        // if($status){
+        //     echo "OK";
+        //     dd();
+        //     request()->session()->flash('success', 'Successfully Added');
+        // }else{
+        //     request()->session()->flash('error', 'Please try again!');
+        // }
+        return redirect()->route('product.index')->with('message', 'Product Add Successful');
     }
 
     /**
@@ -47,7 +71,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('admin.product.edit')->with('product', $product);
     }
 
     /**
