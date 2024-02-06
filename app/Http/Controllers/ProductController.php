@@ -71,7 +71,11 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.product.edit')->with('product', $product);
+        // $product = Product::findOrFail($product);
+        // dd($product);
+        $category = Category::findOrFail($product->category_id)->name;
+        // dd($category);
+        return view('admin.product.edit')->with('product', $product)->with('category', $category);
     }
 
     /**

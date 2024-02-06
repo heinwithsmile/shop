@@ -18,7 +18,7 @@
 
         <!-- add-image -->
         <div class="add-image-container">
-            <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('product.update', $product->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="add-image">
                     <input type="file" name="photo" id="photo">
@@ -29,7 +29,7 @@
                 <div class="product-detail">
                     <div class="input product-name form-group">
                         <label for="name">Product Name</label>
-                        <input type="text" name="name" id="name">
+                        <input type="text" name="name" id="name" value="{{old('name') ?? $product->name}}">
                         @error('name')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -64,7 +64,7 @@
     </div>
 
     <div class="add-product-btn form-group">
-        <button class="cancel-btn">Cancel</button>
+        <button class="cancel-btn"><a href="{{url()->previous()}}">Cancel</a></button>
         <input type="submit" value="Update" class="publish-btn">
     </div>
     </form>
