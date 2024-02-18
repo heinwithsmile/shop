@@ -65,7 +65,7 @@
     </div>
 
     <div class="add-product-btn form-group">
-        <button class="cancel-btn">Cancel</button>
+        <button class="cancel-btn"><a href="{{url()->previous()}}">Cancel</a></button>
         <input type="submit" value="Publish" class="publish-btn">
     </div>
     </form>

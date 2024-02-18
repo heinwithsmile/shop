@@ -1,0 +1,392 @@
+.date-search-sort {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 10px 100px;
+}
+
+.date {
+    background-color: var(--primary_color);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.date img {
+    padding-left:10px ;
+}
+
+.search-sort {
+    display: flex;
+    gap: 20px;
+}
+
+.search {
+    display: flex;
+   position: relative;
+}
+
+.search input {
+    height: 40px;
+    width: 100%;
+    border: 1px solid white;
+    border-radius: 5px;
+    outline: none;
+    background: none;
+    color: white;
+}
+
+.search img {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.sort select {
+    height: 40px;
+    width: 100%;
+    border-radius: 5px;
+    background: none;
+    color: white;
+    border: 1px solid white;
+    outline: none;
+
+}
+
+/* dashboard */
+
+.dashboard-card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
+    padding: 0 100px;
+    color: white;
+}
+
+.dashboard-card div {
+    background: var(--primary_color);
+}
+
+.total-revenue {
+    grid-row: span 2;
+    grid-column: span 2;
+}
+
+.most-sold {
+    grid-row: span 2;
+}
+
+.today-sales, .today-revenue, .today-order {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+.card-text span {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.customer h3 {
+    color: white;
+    padding: 20px 10px;
+}
+
+.customer {
+    padding: 0 20px;
+    margin: 30px 100px;
+    background: var(--primary_color);
+}
+
+.customer-table table {
+    width: 100%;
+    color: white;
+    border-collapse: collapse;
+    /* border: 1px solid white; */
+    padding: 0 20px;
+    border-spacing: 40px;
+    border-radius: 5px;
+}
+
+.customer-table table tr th {
+    border-collapse: collapse;
+    background: var(--body_color);
+    padding: 10px;
+    
+}
+
+.customer-table table tr td {
+    text-align: center;
+}
+
+table th,td {
+    padding: 20px 20px;
+}
+
+.status-dot {
+    position: relative;
+}
+
+.status-dot span{
+    left: 0;
+    top: 30px;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #4CE13F;
+    border-radius: 50%;
+}
+
+.dot-orange span{
+    background: #F7941D;
+}
+
+.dot-red span{
+    background: red;
+}
+
+/* progress-bar */
+.progress-bar-text {
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bed-progress {
+    padding:10px 10px;
+}
+
+.bed-progress .progress-bar {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    border-radius: 30px;
+    background-color: white;
+}
+
+.bed-progress .progress-bar span {
+    position: absolute;
+    width: 70%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: var(--login_publish_color);
+    border-radius: 30px;
+}
+
+.bed-progress .sofa-progress-bar {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    border-radius: 30px;
+    background-color: white;
+}
+
+.bed-progress .sofa-progress-bar span {
+    width: 40%;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: var(--login_publish_color);
+    border-radius: 30px;
+}
+
+.bed-progress .lamp-progress-bar {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    border-radius: 30px;
+    background-color: white;
+}
+
+.bed-progress .lamp-progress-bar span {
+    width: 60%;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: var(--login_publish_color);
+    border-radius: 30px;
+}
+
+.bed-progress .cabinet-progress-bar {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    border-radius: 30px;
+    background-color: white;
+}
+
+.bed-progress .cabinet-progress-bar span {
+    width: 80%;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: var(--login_publish_color);
+    border-radius: 30px;
+}
+
+.bed-progress .others-progress-bar {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    border-radius: 30px;
+    background-color: white;
+}
+
+.bed-progress .others-progress-bar span {
+    width: 20%;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: var(--login_publish_color);
+    border-radius: 30px;
+}
+
+
+.today-revenue .progress {
+    position: relative;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background: conic-gradient(#4CE13F 300deg, white 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.today-revenue .progress::before {
+    content: "";
+    position: absolute;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: var(--primary_color);
+}
+
+.today-sales .progress {
+    position: relative;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background: conic-gradient(#475BE8 300deg, white 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.today-sales .progress::before {
+    content: "";
+    position: absolute;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: var(--primary_color);
+}
+
+.today-order .progress {
+    position: relative;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background: conic-gradient(#F29A2E 300deg, white 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.today-order .progress::before {
+    content: "";
+    position: absolute;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: var(--primary_color);
+}
+
+
+.total-revenue .revenue {
+    display: flex;
+    justify-content: space-between;
+    align-items:center ;
+    padding-right: 20px;
+    padding-left: 5px;
+}
+
+.total-revenue .profit-loss {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items:center ;
+    gap: 20px;
+    width: 100px;
+}
+
+.total-revenue .profit-loss .profit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.total-revenue .profit-loss .loss {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.total-revenue .profit-loss .profit span {
+    /* position: absolute; */
+    background: var(--login_publish_color);
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+ 
+}
+
+.total-revenue .profit-loss .loss span {
+    /* position: absolute; */
+    background: white;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+}
+
+.up-percent {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.up-percent span {
+    font-size: 2rem;
+}
+
+
+/* graph */
+
+.chartCard {
+    width: 100%;
+    background: rgba(54, 162, 235, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chartBox {
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    background: none;
+}
