@@ -1,7 +1,12 @@
 @extends('admin.layouts.master')
 @section('title', 'Furniture Store | Product List')
+@push('styles')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.datatables.net/v/dt/dt-2.0.0/datatables.min.css" rel="stylesheet">
+@endpush
 @section('content')
-    <div class="profile">
+    {{-- <div class="profile">
         <div class="add-product-heading">
             <div class="add-product-heading-left">
                 <h3>Product Management</h3>
@@ -15,9 +20,9 @@
                 <img src="{{ asset('storage/backend/images/profile.png') }}" alt="">
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="product-mng-container">
-        <div class="product-mng">
+        {{-- <div class="product-mng">
             <div class="product-mng-search">
                 <input type="text" placeholder="Search...">
                 <img src="{{ asset('storage/backend/images/icons/search.png') }}" alt="">
@@ -28,69 +33,96 @@
                             src="{{ asset('storage/backend/images/icons/new_product.png') }}" alt=""> New Product
                     </a></button>
             </div>
-        </div>
+        </div> --}}
 
         <div class="product_table">
-            <table>
-                <tr>
-                    <th>
-                        <input type="checkbox" name="" id="">
-                    </th>
-                    <th>
-                        <img src="{{ asset('storage/backend/images/icons/sample_image.png') }}" alt="">
-                    </th>
-                    <th>
-                        ID
-                    </th>
-                    <th>
-                        Product Name
-                    </th>
-                    <th>
-                        Catagory
-                    </th>
-                    <th>
-                        Description
-                    </th>
-                    <th>
-                        Photo
-                    </th>
-                    <th>
-                        Stock
-                    </th>
-                    <th>
-                        Price
-                    </th>
-                    <th>
-                        Date
-                    </th>
-                    <th>
-                        Action
-                    </th>
-                </tr>
-                @foreach ($products as $product)
+            <table id="product-datatable" width="100%" cellspacing="0">
+                <thead>
                     <tr>
-                        <td>
+                        <th>
                             <input type="checkbox" name="" id="">
-                        </td>
-                        <td>
-                            <img src="{{ asset('storage/' . $product->photo) }}" alt="" width="100" height="100">
-                        </td>
-                        <td>{{ $product->product_id }}</td>
-                        <td>{{ $product->name }}</td>
-                        <td>{{ $product->category_id }}</td>
-                        <td>{{ $product->description }}</td>
-                        <td>{{ $product->photo }}</td>
-                        <td>{{ $product->stock }}</td>
-                        <td>{{ $product->price }}</td>
-                        <td>{{ $product->created_at }}</td>
-                        <td>
-                            <a href="{{ route('product.edit', ['product' => $product->id]) }}"><img
-                                    src="{{ asset('storage/backend/images/icons/action.png') }}" alt=""></a>
-                            <img src="{{ asset('storage/backend/images/icons/bin.png') }}" alt="">
-                        </td>
+                        </th>
+                        <th>
+                            <img src="{{ asset('storage/backend/images/icons/sample_image.png') }}" alt="">
+                        </th>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Product Name
+                        </th>
+                        <th>
+                            Catagory
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            Photo
+                        </th>
+                        <th>
+                            Stock
+                        </th>
+                        <th>
+                            Price
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Action
+                        </th>
                     </tr>
+                </thead>
+                @foreach ($products as $product)
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="" id="">
+                            </td>
+                            <td>
+                                <img src="{{ asset('storage/' . $product->photo) }}" alt="" width="100"
+                                    height="100">
+                            </td>
+                            <td>{{ $product->product_id }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->category_id }}</td>
+                            <td>{{ $product->description }}</td>
+                            <td>{{ $product->photo }}</td>
+                            <td>{{ $product->stock }}</td>
+                            <td>{{ $product->price }}</td>
+                            <td>{{ $product->created_at }}</td>
+                            <td>
+                                <a href="{{ route('product.edit', ['product' => $product->id]) }}"><img
+                                        src="{{ asset('storage/backend/images/icons/action.png') }}" alt=""></a>
+                                <img src="{{ asset('storage/backend/images/icons/bin.png') }}" alt="">
+                            </td>
+                        </tr>
+                    </tbody>
                 @endforeach
             </table>
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.0.0/datatables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <script>
+        // $('#product-datatable').DataTable({
+        //     "scrollX": false "columnDefs": [{
+        //         "orderable": false,
+        //         "targets": [10, 11, 12]
+        //     }]
+        // });
+        new DataTable('#product-datatable', {
+            order: [
+                [3, 'desc']
+            ]
+        });
+    </script>
+@endpush

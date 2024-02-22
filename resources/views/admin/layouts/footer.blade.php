@@ -1,3 +1,4 @@
+@stack('scripts')
 <script>
     let btn = document.querySelector(".side-menu-bar");
     let sidebar = document.querySelector(".sidebar");
