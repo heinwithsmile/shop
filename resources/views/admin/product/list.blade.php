@@ -85,7 +85,7 @@
                                     height="100">
                             </td>
                             <td>{{ $product->product_id }}</td>
-                            <td>{{ $product->name }}</td>
+                            <td><a href="{{route('product.show', ['product' => $product->id])}}">{{ $product->name }}</a></td>
                             <td>{{ $product->category_id }}</td>
                             <td>{{ $product->description }}</td>
                             <td>{{ $product->photo }}</td>
@@ -95,7 +95,13 @@
                             <td>
                                 <a href="{{ route('product.edit', ['product' => $product->id]) }}"><img
                                         src="{{ asset('storage/backend/images/icons/action.png') }}" alt=""></a>
-                                <img src="{{ asset('storage/backend/images/icons/bin.png') }}" alt="">
+                                        <form method="POST" action="{{ route('product.destroy', ['product' => $product->id]) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete</button>
+                                          </form>
+                                        {{-- <a href="{{ route('product.destroy', ['product' => $product->id]) }}">
+                                        <img src="{{ asset('storage/backend/images/icons/bin.png') }}" alt=""></a> --}}
                             </td>
                         </tr>
                     </tbody>

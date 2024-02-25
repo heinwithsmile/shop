@@ -20,6 +20,7 @@
         <div class="add-image-container">
             <form action="{{ route('product.update', $product->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="add-image">
                     <input type="file" name="photo" id="photo">
                     @error('photo')
@@ -37,9 +38,10 @@
                     <div class="input cartagory form-group">
                         <label for="category">category</label>
                         <select name="category_id" id="category">
-                            {{-- @foreach ($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                            @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach --}}
+                            @endforeach
                         </select>
                         @error('category')
                             <span class="text-danger">{{ $message }}</span>

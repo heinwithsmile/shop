@@ -24,7 +24,6 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        // dd($categories);
         return view('admin.product.add')->with("categories" ,$categories);
     }
 
@@ -33,7 +32,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // ddd($request->all());
         $data = $this->validate($request, [
             'photo' => 'required',
             'name' => 'string|required',
@@ -41,20 +39,11 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'description' => 'string|required',
         ]);
-        // dd($request->all());
-        // $data = $request->all();
         if($request->hasFile('photo')){
             $data['photo'] = $request->file('photo')->store('images/products/', 'public');
         }
 
         Product::create($data);
-        // if($status){
-        //     echo "OK";
-        //     dd();
-        //     request()->session()->flash('success', 'Successfully Added');
-        // }else{
-        //     request()->session()->flash('error', 'Please try again!');
-        // }
         return redirect()->route('product.index')->with('message', 'Product Add Successful');
     }
 
@@ -71,11 +60,14 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        // $product = Product::findOrFail($product);
-        // dd($product);
-        $category = Category::findOrFail($product->category_id)->name;
-        // dd($category);
-        return view('admin.product.edit')->with('product', $product)->with('category', $category);
+        // dd("test");
+        $category = Category::findOrFail($product->category_id);
+        // dd($category->name);
+        $categories = Category::all();
+        return view('admin.product.edit')
+            ->with('product', $product)
+            ->with('category', $category)
+            ->with('categories', $categories);
     }
 
     /**
@@ -83,7 +75,19 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $formFields = $request->validate([
+            'name' => 'required',
+            'category_id' => 'required',
+            'description' => 'required',
+            'price' => 'required'
+        ]);
+        // dd($formFields);
+        if($request->hasFile('photo')){
+            $formFields['photo'] = $request->file('photo')->store('images/products/', 'public');
+        }
+        // dd($formFields);
+        $product->update($formFields);
+        return redirect()->route('product.index')->with('message', 'product Updated');
     }
 
     /**
@@ -91,6 +95,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('product.index')->with('message', 'product deleted');
     }
 }
