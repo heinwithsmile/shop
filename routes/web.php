@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\StaffController;
 
 /*
@@ -25,7 +26,11 @@ Auth::routes();
 Route::controller(HomeController::class)->group(function(){
     Route::get('/', 'index')->name('home');
     Route::get('/home', 'index')->name('home');
-    Route::get('/shop', 'shop')->name('shop');
+});
+
+Route::controller(ShopController::class)->group(function(){
+    Route::get('/shop', 'index')->name('shop');
+    Route::get('/shop/detail/{id}', 'detail')->name('shop.detail');
 });
 
 /* ----------- Admin Routes -------------- */

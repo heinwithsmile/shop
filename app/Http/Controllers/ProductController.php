@@ -60,9 +60,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        // dd("test");
+        // dd($product);
         $category = Category::findOrFail($product->category_id);
-        // dd($category->name);
         $categories = Category::all();
         return view('admin.product.edit')
             ->with('product', $product)

@@ -72,3 +72,6 @@
         </a>
     </div>
 @endsection
+@push('scripts')
+    <script src="{{asset('js/frontend/slide.js')}}"></script>
+@endpush
