@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('photo')->nullable()->default(NULL);
             $table->string('stock')->nullable()->default(NULL);
             $table->float('price');
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }

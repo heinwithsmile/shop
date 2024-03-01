@@ -39,9 +39,15 @@
             <div class="shop-dropdown">
                 <button class="shop-dropbtn">CATAGORIES <img src="images/greater-than-symbol.png" alt=""></button>
                 <div class="shop-dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
+                @php
+                    $count = 0;
+                @endphp
+                @foreach ($categories as $category)
+                    <a href="{{route('shop')}}?category={{$category->name}}">{{$category->name}} ({{$cat_count[$count]}})</a>
+                    @php
+                        $count++;
+                    @endphp
+                @endforeach
                 </div>
             </div>
             <div class="shop-dropdown">

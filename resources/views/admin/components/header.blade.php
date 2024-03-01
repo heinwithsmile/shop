@@ -1,5 +1,3 @@
-{{-- {{asset('/css/backend/style.css')}}
-{{dd()}} --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -14,7 +14,6 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        // dd($products);
         return view('admin.product.list')->with("products", $products);
     }
 
@@ -60,7 +59,6 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        // dd($product);
         $category = Category::findOrFail($product->category_id);
         $categories = Category::all();
         return view('admin.product.edit')
@@ -80,11 +78,11 @@ class ProductController extends Controller
             'description' => 'required',
             'price' => 'required'
         ]);
-        // dd($formFields);
+
         if($request->hasFile('photo')){
             $formFields['photo'] = $request->file('photo')->store('images/products/', 'public');
         }
-        // dd($formFields);
+        
         $product->update($formFields);
         return redirect()->route('product.index')->with('message', 'product Updated');
     }
