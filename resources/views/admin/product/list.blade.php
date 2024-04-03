@@ -6,7 +6,7 @@
     <link href="https://cdn.datatables.net/v/dt/dt-2.0.0/datatables.min.css" rel="stylesheet">
 @endpush
 @section('content')
-    {{-- <div class="profile">
+    <div class="profile">
         <div class="add-product-heading">
             <div class="add-product-heading-left">
                 <h3>Product Management</h3>
@@ -20,9 +20,9 @@
                 <img src="{{ asset('storage/backend/images/profile.png') }}" alt="">
             </div>
         </div>
-    </div> --}}
+    </div>
     <div class="product-mng-container">
-        {{-- <div class="product-mng">
+        <div class="product-mng">
             <div class="product-mng-search">
                 <input type="text" placeholder="Search...">
                 <img src="{{ asset('storage/backend/images/icons/search.png') }}" alt="">
@@ -33,7 +33,7 @@
                             src="{{ asset('storage/backend/images/icons/new_product.png') }}" alt=""> New Product
                     </a></button>
             </div>
-        </div> --}}
+        </div>
 
         <div class="product_table">
             <table id="product-datatable" width="100%" cellspacing="0">
@@ -93,12 +93,14 @@
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->created_at }}</td>
                             <td>
-                                <a href="{{ route('product.edit', ['product' => $product->id]) }}"><img
-                                        src="{{ asset('storage/backend/images/icons/action.png') }}" alt=""></a>
+                                <a href="{{ route('product.edit', ['product' => $product->id]) }}">
+                                    {{-- <img src="{{ asset('storage/backend/images/icons/action.png') }}" alt=""> --}}
+                                    Edit
+                                    </a>
                                         <form method="POST" action="{{ route('product.destroy', ['product' => $product->id]) }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete</button>
+                                            <button><i class="fa-solid fa-trash" style="color: red"></i></button>
                                           </form>
                                         {{-- <a href="{{ route('product.destroy', ['product' => $product->id]) }}">
                                         <img src="{{ asset('storage/backend/images/icons/bin.png') }}" alt=""></a> --}}

@@ -3,6 +3,21 @@
     <link rel="stylesheet" href="{{asset('css/backend/pages/dashboard.css')}}">
 @endpush
 @section('content')
+<div class="profile">
+    <div class="add-product-heading">
+        <div class="add-product-heading-left">
+            <h3>Dashboard</h3>
+        </div>
+        <div class="add-product-heading-right">
+            <div class="noti-bell">
+                <img src="{{ asset('storage/backend/images/icons/noti_bell.png') }}" alt="">
+                <span></span>
+            </div>
+
+            <img src="{{ asset('storage/backend/images/profile.png') }}" alt="">
+        </div>
+    </div>
+</div>
     <div class="date-search-sort">
         <div class="date">
             <p>01/01/2023 - 01/01/2024</p> <img src="icons/calendar.png" alt="">
@@ -16,9 +31,6 @@
                 <span>$20.4K</span> <br>
                 We have sold 123 items
             </div>
-
-            <div class="progress">
-            </div>
         </div>
         <div class="today-revenue">
             <div class="card-text">
@@ -26,18 +38,12 @@
                 <span>$8.2K</span> <br>
                 Avaliable to payout
             </div>
-
-            <div class="progress">
-            </div>
         </div>
         <div class="today-order">
             <div class="card-text">
                 Today Orders <br>
                 <span>$18.2K</span> <br>
                 Avaliable to payout
-            </div>
-
-            <div class="progress">
             </div>
         </div>
         <div class="total-revenue">
@@ -112,8 +118,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
     <div class="customer">
