@@ -23,7 +23,6 @@
                     Shop Now <img src="{{asset('storage/frontend/images/right-arrow-svgrepo-com.svg')}}" alt="" />
                 </button>
             </a>
-
         </div>
     </div>
 
