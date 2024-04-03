@@ -14,7 +14,7 @@ use App\Http\Controllers\StaffController;
 Auth::routes();
 Route::controller(HomeController::class)->group(function(){
     Route::get('/', 'index')->name('index');
-    Route::get('/home', 'home')->name('home');
+    // Route::get('/home', 'home')->name('home');
 });
 
 Route::controller(ShopController::class)->group(function(){
