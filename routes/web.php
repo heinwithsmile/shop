@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\SupplierController;
 
 Auth::routes();
 Route::controller(HomeController::class)->group(function(){
@@ -32,4 +33,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     Route::resource('order', OrderController::class);
     Route::resource('staff', StaffController::class);
     Route::resource('report', ReportController::class);
+    Route::resource('supplier', SupplierController::class);
 });

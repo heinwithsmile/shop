@@ -151,7 +151,7 @@ table th,td {
 }
 
 /* progress-bar */
-.progress-bar-text {
+/* .progress-bar-text {
     padding-bottom: 10px;
     display: flex;
     justify-content: space-between;
@@ -249,7 +249,7 @@ table th,td {
     left: 0;
     background: var(--login_publish_color);
     border-radius: 30px;
-}
+} */
 
 
 .today-revenue .progress {

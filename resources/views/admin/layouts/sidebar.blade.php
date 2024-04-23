@@ -30,6 +30,13 @@
             <span class="tooltip">Customers</span>
         </li>
         <li>
+            <a href="{{route('supplier.index')}}">
+                <img src="{{asset('storage/backend/images/icons/customers.png')}}" alt="">
+                <span class="links_name">Suppliers</span>
+            </a>
+            <span class="tooltip">Suppliers</span>
+        </li>
+        <li>
             <a href="{{route('order.index')}}">
                 <img src="{{asset('storage/backend/images/icons/orders.png')}}" alt="">
                 <span class="links_name">Orders</span>

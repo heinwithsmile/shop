@@ -1,47 +1,54 @@
 @extends('admin.layouts.master')
 @push('styles')
-    <link rel="stylesheet" href="{{asset('css/backend/pages/dashboard.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/backend/pages/dashboard.css') }}">
 @endpush
 @section('content')
-<div class="profile">
-    <div class="add-product-heading">
-        <div class="add-product-heading-left">
-            <h3>Dashboard</h3>
-        </div>
-        <div class="add-product-heading-right">
-            <div class="noti-bell">
-                <img src="{{ asset('storage/backend/images/icons/noti_bell.png') }}" alt="">
-                <span></span>
+    <div class="profile">
+        <div class="add-product-heading">
+            <div class="add-product-heading-left">
+                <h3>Dashboard</h3>
             </div>
+            <div class="add-product-heading-right">
+                <div class="noti-bell">
+                    <img src="{{ asset('storage/backend/images/icons/noti_bell.png') }}" alt="">
+                    <span></span>
+                </div>
 
-            <img src="{{ asset('storage/backend/images/profile.png') }}" alt="">
+                <img src="{{ asset('storage/backend/images/profile.png') }}" alt="">
+            </div>
         </div>
     </div>
-</div>
     <div class="date-search-sort">
         <div class="date">
-            <p>01/01/2023 - 01/01/2024</p> <img src="icons/calendar.png" alt="">
+            <form action="{{ route('admin') }}" method="get">
+                <label for="start">Start Date:</label>
+                <input type="date" name="start" id="start">
+                <label for="end">End Date:</label>
+                <input type="date" name="end" id="end">
+
+                <input type="submit" value="Filter">
+            </form>
         </div>
     </div>
 
     <div class="dashboard-card">
         <div class="today-sales">
             <div class="card-text">
-                Today Sales <br>
-                <span>$20.4K</span> <br>
+                Total Sales <br>
+                <span>${{ \App\Models\Order::getTotalSale() }}</span> <br>
                 We have sold 123 items
             </div>
         </div>
         <div class="today-revenue">
             <div class="card-text">
-                Today Revenue <br>
+                Total Purchase <br>
                 <span>$8.2K</span> <br>
                 Avaliable to payout
             </div>
         </div>
         <div class="today-order">
             <div class="card-text">
-                Today Orders <br>
+                Number of Orders <br>
                 <span>$18.2K</span> <br>
                 Avaliable to payout
             </div>
@@ -49,7 +56,7 @@
         <div class="total-revenue">
             <div class="revenue">
                 <div>
-                    <p>Todays Revenue</p>
+                    <p>Sale Statics</p>
                 </div>
             </div>
 
@@ -60,63 +67,13 @@
 
             <div class="chartCard">
                 <div class="chartBox">
-                    <canvas id="myChart"></canvas>
+                    <canvas id="barChart"></canvas>
                 </div>
             </div>
 
         </div>
-        <div class="most-sold">
-            <h3>Most Sold Items</h3>
-            <div class="bed-progress">
-                <div class="progress-bar-text">
-                    <p>Bed</p>
-                    <p>70%</p>
-                </div>
-
-                <div class="progress-bar">
-                    <span data-width="70%"></span>
-                </div>
-            </div>
-            <div class="bed-progress">
-                <div class="progress-bar-text">
-                    <p>Sofa</p>
-                    <p>40%</p>
-                </div>
-
-                <div class="sofa-progress-bar">
-                    <span data-width="70%"></span>
-                </div>
-            </div>
-            <div class="bed-progress">
-                <div class="progress-bar-text">
-                    <p>Lamp</p>
-                    <p>60%</p>
-                </div>
-
-                <div class="lamp-progress-bar">
-                    <span data-width="70%"></span>
-                </div>
-            </div>
-            <div class="bed-progress">
-                <div class="progress-bar-text">
-                    <p>Cabinet</p>
-                    <p>80%</p>
-                </div>
-
-                <div class="cabinet-progress-bar">
-                    <span data-width="70%"></span>
-                </div>
-            </div>
-            <div class="bed-progress">
-                <div class="progress-bar-text">
-                    <p>Others</p>
-                    <p>20%</p>
-                </div>
-
-                <div class="others-progress-bar">
-                    <span data-width="70%"></span>
-                </div>
-            </div>
+        <div class="pieChart">
+            <canvas id="pieChart" ></canvas>
         </div>
     </div>
 
@@ -151,201 +108,34 @@
                         Action
                     </th>
                 </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="" id="">
-                    </td>
-                    <td>
-                        Modern Sofa
-                    </td>
-                    <td>
-                        EE72823
-                    </td>
-                    <td>
-                        2023 Nov 22
-                    </td>
-                    <td>
-                        Sofia Mia
-                    </td>
-                    <td class="status-dot">
-                        <span></span>
-                        Delivered
-                    </td>
-                    <td>
-                        250,000 MMk
-                    </td>
-                    <td>
-                        <img src="icons/action.png" alt="">
-                        <img src="icons/bin.png" alt="">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="" id="">
-                    </td>
-                    <td>
-                        Modern Sofa
-                    </td>
-                    <td>
-                        EE72823
-                    </td>
-                    <td>
-                        2023 Nov 22
-                    </td>
-                    <td>
-                        Sofia Mia
-                    </td>
-                    <td class="status-dot dot-orange">
-                        <span></span>
-                        Pending
-                    </td>
-                    <td>
-                        250,000 MMk
-                    </td>
-                    <td>
-                        <img src="icons/action.png" alt="">
-                        <img src="icons/bin.png" alt="">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="" id="">
-                    </td>
-                    <td>
-                        Modern Sofa
-                    </td>
-                    <td>
-                        EE72823
-                    </td>
-                    <td>
-                        2023 Nov 22
-                    </td>
-                    <td>
-                        Sofia Mia
-                    </td>
-                    <td class="status-dot dot-orange">
-                        <span></span>
-                        Pending
-                    </td>
-                    <td>
-                        250,000 MMk
-                    </td>
-                    <td>
-                        <img src="icons/action.png" alt="">
-                        <img src="icons/bin.png" alt="">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="" id="">
-                    </td>
-                    <td>
-                        Modern Sofa
-                    </td>
-                    <td>
-                        EE72823
-                    </td>
-                    <td>
-                        2023 Nov 22
-                    </td>
-                    <td>
-                        Sofia Mia
-                    </td>
-                    <td class="status-dot">
-                        <span></span>
-                        Delivered
-                    </td>
-                    <td>
-                        250,000 MMk
-                    </td>
-                    <td>
-                        <img src="icons/action.png" alt="">
-                        <img src="icons/bin.png" alt="">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="" id="">
-                    </td>
-                    <td>
-                        Modern Sofa
-                    </td>
-                    <td>
-                        EE72823
-                    </td>
-                    <td>
-                        2023 Nov 22
-                    </td>
-                    <td>
-                        Sofia Mia
-                    </td>
-                    <td class="status-dot dot-orange">
-                        <span></span>
-                        Pending
-                    </td>
-                    <td>
-                        250,000 MMk
-                    </td>
-                    <td>
-                        <img src="icons/action.png" alt="">
-                        <img src="icons/bin.png" alt="">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="" id="">
-                    </td>
-                    <td>
-                        Modern Sofa
-                    </td>
-                    <td>
-                        EE72823
-                    </td>
-                    <td>
-                        2023 Nov 22
-                    </td>
-                    <td>
-                        Sofia Mia
-                    </td>
-                    <td class="status-dot dot-red">
-                        <span></span>
-                        Cancled
-                    </td>
-                    <td>
-                        250,000 MMk
-                    </td>
-                    <td>
-                        <img src="icons/action.png" alt="">
-                        <img src="icons/bin.png" alt="">
-                    </td>
-                </tr>
-
+                @foreach ($orders as $order)
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>{{ $order['order_id'] }}</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{ $order['status'] }}</td>
+                        <td>{{ $order['amount'] }}</td>
+                    </tr>
+                @endforeach
             </table>
         </div>
     </div>
 
     <script src="js/script.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
-    <script>
-        // setup 
+    <script type="text/javascript">
         const data = {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep'],
+            labels: @json($chartData['labels']),
             datasets: [{
                 label: 'Profit',
-                data: [100000, 80000, 84000, 75000, 80000, 50000, 70000, 80000, 70000],
+                data: @json($chartData['data']),
                 backgroundColor: '#475BE8',
-                borderColor: 'rgba(0, 0, 0, 1)',
-                borderWidth: 1
-            }, {
-                label: 'Loss',
-                data: [70000, 60000, 40000, 90000, 60000, 40000, 50000, 60000, 50000],
-                backgroundColor: '#E3E7FC',
                 borderColor: 'rgba(0, 0, 0, 1)',
                 borderWidth: 1
             }]
         };
-
-        // config 
         const config = {
             type: 'bar',
             data,
@@ -357,15 +147,36 @@
                 }
             }
         };
-
-        // render init block
-        const myChart = new Chart(
-            document.getElementById('myChart'),
+        const barChart = new Chart(
+            document.getElementById('barChart'),
             config
         );
-
-        // Instantly assign Chart.js version
-        const chartVersion = document.getElementById('chartVersion');
-        chartVersion.innerText = Chart.version;
+    </script>
+    <script type="text/javascript">
+        var ctx = document.getElementById('pieChart');
+        var pieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+        });
     </script>
 @endsection
