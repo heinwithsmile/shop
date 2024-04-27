@@ -16,13 +16,15 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     {{-- CSS --}}
-    <link rel="stylesheet" href="{{url('/css/frontend/frontend.css')}}">
+    {{-- <link rel="stylesheet" href="{{url('/css/frontend/frontend.css')}}"> --}}
+    @stack('styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
      
     <!-- Scripts -->
-    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-    <div id="app">
+    {{-- <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -75,12 +77,14 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
-        <main class="py-4">
+        {{-- <main class="py-4">
             @yield('content')
         </main>
-    </div>
+    </div> --}}
+    @yield('content')
     {{-- JavaScript  --}}
+    @stack('scripts')
 </body>
 </html>

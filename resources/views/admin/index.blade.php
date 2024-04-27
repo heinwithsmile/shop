@@ -1,129 +1,296 @@
-@extends('admin.layouts.master')
+@extends('layouts.app')
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/backend/pages/dashboard.css') }}">
+    <style>
+        :root {
+            --main-bg-color: #383854;
+            --main-text-color: #FFFFFF;
+            --second-text-color: #FFFFFF;
+            --second-bg-color: #2E2E48;
+        }
+
+        .primary-text {
+            color: var(--main-text-color);
+        }
+
+        .second-text {
+            color: var(--second-text-color);
+        }
+
+        .primary-bg {
+            background-color: var(--main-bg-color);
+        }
+
+        .secondary-bg {
+            background-color: var(--second-bg-color);
+        }
+
+        .rounded-full {
+            border-radius: 100%;
+        }
+
+        #wrapper {
+            overflow-x: hidden;
+            background: var(--main-bg-color)
+        }
+
+        #sidebar-wrapper {
+            min-height: 100vh;
+            margin-left: -15rem;
+            background: var(--second-bg-color);
+            -webkit-transition: margin 0.25s ease-out;
+            -moz-transition: margin 0.25s ease-out;
+            -o-transition: margin 0.25s ease-out;
+            transition: margin 0.25s ease-out;
+        }
+
+        #sidebar-wrapper .sidebar-heading {
+            padding: 0.875rem 1.25rem;
+            font-size: 1.2rem;
+        }
+
+        #sidebar-wrapper .list-group {
+            width: 15rem;
+        }
+
+        #page-content-wrapper {
+            min-width: 100vw;
+        }
+
+        #wrapper.toggled #sidebar-wrapper {
+            margin-left: 0;
+        }
+
+        #menu-toggle {
+            cursor: pointer;
+        }
+
+        .list-group-item {
+            border: none;
+            padding: 20px 30px;
+        }
+
+        .list-group-item.active {
+            background-color: transparent;
+            color: var(--main-text-color);
+            font-weight: bold;
+            border: none;
+        }
+
+        @media (min-width: 768px) {
+            #sidebar-wrapper {
+                margin-left: 0;
+            }
+
+            #page-content-wrapper {
+                min-width: 0;
+                width: 100%;
+            }
+
+            #wrapper.toggled #sidebar-wrapper {
+                margin-left: -15rem;
+            }
+        }
+    </style>
 @endpush
 @section('content')
-    <div class="profile">
-        <div class="add-product-heading">
-            <div class="add-product-heading-left">
-                <h3>Dashboard</h3>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-white" id="sidebar-wrapper">
+            <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i
+                    class="fas fa-user-secret me-2"></i>Codersbite</div>
+            <div class="list-group list-group-flush my-3">
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"><i
+                        class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-project-diagram me-2"></i>Projects</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-chart-line me-2"></i>Analytics</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-paperclip me-2"></i>Reports</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-shopping-cart me-2"></i>Store Mng</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-gift me-2"></i>Products</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-comment-dots me-2"></i>Chat</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-map-marker-alt me-2"></i>Outlet</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                        class="fas fa-power-off me-2"></i>Logout</a>
             </div>
-            <div class="add-product-heading-right">
-                <div class="noti-bell">
-                    <img src="{{ asset('storage/backend/images/icons/noti_bell.png') }}" alt="">
-                    <span></span>
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+                    <h2 class="fs-2 m-0">Dashboard</h2>
                 </div>
 
-                <img src="{{ asset('storage/backend/images/profile.png') }}" alt="">
-            </div>
-        </div>
-    </div>
-    <div class="date-search-sort">
-        <div class="date">
-            <form action="{{ route('admin') }}" method="get">
-                <label for="start">Start Date:</label>
-                <input type="date" name="start" id="start">
-                <label for="end">End Date:</label>
-                <input type="date" name="end" id="end">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <input type="submit" value="Filter">
-            </form>
-        </div>
-    </div>
-
-    <div class="dashboard-card">
-        <div class="today-sales">
-            <div class="card-text">
-                Total Sales <br>
-                <span>${{ \App\Models\Order::getTotalSale() }}</span> <br>
-                We have sold 123 items
-            </div>
-        </div>
-        <div class="today-revenue">
-            <div class="card-text">
-                Total Purchase <br>
-                <span>$8.2K</span> <br>
-                Avaliable to payout
-            </div>
-        </div>
-        <div class="today-order">
-            <div class="card-text">
-                Number of Orders <br>
-                <span>$18.2K</span> <br>
-                Avaliable to payout
-            </div>
-        </div>
-        <div class="total-revenue">
-            <div class="revenue">
-                <div>
-                    <p>Sale Statics</p>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user me-2"></i>John Doe
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
-            </div>
+            </nav>
 
-            <div class="up-percent">
-                <span>$50.4K</span>
-                <p> <img src="icons/Arrow 1.png" alt="">5% than last month</p>
-            </div>
+            <div class="container-fluid px-4">
+                <div class="row g-3 my-2">
+                    <div class="col-md-3">
+                        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                            <div>
+                                <h3 class="fs-2">720</h3>
+                                <p class="fs-5">Products</p>
+                            </div>
+                            <i class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                        </div>
+                    </div>
 
-            <div class="chartCard">
-                <div class="chartBox">
-                    <canvas id="barChart"></canvas>
+                    <div class="col-md-3">
+                        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                            <div>
+                                <h3 class="fs-2">4920</h3>
+                                <p class="fs-5">Sales</p>
+                            </div>
+                            <i class="fas fa-hand-holding-usd fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                            <div>
+                                <h3 class="fs-2">3899</h3>
+                                <p class="fs-5">Delivery</p>
+                            </div>
+                            <i class="fas fa-truck fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                            <div>
+                                <h3 class="fs-2">%25</h3>
+                                <p class="fs-5">Increase</p>
+                            </div>
+                            <i class="fas fa-chart-line fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="row my-5">
+                    <h3 class="fs-4 mb-3">Recent Orders</h3>
+                    <div class="col">
+                        <table class="table bg-white rounded shadow-sm  table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" width="50">#</th>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Customer</th>
+                                    <th scope="col">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Television</td>
+                                    <td>Jonny</td>
+                                    <td>$1200</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Laptop</td>
+                                    <td>Kenny</td>
+                                    <td>$750</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Cell Phone</td>
+                                    <td>Jenny</td>
+                                    <td>$600</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td>Fridge</td>
+                                    <td>Killy</td>
+                                    <td>$300</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">5</th>
+                                    <td>Books</td>
+                                    <td>Filly</td>
+                                    <td>$120</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">6</th>
+                                    <td>Gold</td>
+                                    <td>Bumbo</td>
+                                    <td>$1800</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">7</th>
+                                    <td>Pen</td>
+                                    <td>Bilbo</td>
+                                    <td>$75</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">8</th>
+                                    <td>Notebook</td>
+                                    <td>Frodo</td>
+                                    <td>$36</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">9</th>
+                                    <td>Dress</td>
+                                    <td>Kimo</td>
+                                    <td>$255</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">10</th>
+                                    <td>Paint</td>
+                                    <td>Zico</td>
+                                    <td>$434</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">11</th>
+                                    <td>Carpet</td>
+                                    <td>Jeco</td>
+                                    <td>$1236</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">12</th>
+                                    <td>Food</td>
+                                    <td>Haso</td>
+                                    <td>$422</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
-
-        </div>
-        <div class="pieChart">
-            <canvas id="pieChart" ></canvas>
         </div>
     </div>
-
-    <div class="customer">
-        <h3>Latest Orders</h3>
-
-        <div class="customer-table">
-            <table>
-                <tr>
-                    <th>
-                        <input type="checkbox" name="" id="">
-                    </th>
-                    <th>
-                        Product Name
-                    </th>
-                    <th>
-                        Order ID
-                    </th>
-                    <th>
-                        Date
-                    </th>
-                    <th>
-                        Customer Name
-                    </th>
-                    <th>
-                        Status
-                    </th>
-                    <th>
-                        Amount
-                    </th>
-                    <th>
-                        Action
-                    </th>
-                </tr>
-                @foreach ($orders as $order)
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>{{ $order['order_id'] }}</td>
-                        <td></td>
-                        <td></td>
-                        <td>{{ $order['status'] }}</td>
-                        <td>{{ $order['amount'] }}</td>
-                    </tr>
-                @endforeach
-            </table>
-        </div>
+    <!-- /#page-content-wrapper -->
     </div>
 
-    <script src="js/script.js"></script>
+    {{-- <script src="js/script.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
     <script type="text/javascript">
         const data = {
@@ -178,5 +345,16 @@
                 }]
             },
         });
-    </script>
+    </script> --}}
+    @push('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            var el = document.getElementById("wrapper");
+            var toggleButton = document.getElementById("menu-toggle");
+
+            toggleButton.onclick = function() {
+                el.classList.toggle("toggled");
+            };
+        </script>
+    @endpush
 @endsection
