@@ -18,7 +18,8 @@
     {{-- CSS --}}
     {{-- <link rel="stylesheet" href="{{url('/css/frontend/frontend.css')}}"> --}}
     @stack('styles')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" /> --}}
+    <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
      
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -77,11 +78,7 @@
                     </ul>
                 </div>
             </div>
-        </nav> --}}
-
-        {{-- <main class="py-4">
-            @yield('content')
-        </main>
+        </nav>
     </div> --}}
     @yield('content')
     {{-- JavaScript  --}}
