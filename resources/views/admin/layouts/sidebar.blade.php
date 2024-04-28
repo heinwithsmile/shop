@@ -1,66 +1,81 @@
-<div class="sidebar">
-    <div class="logo">
-        <i class="fa-solid fa-bars"></i>
-    </div>
 
-    <ul class="nav_list">
-        <li>
-            <a href="{{ route('admin') }}">
-                <span class="links_name">Dashboard</span>
+<aside id="sidebar">
+    <div class="d-flex">
+        <button class="toggle-btn" type="button">
+            <i class="lni lni-menu"></i>
+        </button>
+        <div class="sidebar-logo">
+            <a href="#">Furniture Store</a>
+        </div>
+    </div>
+    <ul class="sidebar-nav">
+        <li class="sidebar-item">
+            <a href="{{route('admin')}}" class="sidebar-link">
+                <i class="lni lni-dashboard"></i>
+                <span>Dashboard</span>
             </a>
-            <span class="tooltip">Dashboard</span>
         </li>
-        <li>
-            <a href="{{ route('product.index') }}">
-                <span class="links_name">Products</span>
+        <li class="sidebar-item">
+            <a href="{{route('product.index')}}" class="sidebar-link">
+                <i class="lni lni-shopping-basket"></i>
+                <span>Products</span>
             </a>
-            <span class="tooltip">Products</span>
         </li>
-        <li>
-            <a href="{{ route('user.index') }}">
-                <span class="links_name">Customers</span>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                <i class="lni lni-users"></i>
+                <span>Customers</span>
             </a>
-            <span class="tooltip">Customers</span>
+            <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">Login</a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">Register</a>
+                </li>
+            </ul>
         </li>
-        <li>
-            <a href="{{ route('supplier.index') }}">
-                <span class="links_name">Suppliers</span>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+                <i class="lni lni-layout"></i>
+                <span>Suppliers</span>
             </a>
-            <span class="tooltip">Suppliers</span>
+            <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
+                        Two Links
+                    </a>
+                    <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">Link 1</a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">Link 2</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </li>
-        <li>
-            <a href="{{ route('order.index') }}">
-                <span class="links_name">Orders</span>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link">
+                <i class="lni lni-popup"></i>
+                <span>Orders</span>
             </a>
-            <span class="tooltip">Orders</span>
         </li>
-        <li>
-            <a href="{{ route('staff.index') }}">
-                <span class="links_name">StaffList</span>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link">
+                <i class="lni lni-cog"></i>
+                <span>Setting</span>
             </a>
-            <span class="tooltip">Staff List</span>
-        </li>
-        <li>
-            <a href="{{ route('report.index') }}">
-                <span class="links_name">Reports</span>
-            </a>
-            <span class="tooltip">Reports</span>
         </li>
     </ul>
-    <div class="side-bar-bottom">
-        <ul>
-            <li>
-                <a href="{{ 'setting' }}">
-                    <span class="links_name">Setting</span>
-                </a>
-                <span class="tooltip">Setting</span>
-            </li>
-            <li>
-                <a href="{{ 'logout' }}">
-                    <span class="links_name">Logout</span>
-                </a>
-                <span class="tooltip">Logout</span>
-            </li>
-        </ul>
+    <div class="sidebar-footer">
+        <a href="#" class="sidebar-link">
+            <i class="lni lni-exit"></i>
+            <span>Logout</span>
+        </a>
     </div>
-</div>
+</aside>

@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('layouts.app')
 @section('content')
     <div class="add-product-container">
         <div class="add-product-heading">
