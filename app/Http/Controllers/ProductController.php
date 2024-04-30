@@ -11,9 +11,13 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
+        $search = $request->input('search');
+        $products = Product::paginate(5);
+        if(isset($search)){
+            $products = Product::where('name', 'like', "%$search%")->paginate(5);
+        }
         return view('admin.product.list')->with("products", $products);
     }
 
