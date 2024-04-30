@@ -4,6 +4,7 @@
     --primary-color: #383854;
     --secondary-color: #2E2E48;
     --white: #FFFFFF;
+    --btn-color: #475BE8;
 }
 
 * {
@@ -31,6 +32,11 @@ li {
     list-style: none !important;
 }
 
+i {
+    font-size: 24px !important;
+    color: var(--white) !important;
+}
+
 h1 {
     font-weight: 600;
     font-size: 1.5rem;
@@ -40,6 +46,7 @@ body {
     font-family: "Poppins", sans-serif !important;
     font-weight: 500;
     font-style: normal;
+    color: var(--white);
 }
 
 .wrapper {
@@ -159,8 +166,17 @@ a.sidebar-link:hover {
     transition: all .2s ease-out;
 }
 
-.navbar {
+.main-content {
+    width: 100%;
+    background-color: var(--secondary-color);
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.heading {
     background-color: var(--secondary-color) !important;
+    border-radius: 10px;
 }
 
 .my-card {
@@ -169,4 +185,39 @@ a.sidebar-link:hover {
 
 .nav-link {
     color: var(--white) !important;
+}
+
+.my-btn {
+    padding: 15px 30px;
+    color: var(--white);
+    background-color: var(--btn-color);
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.tbl-container {
+    width: 100%;
+}
+
+.bdr {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table-custom {
+    --bs-table-bg: transparent !important;
+    --bs-table-color: var(--white) !important;
+}
+
+.table-heading {
+    background-color: var(--primary-color) !important;
+}
+
+.lni-trash-can {
+    color: #FA0E0E !important;
+}
+
+.btn-transparent {
+    background-color: transparent;
+    border: none;
 }

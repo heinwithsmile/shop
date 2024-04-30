@@ -14,9 +14,9 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $products = Product::paginate(5);
+        $products = Product::paginate(10);
         if(isset($search)){
-            $products = Product::where('name', 'like', "%$search%")->paginate(5);
+            $products = Product::where('name', 'like', "%$search%")->paginate(10);
         }
         return view('admin.product.list')->with("products", $products);
     }
