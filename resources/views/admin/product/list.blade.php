@@ -65,6 +65,6 @@
                 @endforeach
             </table>
         </div>
-        {{ $products->links() }}
+        {{ $products->links("vendor.pagination.default") }}
     </div>
 @endsection

@@ -85,7 +85,7 @@ body {
 
 .toggle-btn i {
     font-size: 1.5rem;
-    color: #FFF;
+    color: var(--white);
 }
 
 .sidebar-logo {
@@ -93,7 +93,7 @@ body {
 }
 
 .sidebar-logo a {
-    color: #FFF;
+    color: var(--white);
     font-size: 1.15rem;
     font-weight: 600;
 }
@@ -110,7 +110,7 @@ body {
 
 a.sidebar-link {
     padding: .625rem 1.625rem;
-    color: #FFF;
+    color: var(--white);
     display: block;
     font-size: 0.9rem;
     white-space: nowrap;
@@ -220,4 +220,29 @@ a.sidebar-link:hover {
 .btn-transparent {
     background-color: transparent;
     border: none;
+}
+
+.pagination .page-item{
+    margin: 0 .25rem;
+}
+
+.pagination li a.page-link {
+    background-color: transparent;
+    color: var(--white);
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 40px;
+    border: 1px solid var(--btn-color);
+    border-radius: 0.375rem;
+    text-align: center;
+}
+
+.pagination li.active a.page-link {
+    background-color: var(--btn-color);
+}
+
+.pagination li a.page-link i {
+    font-size: 16px !important;
 }
