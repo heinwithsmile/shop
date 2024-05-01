@@ -1,6 +1,11 @@
 @extends('layouts.app')
+@section('title', 'Furniture Store | Add')
+@section('page-name')
+    Add Product 
+@endsection
 @section('content')
-    <div class="container">
+<div class="main-content">
+    <div class="container my-5">
         <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
@@ -43,4 +48,5 @@
             <input class="btn btn-success" type="submit" value="Publish" class="publish-btn">
         </form>
     </div>
+</div>
 @endsection

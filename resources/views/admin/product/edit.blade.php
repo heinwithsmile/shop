@@ -1,6 +1,11 @@
 @extends('layouts.app')
+@section('title', 'Furniture Store | Edit')
+@section('page-name')
+    Edit Product 
+@endsection
 @section('content')
-    <div class="container">
+<div class="main-content">
+    <div class="container my-5">
         <form action="{{ route('product.update', $product->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -50,4 +55,5 @@
             <input type="submit" value="Update" class="publish-btn">
         </form>
     </div>
+</div>
 @endsection

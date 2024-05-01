@@ -1,4 +1,3 @@
-
 <aside id="sidebar">
     <div class="d-flex">
         <button class="toggle-btn" type="button">
@@ -10,13 +9,13 @@
     </div>
     <ul class="sidebar-nav">
         <li class="sidebar-item">
-            <a href="{{route('admin')}}" class="sidebar-link">
+            <a href="{{ route('admin') }}" class="sidebar-link">
                 <i class="lni lni-dashboard"></i>
                 <span>Dashboard</span>
             </a>
         </li>
         <li class="sidebar-item">
-            <a href="{{route('product.index')}}" class="sidebar-link">
+            <a href="{{ route('product.index') }}" class="sidebar-link">
                 <i class="lni lni-shopping-basket"></i>
                 <span>Products</span>
             </a>
@@ -49,9 +48,12 @@
         </li>
     </ul>
     <div class="sidebar-footer">
-        <a href="#" class="sidebar-link">
-            <i class="lni lni-exit"></i>
-            <span>Logout</span>
-        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+            @csrf
+            <a href="#" class="sidebar-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="lni lni-exit"></i>
+                <span>Logout</span>
+            </a>
+        </form>
     </div>
 </aside>

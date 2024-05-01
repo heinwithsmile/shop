@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Furniture Store | Product List')
+@section('title', 'Furniture Store | Product Management')
 @section('page-name')
     Product Management
 @endsection
@@ -13,15 +13,16 @@
                     <div class="input-group">
                         <input type="search" name="search" placeholder="Search" aria-describedby="button-addon1"
                             class="form-control border-0 bg-light">
-                        <div class="input-group-append">
+                        {{-- <div class="input-group-append">
                             <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i
                                     class="lni lni-search-alt"></i></button>
-                        </div>
+                        </div> --}}
                     </div>
                 </form>
             </div>
             <div>
-                <a class="my-btn" href="{{ route('product.create') }}">
+                <a class="my-btn d-flex justify-content-around align-items-center" href="{{ route('product.create') }}">
+                    <i class="lni lni-circle-plus"></i> 
                     Add Product
                 </a>
             </div>

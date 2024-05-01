@@ -188,7 +188,9 @@ a.sidebar-link:hover {
 }
 
 .my-btn {
-    padding: 15px 30px;
+    width: 160px;
+    height: 51px;
+    padding: 5px 10px;
     color: var(--white);
     background-color: var(--btn-color);
     border-radius: 10px;
