@@ -1,17 +1,20 @@
-@extends('layouts.app')
+@extends('admin.layouts.master')
 @section('title', 'Furniture Store | Add')
+@push('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css">
+<link rel="stylesheet" href="/css/backend/utilities/product-dropzone.css">
+<link rel="stylesheet" href="/css/backend/utilities/form.css">
+@endpush
 @section('page-name')
     Add Product 
 @endsection
 @section('content')
 <div class="main-content">
     <div class="container my-5">
-        <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data" >
             @csrf
-            <div class="form-group">
-                <label for="photo">Photo</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
-            </div>
+            {{-- <label for="photo">Photo</label> --}}
+            <div class="dz-default dz-message dropzone form-group" id="dropzoneImage"></div>
             <div class="form-group">
                 <label for="name">Product Name</label>
                 <input type="text" class="form-control" name="name" id="name">
@@ -37,7 +40,7 @@
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
-            <div class="from-group">
+            <div class="form-group">
                 <label for="description">Description</label>
                 <textarea class="form-control" name="description" id="description"></textarea>
                 @error('description')
@@ -50,3 +53,8 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
+    <script src="/js/backend/product-dropzone.js"></script>
+@endpush

@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("admin.layouts.master")
 @section('title', 'Furniture Store | Detail')
 @section('content')
 <a href="{{url()->previous()}}">Back</a>

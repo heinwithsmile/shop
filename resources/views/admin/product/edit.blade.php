@@ -1,4 +1,7 @@
-@extends('layouts.app')
+@extends('admin.layouts.master')
+@push('styles')
+    <link rel="stylesheet" href="/css/backend/utilities/form.css">
+@endpush
 @section('title', 'Furniture Store | Edit')
 @section('page-name')
     Edit Product 

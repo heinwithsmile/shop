@@ -126,8 +126,6 @@
     display: block;
 }
 
-/* .shop-dropdown-content a:hover {background-color: #f1f1f1} */
-
 .shop-dropdown:hover .shop-dropdown-content {
     display: block;
 }
@@ -142,10 +140,6 @@
     justify-content: space-between;
 }
 
-/* .shop-nav-left {
-      padding-left: 50px;
-    } */
-
 .shop-dropbtn img {
     height: 15px;
     width: 15px;
@@ -159,8 +153,6 @@
     background-color: white;
     padding: 10px;
 }
-
-/* shop-product-grid */
 
 .shop-product-grid .menu {
     margin-top: 50px;

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.master')
 @section('title', 'Furniture Store | Product Management')
 @section('page-name')
     Product Management

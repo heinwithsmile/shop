@@ -1,76 +1,97 @@
 @extends('layouts.master')
 @section('content')
-    <div class="hero-container">
-        <div class="mySlides fade">
-            <img src="{{asset('storage/frontend/images/hero-img.jpg')}}" alt="" />
-        </div>
-        <div class="mySlides fade">
-            <img src="{{asset('storage/frontend/images/bluesofa.jpg')}}" alt="" />
-        </div>
-        <div class="mySlides fade">
-            <img src="{{asset('storage/frontend/images/graysofa.jpg')}}" alt="" />
-        </div>
+    <div class="container">
+        <div class="hero">
+            <div class="mySlides fade">
+                <img src="{{ asset('storage/frontend/images/hero.jpg') }}" alt="Slider Photo" />
+            </div>
 
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <a class="prev" onclick="plusSlides(-1)"><i class="fa-solid fa-chevron-left"></i></a>
+            <a class="next" onclick="plusSlides(1)"><i class="fa-solid fa-chevron-right"></i></a>
 
-        <div class="hero-container-inner">
-            <h3>SALE OFF 30%</h3>
-            <h1>Classic 2023 Interior Designs</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <a href="{{route('shop')}}">
-                <button>
-                    Shop Now <img src="{{asset('storage/frontend/images/right-arrow-svgrepo-com.svg')}}" alt="" />
-                </button>
-            </a>
+            <div class="hero-inner">
+                <h3>SALE OFF 30%</h3>
+                <h1>Classic 2024 Interior Designs</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <a class="btn btn-primary" href="{{ route('shop') }}">
+                    Shop Now
+                </a>
+            </div>
         </div>
     </div>
-
-    <div class="hero-grid-container">
-        <div class="grid-item item-1">
-            <p>
-                BED <br />
-                70 Products
-            </p>
-            <a href=""><img src="{{asset('storage/frontend/images/whitebed.png')}}" alt="" /></a>
+    <div class="container">
+        <div class="categories">
+            <div class="card card--bg-bisque">
+                <h3>BED</h3>
+                <p>70 Products</p>
+            </div>
+            <div class="card card--bg-darksalmon">
+                <h3>SOFA</h3>
+                <p>70 Products</p>
+            </div>
+            <div class="card card--bg-moccasin">
+                <h3>LAMP</h3>
+                <p>70 Products</p>
+            </div>
+            <div class="card card--bg-lightgray">
+                <h3>CABINET</h3>
+                <p>70 Products</p>
+            </div>
+            <div class="card card--bg-azure">
+                <h3>TABLE</h3>
+                <p>70 Products</p>
+            </div>
+            <a href="#">Explore More</a>
         </div>
-        <div class="grid-item item-2">
-            <p>
-                SOFA <br />
-                50 Products
-            </p>
-            <a href=""><img src="{{asset('storage/frontend/images/blackchair.png')}}" alt="" /></a>
-        </div>
-        <div class="grid-item item-3">
-            <p>
-                LAMP <br />
-                30 Products
-            </p>
-            <a href=""><img src="{{asset('storage/frontend/images/lamp.png')}}" alt="" /></a>
-        </div>
-        <div class="grid-item item-4">
-            <p>
-                CABINET<br />
-                40 Products
-            </p>
-            <a href=""><img src="{{asset('storage/frontend/images/cabinet.png')}}" alt="" /></a>
-        </div>
-        <div class="grid-item item-5">
-            <p>
-                TABLE<br />
-                20 Products
-            </p>
-            <a href=""><img src="{{asset('storage/frontend/images/table.png')}}" alt="" /></a>
-        </div>
-
-        <a href="">
-            <p>
-                Explore more
-                <img src="{{asset('storage/frontend/images/right-arrow-svgrepo-com.svg')}}" alt="" />
-            </p>
-        </a>
     </div>
 @endsection
 @push('scripts')
-    <script src="{{asset('js/frontend/slide.js')}}"></script>
+    <script>
+        const hamburger = document.querySelector(".hamburger");
+        const navbar = document.querySelector(".navbar");
+
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navbar.classList.toggle("active");
+
+        })
+
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = slides.length
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+
+        function openMenu(menuItem) {
+            var i;
+            var x = document.getElementsByClassName("menu");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            document.getElementById(menuItem).style.display = "grid";
+        }
+    </script>
 @endpush
