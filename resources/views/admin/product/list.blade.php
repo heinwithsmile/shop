@@ -13,10 +13,6 @@
                     <div class="input-group">
                         <input type="search" name="search" placeholder="Search" aria-describedby="button-addon1"
                             class="form-control border-0 bg-light">
-                        {{-- <div class="input-group-append">
-                            <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i
-                                    class="lni lni-search-alt"></i></button>
-                        </div> --}}
                     </div>
                 </form>
             </div>

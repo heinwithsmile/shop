@@ -43,6 +43,7 @@ class AdminController extends Controller
                         ->take(10)
                         ->get();
        }
+       $latest_orders = Order::paginate(5);
         return view('admin.index')
             ->with('orders', $orders)
             ->with('chartData', $chartData)
