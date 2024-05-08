@@ -15,7 +15,7 @@
             </li>
         </ul>
         <div class="right-corner">
-            <p>Up to 40% off best selling furniture.<span><a href="#">Shop Now</a></span></p>
+            <p>Up to 40% off best selling furniture.<span><a href="{{route('shop')}}">Shop Now</a></span></p>
         </div>
     </nav>
     <div class="navbar"><a class="site-name" href="{{ route('index') }}">Furniture Store</a>

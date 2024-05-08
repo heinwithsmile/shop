@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('title')
+    Home | Furniture Store
+@endsection
 @section('content')
     <div class="container">
         <div class="hero">
