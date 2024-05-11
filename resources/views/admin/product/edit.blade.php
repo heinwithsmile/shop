@@ -2,7 +2,7 @@
 @push('styles')
     <link rel="stylesheet" href="/css/backend/utilities/form.css">
 @endpush
-@section('title', 'Furniture Store | Edit')
+@section('title', 'Edit | Furniture Store')
 @section('page-name')
     Edit Product 
 @endsection
@@ -54,8 +54,8 @@
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
-            <button class="cancel-btn"><a href="{{ url()->previous() }}">Cancel</a></button>
-            <input type="submit" value="Update" class="publish-btn">
+            <a class="btn btn-warning" href="{{ url()->previous() }}">Cancel</a>
+            <input type="submit" value="Update" class="btn btn-primary">
         </form>
     </div>
 </div>

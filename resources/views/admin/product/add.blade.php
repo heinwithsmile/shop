@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Furniture Store | Add')
+@section('title', 'Add | Furniture Store')
 @push('styles')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css">
 <link rel="stylesheet" href="/css/backend/utilities/product-dropzone.css">
@@ -13,7 +13,6 @@
     <div class="container my-5">
         <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data" >
             @csrf
-            {{-- <label for="photo">Photo</label> --}}
             <div class="dz-default dz-message dropzone form-group" id="dropzoneImage"></div>
             <div class="form-group">
                 <label for="name">Product Name</label>
@@ -47,8 +46,8 @@
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
-            <a href="{{ url()->previous() }}">Cancel</a>
-            <input class="btn btn-success" type="submit" value="Publish" class="publish-btn">
+            <a class="btn btn-warning" href="{{ url()->previous() }}">Cancel</a>
+            <input class="btn btn-primary" type="submit" value="Publish" class="publish-btn">
         </form>
     </div>
 </div>

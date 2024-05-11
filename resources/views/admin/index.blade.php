@@ -1,12 +1,12 @@
 @extends('admin.layouts.master')
-@section('title', 'Furniture Store | Dashboard')
+@section('title', 'Dashboard | Furniture Store ')
 @section('page-name')
     Dashboard
 @endsection
 @push('styles')
 @endpush
 @section('content')
-    <div class="row my-2">
+    <div class="calendar row my-3">
         <form action="{{ route('admin') }}" method="get">
             <label for="start">Start Date:</label>
             <input type="date" name="start" id="start">
@@ -15,7 +15,7 @@
             <input type="submit" value="Filter">
         </form>
     </div>
-    <div class="row g-3 my-2">
+    <div class="cards row my-3">
         <div class="col-md-3">
             <div class="p-3 shadow-sm d-flex justify-content-around align-items-center rounded my-card">
                 <div>
@@ -52,6 +52,14 @@
             </div>
         </div>
     </div>
+    <div class="statistic my-3">
+        <div class="my-card sale-card rounded">
+            <canvas id="barChart"></canvas>
+        </div>
+        <div class="my-card order-type-card rounded">
+            <canvas id="myDoughnutChart"></canvas>
+        </div>
+    </div>
     <div class="main-content">
         <div class="tbl-container bdr">
             <table class="table shadow-sm mt-3 bdr table-custom table-borderless">
@@ -67,7 +75,7 @@
                 <tbody>
                     @foreach ($orders as $order)
                         <tr>
-                            <td>{{ $order->order_id}}</td>
+                            <td>{{ $order->order_id }}</td>
                             <td>{{ $order->status }}</td>
                             <td>{{ $order->amount }}</td>
                             <td>{{ $order->quantity }}</td>
@@ -92,4 +100,63 @@
     </div>
 @endsection
 @push('scripts')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript">
+        const data = {
+            labels: @json($chartData['labels']),
+            datasets: [{
+                label: 'Profit',
+                data: @json($chartData['data']),
+                backgroundColor: '#475BE8',
+                borderColor: 'rgba(0, 0, 0, 1)',
+                borderWidth: 1
+            }]
+        };
+        const config = {
+            type: 'bar',
+            data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+        const barChart = new Chart(
+            document.getElementById('barChart'),
+            config
+        );
+    </script>
+    <script type="text/javascript">
+        var ctx = document.getElementById('myDoughnutChart').getContext('2d');
+        var myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Red', 'Blue'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(54, 162, 235, 0.5)'
+                    ],
+                    // borderColor: [
+                    //     'rgba(255, 99, 132, 1)',
+                    //     'rgba(54, 162, 235, 1)',
+                    //     'rgba(255, 206, 86, 1)',
+                    //     'rgba(75, 192, 192, 1)',
+                    //     'rgba(153, 102, 255, 1)',
+                    //     'rgba(255, 159, 64, 1)'
+                    // ],
+                    // borderWidth: 1
+                }]
+            },
+            options: {
+                cutoutPercentage: 10, // Adjust the size of the center hole
+                responsive: true,
+                maintainAspectRatio: true // Allow the chart to adjust its size based on container size
+            }
+        });
+    </script>
 @endpush

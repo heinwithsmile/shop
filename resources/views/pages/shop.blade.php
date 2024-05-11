@@ -67,6 +67,25 @@
             object-fit: cover;
             user-select: none;
         }
+
+        .breadcrumb ul {
+            display: flex;
+            align-items: center;
+            column-gap: 20px;
+        }
+
+        .breadcrumb ul li a {
+            color: var(--black);
+        }
+
+        .filter-wrapper {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .filter-wrap {
+            display: flex;
+        }
     </style>
 @endpush
 @section('content')
@@ -91,88 +110,86 @@
         </div>
         <i id="right" class="fa-solid fa-angle-right"></i>
     </div>
-    {{-- <div class="shop-nav-heading">
-        <div class="mini-heading">
-            <p>Home</p>
-            <p>Shop</p>
+    <div class="container">
+        <div class="breadcrumb my-2">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">SHOP</a></li>
+            </ul>
         </div>
-        <p id="shop">SHOP</p>
-    </div> --}}
-
-    {{-- <div class="shop-nav">
-        <div class="shop-nav-left">
-            <p>view <b>16</b> per page</p>
+        <h2 class="page-name my-2">SHOP</h2>
+        <div class="filter-wrapper">
+            <div class="per-page">
+                <p>view per page</p>
+            </div>
+            <div class="filter-wrap">
+                <div>
+                    <a href="#">Categories</a>
+                    <div>
+                        @php
+                            $count = 0;
+                        @endphp
+                        @foreach ($categories as $category)
+                            <a href="{{ route('shop') }}?category={{ $category->name }}">{{ $category->name }}
+                                ({{ $cat_count[$count] }})
+                            </a>
+                            @php
+                                $count++;
+                            @endphp
+                        @endforeach
+                    </div>
+                </div>
+                <div class="shop-dropdown">
+                    <button class="shop-dropbtn">PRICE <img src="images/greater-than-symbol.png" alt=""></button>
+                    <div class="shop-dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </div>
+                <div class="shop-dropdown">
+                    <button class="shop-dropbtn">COLOR <img src="images/greater-than-symbol.png" alt=""></button>
+                    <div class="shop-dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </div>
+                <div class="shop-dropdown">
+                    <button class="shop-dropbtn">MATERIAL <img src="images/greater-than-symbol.png" alt=""></button>
+                    <div class="shop-dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </div>
+                <div class="shop-dropdown">
+                    <button class="shop-dropbtn-last">SORT BY LATEST <img src="images/greater-than-symbol.png"
+                            alt=""></button>
+                    <div class="shop-dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="shop-nav-right">
-            <div class="shop-dropdown">
-                <button class="shop-dropbtn">CATAGORIES <img src="images/greater-than-symbol.png" alt=""></button>
-                <div class="shop-dropdown-content">
-                @php
-                    $count = 0;
-                @endphp
-                @foreach ($categories as $category)
-                    <a href="{{route('shop')}}?category={{$category->name}}">{{$category->name}} ({{$cat_count[$count]}})</a>
-                    @php
-                        $count++;
-                    @endphp
-                @endforeach
-                </div>
-            </div>
-            <div class="shop-dropdown">
-                <button class="shop-dropbtn">PRICE <img src="images/greater-than-symbol.png" alt=""></button>
-                <div class="shop-dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-            </div>
-            <div class="shop-dropdown">
-                <button class="shop-dropbtn">COLOR <img src="images/greater-than-symbol.png" alt=""></button>
-                <div class="shop-dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-            </div>
-            <div class="shop-dropdown">
-                <button class="shop-dropbtn">MATERIAL <img src="images/greater-than-symbol.png" alt=""></button>
-                <div class="shop-dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-            </div>
-            <div class="shop-dropdown">
-                <button class="shop-dropbtn-last">SORT BY LATEST <img src="images/greater-than-symbol.png"
-                        alt=""></button>
-                <div class="shop-dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- shop-product-grid -->
-    <div class="shop-product-grid">
-        <div id="bed" class="menu">
+        <div class="grid">
             @foreach ($products as $product)
-            <div class="shop-product-item shop-item-1">
-                <a href="{{route('shop.detail', ['id' => $product->id])}}"><img src="{{asset("storage/$product->photo")}}" alt="" />
-                    <p>{{$product->name}}</p>
-                    <p>${{$product->price}}</p>
-                </a>
-            </div>
+                <div class="shop-product-item shop-item-1">
+                    <a href="{{ route('shop.detail', ['id' => $product->id]) }}"><img
+                            src="{{ asset("storage/$product->photo") }}" alt="" />
+                        <p>{{ $product->name }}</p>
+                        <p>${{ $product->price }}</p>
+                    </a>
+                </div>
             @endforeach
         </div>
+        <div>
+            <p>You've viewed 16 or 50 products</p>
+            <a href="#">Load More</a>
+        </div>
     </div>
-
-    <div class="shop-last-section">
-        <p>You've viewed 16 or 50 products</p>
-        <button>LOAD MORE</button>
-    </div> --}}
 @endsection
 @push('scripts')
     <script>

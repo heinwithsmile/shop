@@ -183,6 +183,22 @@ a.sidebar-link:hover {
     background-color: var(--secondary-color);
 }
 
+.sale-card {
+    width: 689px;
+    height: 305px;
+}
+
+.order-type-card {
+    width: 337px;
+    height: 305px;
+}
+
+.statistic {
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 20px;
+}
+
 .nav-link {
     color: var(--white) !important;
 }

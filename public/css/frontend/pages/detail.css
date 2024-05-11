@@ -1,0 +1,23 @@
+.detail {
+    display: flex;
+    justify-content: center;
+    column-gap: 3%;    
+}
+
+.detail .product-image {
+    flex-basis: 37%;
+    background-color: var(--azure);
+}
+
+.detail .product-image img {
+    width: 100%;
+}
+
+.detail .specification {
+    flex-basis: 60%;
+}
+
+.detail .specification .product-name {
+    font-size: 42px;
+    font-weight: 500;
+}
