@@ -166,7 +166,7 @@ a.sidebar-link:hover {
     transition: all .2s ease-out;
 }
 
-.main-content {
+section {
     width: 100%;
     background-color: var(--secondary-color);
     margin-top: 20px;

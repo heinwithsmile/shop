@@ -6,7 +6,7 @@
 @push('styles')
 @endpush
 @section('content')
-    <div class="main-content">
+    <section>
         <div class="d-flex justify-content-between align-items-center">
             <div class="p-1 rounded bg-light my-3">
                 <form action="{{ route('product.index') }}" method="GET">
@@ -63,5 +63,5 @@
             </table>
         </div>
         {{ $products->links("vendor.pagination.default") }}
-    </div>
+    </section>
 @endsection

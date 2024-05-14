@@ -9,7 +9,7 @@
     Add Product 
 @endsection
 @section('content')
-<div class="main-content">
+<section>
     <div class="container my-5">
         <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data" >
             @csrf
@@ -50,7 +50,7 @@
             <input class="btn btn-primary" type="submit" value="Publish" class="publish-btn">
         </form>
     </div>
-</div>
+</section>
 @endsection
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

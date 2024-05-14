@@ -15,7 +15,7 @@
             </li>
         </ul>
         <div class="right-corner">
-            <p>Up to 40% off best selling furniture.<span><a href="{{route('shop')}}">Shop Now</a></span></p>
+            <p>Up to 40% off best selling furniture.<span><a href="{{ route('shop') }}">Shop Now</a></span></p>
         </div>
     </div>
     <div class="navbar">
@@ -31,8 +31,15 @@
                 <li class="nav-item"><a href="#">Contact Us</a></li>
             </ul>
         </nav>
-        <div class="nav-menu-social">
+        <div class="nav-menu-social flex">
             <a href="#"><i class="fa-solid fa-basket-shopping"></i></a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                @csrf
+                <a href="#" class="sidebar-link d-flex align-items-center"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </a>
+            </form>
         </div>
     </div>
 </div>

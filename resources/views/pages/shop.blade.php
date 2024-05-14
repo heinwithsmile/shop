@@ -86,6 +86,24 @@
         .filter-wrap {
             display: flex;
         }
+
+        .product-card {
+            width: 315px;
+            height: 400px;
+        }
+
+        .product-card .img-card {
+            height: 330px;
+            background-color: var(--secondary-color);
+        }
+
+        .product-card img {
+            width: 100%;
+        }
+
+        .product-card a {
+            color: var(--black);
+        }
     </style>
 @endpush
 @section('content')
@@ -140,7 +158,7 @@
                     </div>
                 </div>
                 <div class="shop-dropdown">
-                    <button class="shop-dropbtn">PRICE <img src="images/greater-than-symbol.png" alt=""></button>
+                    <button class="shop-dropbtn">PRICE</button>
                     <div class="shop-dropdown-content">
                         <a href="#">Link 1</a>
                         <a href="#">Link 2</a>
@@ -148,7 +166,7 @@
                     </div>
                 </div>
                 <div class="shop-dropdown">
-                    <button class="shop-dropbtn">COLOR <img src="images/greater-than-symbol.png" alt=""></button>
+                    <button class="shop-dropbtn">COLOR</button>
                     <div class="shop-dropdown-content">
                         <a href="#">Link 1</a>
                         <a href="#">Link 2</a>
@@ -156,7 +174,7 @@
                     </div>
                 </div>
                 <div class="shop-dropdown">
-                    <button class="shop-dropbtn">MATERIAL <img src="images/greater-than-symbol.png" alt=""></button>
+                    <button class="shop-dropbtn">MATERIAL</button>
                     <div class="shop-dropdown-content">
                         <a href="#">Link 1</a>
                         <a href="#">Link 2</a>
@@ -164,8 +182,7 @@
                     </div>
                 </div>
                 <div class="shop-dropdown">
-                    <button class="shop-dropbtn-last">SORT BY LATEST <img src="images/greater-than-symbol.png"
-                            alt=""></button>
+                    <button class="shop-dropbtn-last">SORT BY LATEST</button>
                     <div class="shop-dropdown-content">
                         <a href="#">Link 1</a>
                         <a href="#">Link 2</a>
@@ -176,12 +193,14 @@
         </div>
         <div class="grid">
             @foreach ($products as $product)
-                <div class="shop-product-item shop-item-1">
-                    <a href="{{ route('shop.detail', ['id' => $product->id]) }}"><img
-                            src="{{ asset("storage/$product->photo") }}" alt="" />
-                        <p>{{ $product->name }}</p>
-                        <p>${{ $product->price }}</p>
-                    </a>
+                <div class="product-card">
+                    <div class="img-card">
+                        <a href="{{ route('shop.detail', ['id' => $product->id]) }}"><img
+                                src="{{ asset("storage/$product->photo") }}" alt="" />
+                        </a>
+                    </div>
+                    <p class="my-1"><a href="#">{{ $product->name }}</a></p>
+                    <p><a href="#">${{ $product->price }}</a></p>
                 </div>
             @endforeach
         </div>

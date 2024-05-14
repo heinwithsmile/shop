@@ -60,7 +60,7 @@
             <canvas id="myDoughnutChart"></canvas>
         </div>
     </div>
-    <div class="main-content">
+    <section>
         <div class="tbl-container bdr">
             <table class="table shadow-sm mt-3 bdr table-custom table-borderless">
                 <thead class="table-heading">
@@ -97,7 +97,7 @@
                 @endforeach
             </table>
         </div>
-    </div>
+    </section>
 @endsection
 @push('scripts')
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>

@@ -31,6 +31,11 @@ body {
     margin: 0 auto;
 }
 
+.my-1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .my-2 {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -42,6 +47,12 @@ a {
 
 ul {
     list-style-type: none;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .grid {
@@ -146,6 +157,7 @@ nav ul li a.active {
 }
 
 .nav-menu-social {
+    width: 150px;
     margin-right: 20px;
 }
 .nav-menu-social a i {

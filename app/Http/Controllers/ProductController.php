@@ -65,7 +65,6 @@ class ProductController extends Controller
     {
         $category = Category::findOrFail($product->category_id);
         $categories = Category::all();
-        // dd($category);
         return view('admin.product.edit')
             ->with('product', $product)
             ->with('category', $category)

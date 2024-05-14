@@ -15,6 +15,12 @@
             </a>
         </li>
         <li class="sidebar-item">
+            <a href="{{route('category.index')}}" class="sidebar-link d-flex align-items-center">
+                <i class="lni lni-layers"></i>
+                <span>Category</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
             <a href="{{ route('product.index') }}" class="sidebar-link d-flex align-items-center">
                 <i class="lni lni-shopping-basket"></i>
                 <span>Products</span>
@@ -30,13 +36,13 @@
         <li class="sidebar-item">
             <a href="#" class="sidebar-link d-flex align-items-center" 
                 data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
-                <i class="lni lni-layout"></i>
+                <i class="lni lni-car"></i>
                 <span>Suppliers</span>
             </a>
         </li>
         <li class="sidebar-item">
             <a href="#" class="sidebar-link d-flex align-items-center">
-                <i class="lni lni-popup"></i>
+                <i class="lni lni-clipboard"></i>
                 <span>Orders</span>
             </a>
         </li>

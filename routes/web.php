@@ -13,19 +13,27 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SupplierController;
 
 Auth::routes();
-Route::controller(HomeController::class)->group(function(){
+Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/home', 'home')->name('home');
 });
 
-Route::controller(ShopController::class)->group(function(){
+Route::controller(ShopController::class)->group(function () {
     Route::get('/shop', 'index')->name('shop');
     Route::get('/shop/detail/{id}', 'detail')->name('shop.detail');
+    Route::get('/payment', 'showPaymentForm')->name('payment.form');
+    Route::post('/process-payment', 'processPayment')->name('process.payment');
+    Route::get('/payment/success', function () {
+        return 'Payment Successful!';
+    })->name('payment.success');
+    Route::get('/payment/failure', function () {
+        return 'Payment Failed!';
+    })->name('payment.failure');
 });
 
 /* ----------- Admin Routes -------------- */
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::resource('user', UserController::class);
     Route::resource('category', CategoryController::class);
