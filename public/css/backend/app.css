@@ -264,3 +264,8 @@ section {
 .pagination li a.page-link i {
     font-size: 16px !important;
 }
+
+.calendar {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+}

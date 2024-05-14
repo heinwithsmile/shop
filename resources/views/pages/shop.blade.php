@@ -68,16 +68,6 @@
             user-select: none;
         }
 
-        .breadcrumb ul {
-            display: flex;
-            align-items: center;
-            column-gap: 20px;
-        }
-
-        .breadcrumb ul li a {
-            color: var(--black);
-        }
-
         .filter-wrapper {
             display: flex;
             justify-content: space-between;
@@ -87,10 +77,17 @@
             display: flex;
         }
 
-        .product-card {
+        .product-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+            grid-gap: 20px;
+            align-items: stretch;
+        }
+
+        /* .product-card {
             width: 315px;
             height: 400px;
-        }
+        } */
 
         .product-card .img-card {
             height: 330px;
@@ -129,10 +126,10 @@
         <i id="right" class="fa-solid fa-angle-right"></i>
     </div>
     <div class="container">
-        <div class="breadcrumb my-2">
+        <div class="breadcrumbs my-2">
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">SHOP</a></li>
+                <li><a href="#">Shop</a></li>
             </ul>
         </div>
         <h2 class="page-name my-2">SHOP</h2>
@@ -157,15 +154,15 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="shop-dropdown">
+                {{-- <div class="shop-dropdown">
                     <button class="shop-dropbtn">PRICE</button>
                     <div class="shop-dropdown-content">
                         <a href="#">Link 1</a>
                         <a href="#">Link 2</a>
                         <a href="#">Link 3</a>
                     </div>
-                </div>
-                <div class="shop-dropdown">
+                </div> --}}
+                {{-- <div class="shop-dropdown">
                     <button class="shop-dropbtn">COLOR</button>
                     <div class="shop-dropdown-content">
                         <a href="#">Link 1</a>
@@ -188,10 +185,10 @@
                         <a href="#">Link 2</a>
                         <a href="#">Link 3</a>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
-        <div class="grid">
+        <div class="product-gallery">
             @foreach ($products as $product)
                 <div class="product-card">
                     <div class="img-card">
@@ -199,14 +196,14 @@
                                 src="{{ asset("storage/$product->photo") }}" alt="" />
                         </a>
                     </div>
-                    <p class="my-1"><a href="#">{{ $product->name }}</a></p>
+                    <p class="my-1"><a href="{{ route('shop.detail', $product->id) }}">{{ $product->name }}</a></p>
                     <p><a href="#">${{ $product->price }}</a></p>
                 </div>
             @endforeach
         </div>
         <div>
-            <p>You've viewed 16 or 50 products</p>
-            <a href="#">Load More</a>
+            {{-- <p>You've viewed 16 or 50 products</p>
+            <a href="#">Load More</a> --}}
         </div>
     </div>
 @endsection

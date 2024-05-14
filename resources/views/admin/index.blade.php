@@ -6,15 +6,7 @@
 @push('styles')
 @endpush
 @section('content')
-    <div class="calendar row my-3">
-        <form action="{{ route('admin') }}" method="get">
-            <label for="start">Start Date:</label>
-            <input type="date" name="start" id="start">
-            <label for="end">End Date:</label>
-            <input type="date" name="end" id="end">
-            <input type="submit" value="Filter">
-        </form>
-    </div>
+    @include('layouts.calendar')
     <div class="cards row my-3">
         <div class="col-md-3">
             <div class="p-3 shadow-sm d-flex justify-content-around align-items-center rounded my-card">
@@ -105,7 +97,7 @@
         const data = {
             labels: @json($chartData['labels']),
             datasets: [{
-                label: 'Profit',
+                label: 'Monthly Sales',
                 data: @json($chartData['data']),
                 backgroundColor: '#475BE8',
                 borderColor: 'rgba(0, 0, 0, 1)',
@@ -133,29 +125,20 @@
         var myDoughnutChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ['Red', 'Blue'],
+                labels: ['Account', 'One Time'],
                 datasets: [{
-                    label: '# of Votes',
+                    label: 'Monthly Orders',
                     data: [12, 19],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.5)',
-                        'rgba(54, 162, 235, 0.5)'
+                        '#FFFFFF',
+                        '#475BE8'
                     ],
-                    // borderColor: [
-                    //     'rgba(255, 99, 132, 1)',
-                    //     'rgba(54, 162, 235, 1)',
-                    //     'rgba(255, 206, 86, 1)',
-                    //     'rgba(75, 192, 192, 1)',
-                    //     'rgba(153, 102, 255, 1)',
-                    //     'rgba(255, 159, 64, 1)'
-                    // ],
-                    // borderWidth: 1
                 }]
             },
             options: {
-                cutoutPercentage: 10, // Adjust the size of the center hole
+                cutoutPercentage: 10,
                 responsive: true,
-                maintainAspectRatio: true // Allow the chart to adjust its size based on container size
+                maintainAspectRatio: true
             }
         });
     </script>

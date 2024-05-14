@@ -32,6 +32,7 @@
             </ul>
         </nav>
         <div class="nav-menu-social flex">
+            <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
             <a href="#"><i class="fa-solid fa-basket-shopping"></i></a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
