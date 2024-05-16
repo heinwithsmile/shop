@@ -13,7 +13,6 @@ class ShopController extends Controller
 {
     public function index(Request $request)
     {
-        // $products = Product::query();
         $categories = Category::all();
         foreach ($categories as $key => $category) {
             $count[] = Product::where('category_id', $category->id)->count();
@@ -26,7 +25,7 @@ class ShopController extends Controller
             if (!empty($slugs)) {
                 $cat_ids = Category::whereIn('name', $slugs)->pluck('id')->all();
                 if (!empty($cat_ids)) {
-                    $products = Product::whereIn('category_id', $cat_ids)->get();
+                    $products = Product::whereIn('category_id', $cat_ids)->with('images')->orderBy('id', 'desc')->get();
                 }
             }
         }
@@ -41,7 +40,10 @@ class ShopController extends Controller
         }
 
         if (empty($products)) {
-            $products = Product::where('status', 'active')->paginate(6);
+            $products = Product::where('status', 'active')
+                ->with('images')
+                ->orderBy('id', 'desc')
+                ->get();
         }
         return view('pages.shop')
             ->with('products', $products)
@@ -52,9 +54,14 @@ class ShopController extends Controller
     public function detail($id)
     {
         $product = DB::table('products')
-            ->where('id', $id)
+            ->join('product_images', 'products.id', '=', 'product_images.product_id')
+            ->where('products.id', $id)
             ->get();
         return view('pages.detail')->with('product', $product);
+    }
+
+    public function addToCart(){
+        return view('cart');
     }
 
     public function showPaymentForm()

@@ -1,3 +1,6 @@
+{{-- @php
+  dd($products) 
+@endphp --}}
 @extends('admin.layouts.master')
 @section('title', 'Product Management | Furniture Store')
 @section('page-name')
@@ -41,9 +44,9 @@
                         <tr>
                             <td>{{ $product->id }}</td>
                             <td><a href="{{ route('product.show', ['product' => $product->id]) }}">{{ $product->name }}</a></td>
-                            <td>{{ $product->category_id }}</td>
+                            <td>{{ $product->category->name ?? '' }}</td>
                             <td>{{ $product->description }}</td>
-                            <td>{{ $product->photo }}</td>
+                            <td>{{ $product->images->first()->photo ?? ''}}</td>
                             <td>{{ $product->stock }}</td>
                             <td class="d-flex align-items-center">
                                 <a href="{{ route('product.edit', ['product' => $product->id]) }}">

@@ -23,42 +23,40 @@
         </div>
     </div>
     <div class="container">
+        @php
+            $classNames = [
+                'card--bg-bisque',
+                'card--bg-darksalmon',
+                'card--bg-moccasin',
+                'card--bg-lightgray',
+                'card--bg-azure',
+            ];
+        @endphp
         <div class="categories">
-            <div class="card card--bg-bisque">
-                <h3>BED</h3>
-                <p>70 Products</p>
-            </div>
-            <div class="card card--bg-darksalmon">
-                <h3>SOFA</h3>
-                <p>70 Products</p>
-            </div>
-            <div class="card card--bg-moccasin">
-                <h3>LAMP</h3>
-                <p>70 Products</p>
-            </div>
-            <div class="card card--bg-lightgray">
-                <h3>CABINET</h3>
-                <p>70 Products</p>
-            </div>
-            <div class="card card--bg-azure">
-                <h3>TABLE</h3>
-                <p>70 Products</p>
-            </div>
-            <a href="#">Explore More</a>
+            @foreach ($categories as $i => $category)
+                <div class="card {{ $classNames[$i] }}">
+                    <div class="cat-info">
+                        <h3>BED</h3>
+                        <p>70 Products</p>
+                    </div>
+                    <img src="{{ asset("storage/$category->photo") }}" alt="" style="width: 200px; height:200px;">
+                </div>
+            @endforeach
         </div>
+        <a href="#">Explore More</a>
     </div>
 @endsection
 @push('scripts')
     <script>
-        const hamburger = document.querySelector(".hamburger");
-        const navbar = document.querySelector(".navbar");
+        // const hamburger = document.querySelector(".hamburger");
+        // const navbar = document.querySelector(".navbar");
 
 
-        hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("active");
-            navbar.classList.toggle("active");
+        // hamburger.addEventListener("click", () => {
+        //     hamburger.classList.toggle("active");
+        //     navbar.classList.toggle("active");
 
-        })
+        // })
 
         let slideIndex = 1;
         showSlides(slideIndex);

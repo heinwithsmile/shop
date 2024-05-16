@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        Category::factory()->count(5)->create();
         Customer::factory()->count(20)->create();
         Product::factory()->count(30)->create();
         Order::factory()->count(30)->create();
-        Category::factory()->count(5)->create();
         $this->call([
             UserSeeder::class,
         ]);

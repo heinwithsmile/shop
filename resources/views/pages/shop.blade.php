@@ -190,10 +190,15 @@
         </div>
         <div class="product-gallery">
             @foreach ($products as $product)
+                @php
+                    $images = $product->images;
+                @endphp
                 <div class="product-card">
                     <div class="img-card">
-                        <a href="{{ route('shop.detail', ['id' => $product->id]) }}"><img
-                                src="{{ asset("storage/$product->photo") }}" alt="" />
+                        <a href="{{ route('shop.detail', ['id' => $product->id]) }}">
+                            @foreach ($images as $image)
+                            <img src="{{ asset("storage/$image->photo") }}" alt="" />
+                            @endforeach
                         </a>
                     </div>
                     <p class="my-1"><a href="{{ route('shop.detail', $product->id) }}">{{ $product->name }}</a></p>

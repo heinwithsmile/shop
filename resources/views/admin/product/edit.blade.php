@@ -14,8 +14,8 @@
                 @method('PUT')
                 <div class="form-group">
                     <input class="form-control" type="file" name="photo" id="photo" onchange="previewFile()">
-                    @if ($product->photo)
-                        <img id="preview" src="{{ Storage::url($product->photo) }}" alt="Current File"
+                    @if ($photo)
+                        <img class="my-2" id="preview" src="{{ Storage::url($photo->photo) }}" alt="Current File"
                             style="max-width: 200px; max-height: 200px;">
                     @else
                         <p>No file uploaded.</p>

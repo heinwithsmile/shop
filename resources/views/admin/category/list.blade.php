@@ -29,6 +29,8 @@
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Name</th>
+                        <th class="col"><i class="lni lni-image"></i></th>
+                        <th scope="col">Photo</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -42,6 +44,8 @@
                             <td>
                                 {{$category->name}}
                             </td>
+                            <td><img src="{{asset("storage/$category->photo")}}" alt="" class="img-thumbnail"></td>
+                            <td>{{asset("storage/$category->photo")}}</td>
                             <td class="d-flex align-items-center">
                                 <a href="{{ route('category.edit', ['category' => $category->id]) }}">
                                     <i class="lni lni-pencil-alt btn"></i>

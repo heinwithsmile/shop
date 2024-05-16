@@ -13,7 +13,10 @@
     <div class="container my-5">
         <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data" >
             @csrf
-            <div class="dz-default dz-message dropzone form-group" id="dropzoneImage"></div>
+            {{-- <div class="dz-default dz-message dropzone form-group" id="dropzoneImage"></div> --}}
+            <div class="form-group">
+                <input type="file" name="photo" id="photo">
+            </div>
             <div class="form-group">
                 <label for="name">Product Name</label>
                 <input type="text" class="form-control" name="name" id="name">

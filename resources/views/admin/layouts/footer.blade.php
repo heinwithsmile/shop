@@ -1,9 +1,8 @@
+</div>
+</div>
+</div>
+{{-- JavaScript  --}}
+<script src="/js/backend/script.js"></script>
 @stack('scripts')
-{{-- <script>
-    let btn = document.querySelector(".side-menu-bar");
-    let sidebar = document.querySelector(".sidebar");
-
-    btn.onclick = function() {
-        sidebar.classList.toggle("active");
-    }
-</script> --}}
+</body>
+</html>

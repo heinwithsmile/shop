@@ -283,6 +283,12 @@ nav ul li a.active {
     gap: 20px;
 }
 
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .categories .card {
     padding: 2.5rem;
 }

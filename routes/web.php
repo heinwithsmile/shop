@@ -15,12 +15,13 @@ use App\Http\Controllers\SupplierController;
 Auth::routes();
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('index');
-    Route::get('/home', 'home')->name('home');
+    Route::get('/home', 'index')->name('home');
 });
 
 Route::controller(ShopController::class)->group(function () {
     Route::get('/shop', 'index')->name('shop');
     Route::get('/shop/detail/{id}', 'detail')->name('shop.detail');
+    Route::get('/add-to-cart', 'addToCart')->name('add-to-cart');
     Route::get('/payment', 'showPaymentForm')->name('payment.form');
     Route::post('/process-payment', 'processPayment')->name('process.payment');
     Route::get('/payment/success', function () {
