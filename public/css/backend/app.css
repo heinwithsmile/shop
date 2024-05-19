@@ -213,11 +213,11 @@ section {
     display: inline-block;
 }
 
-.tbl-container {
+.table-container {
     width: 100%;
 }
 
-.bdr {
+.tableBorder {
     border-radius: 10px;
     overflow: hidden;
 }

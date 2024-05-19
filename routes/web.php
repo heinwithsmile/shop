@@ -11,6 +11,8 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SupplierController;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\SettingController;
 
 Auth::routes();
 Route::controller(HomeController::class)->group(function () {
@@ -36,11 +38,16 @@ Route::controller(ShopController::class)->group(function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
-    Route::resource('user', UserController::class);
+    Route::resource('customer', UserController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('product', ProductController::class);
     Route::resource('order', OrderController::class);
     Route::resource('staff', StaffController::class);
     Route::resource('report', ReportController::class);
     Route::resource('supplier', SupplierController::class);
+    Route::get('/setting', [SettingController::class, 'index'])->name('setting');
+});
+
+Route::get('/log', function(){
+    Log::info("This is a test log");
 });

@@ -36,8 +36,8 @@
             @foreach ($categories as $i => $category)
                 <div class="card {{ $classNames[$i] }}">
                     <div class="cat-info">
-                        <h3>BED</h3>
-                        <p>70 Products</p>
+                        <h3>{{$category->name}}</h3>
+                        <p></p>
                     </div>
                     <img src="{{ asset("storage/$category->photo") }}" alt="" style="width: 200px; height:200px;">
                 </div>
@@ -48,15 +48,6 @@
 @endsection
 @push('scripts')
     <script>
-        // const hamburger = document.querySelector(".hamburger");
-        // const navbar = document.querySelector(".navbar");
-
-
-        // hamburger.addEventListener("click", () => {
-        //     hamburger.classList.toggle("active");
-        //     navbar.classList.toggle("active");
-
-        // })
 
         let slideIndex = 1;
         showSlides(slideIndex);

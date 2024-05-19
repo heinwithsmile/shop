@@ -27,27 +27,40 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link d-flex align-items-center" 
+            <a href="{{route('customer.index')}}" class="sidebar-link d-flex align-items-center" 
                 data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
-                <i class="lni lni-users"></i>
+                <i class="lni lni-user"></i>
                 <span>Customers</span>
             </a>
         </li>
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link d-flex align-items-center" 
+            <a href="{{route('staff.index')}}" class="sidebar-link d-flex align-items-center" 
+                data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                <i class="lni lni-users"></i>
+                <span>Staffs</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="{{route('supplier.index')}}" class="sidebar-link d-flex align-items-center" 
                 data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
                 <i class="lni lni-car"></i>
                 <span>Suppliers</span>
             </a>
         </li>
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link d-flex align-items-center">
+            <a href="{{route('order.index')}}" class="sidebar-link d-flex align-items-center">
                 <i class="lni lni-clipboard"></i>
                 <span>Orders</span>
             </a>
         </li>
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link d-flex align-items-center">
+            <a href="{{route('report.index')}}" class="sidebar-link d-flex align-items-center">
+                <i class="lni lni-stats-up"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="{{route('setting')}}" class="sidebar-link d-flex align-items-center">
                 <i class="lni lni-cog"></i>
                 <span>Setting</span>
             </a>

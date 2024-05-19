@@ -1,6 +1,3 @@
-{{-- @php
-  dd($products) 
-@endphp --}}
 @extends('admin.layouts.master')
 @section('title', 'Product Management | Furniture Store')
 @section('page-name')
@@ -26,8 +23,8 @@
                 </a>
             </div>
         </div>
-        <div class="tbl-container bdr">
-            <table class="table shadow-sm mt-3 bdr table-custom table-borderless">
+        <div class="table-container tableBorder">
+            <table class="table shadow-sm mt-3 tableBorder table-custom table-borderless">
                 <thead class="table-heading">
                     <tr>
                         <th scope="col">ID</th>
