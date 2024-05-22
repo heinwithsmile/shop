@@ -68,12 +68,12 @@
             user-select: none;
         }
 
-        .filter-wrapper {
+        .filter-bar {
             display: flex;
             justify-content: space-between;
         }
 
-        .filter-wrap {
+        .dropdown {
             display: flex;
         }
 
@@ -85,9 +85,9 @@
         }
 
         /* .product-card {
-            width: 315px;
-            height: 400px;
-        } */
+                            width: 315px;
+                            height: 400px;
+                        } */
 
         .product-card .img-card {
             height: 330px;
@@ -133,59 +133,39 @@
             </ul>
         </div>
         <h2 class="page-name my-2">SHOP</h2>
-        <div class="filter-wrapper">
+        <div class="filter-bar">
             <div class="per-page">
                 <p>view per page</p>
             </div>
-            <div class="filter-wrap">
-                <div>
-                    <a href="#">Categories</a>
-                    <div>
-                        @php
-                            $count = 0;
-                        @endphp
+            <div class="dropdown">
+                <form action="" method="get">
+                    <select name="category" id="category" onchange="this.form.submit();">
+                        <option value="">CATEGORIES</option>
                         @foreach ($categories as $category)
-                            <a href="{{ route('shop') }}?category={{ $category->name }}">{{ $category->name }}
-                                ({{ $cat_count[$count] }})
-                            </a>
-                            @php
-                                $count++;
-                            @endphp
+                            <option value="{{$category->id}}">{{ $category->name }}
+                            </option>
                         @endforeach
-                    </div>
-                </div>
-                {{-- <div class="shop-dropdown">
-                    <button class="shop-dropbtn">PRICE</button>
-                    <div class="shop-dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
-                </div> --}}
-                {{-- <div class="shop-dropdown">
-                    <button class="shop-dropbtn">COLOR</button>
-                    <div class="shop-dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
-                </div>
-                <div class="shop-dropdown">
-                    <button class="shop-dropbtn">MATERIAL</button>
-                    <div class="shop-dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
-                </div>
-                <div class="shop-dropdown">
-                    <button class="shop-dropbtn-last">SORT BY LATEST</button>
-                    <div class="shop-dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
-                </div> --}}
+                    </select>
+                </form>
+                <select name="price" id="price">
+                    <option value="">PRICE</option>
+                    <option value="">High To Low
+                    </option>
+                    <option value="">Low To High
+                    </option>
+                </select>
+                <select name="color" id="color">
+                    <option value="">COLOR</option>
+                    <option value=""></option>
+                </select>
+                <select name="material" id="material">
+                    <option value="">MATERIAL</option>
+                    <option value=""></option>
+                </select>
+                <select name="sort" id="sort">
+                    <option value="">SORT BY LATEST</option>
+                    <option value=""></option>
+                </select>
             </div>
         </div>
         <div class="product-gallery">
@@ -197,7 +177,7 @@
                     <div class="img-card">
                         <a href="{{ route('shop.detail', ['id' => $product->id]) }}">
                             @foreach ($images as $image)
-                            <img src="{{ asset("storage/$image->photo") }}" alt="" />
+                                <img src="{{ asset("storage/$image->photo") }}" alt="" />
                             @endforeach
                         </a>
                     </div>
@@ -205,10 +185,6 @@
                     <p><a href="#">${{ $product->price }}</a></p>
                 </div>
             @endforeach
-        </div>
-        <div>
-            {{-- <p>You've viewed 16 or 50 products</p>
-            <a href="#">Load More</a> --}}
         </div>
     </div>
 @endsection

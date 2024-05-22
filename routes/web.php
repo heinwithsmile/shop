@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\SettingController;
 
 Auth::routes();
+// Frontend 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/home', 'index')->name('home');
@@ -23,7 +24,7 @@ Route::controller(HomeController::class)->group(function () {
 Route::controller(ShopController::class)->group(function () {
     Route::get('/shop', 'index')->name('shop');
     Route::get('/shop/detail/{id}', 'detail')->name('shop.detail');
-    Route::get('/add-to-cart', 'addToCart')->name('add-to-cart');
+    // Route::get('/add-to-cart', 'addToCart')->name('add-to-cart');
     Route::get('/payment', 'showPaymentForm')->name('payment.form');
     Route::post('/process-payment', 'processPayment')->name('process.payment');
     Route::get('/payment/success', function () {
@@ -32,6 +33,12 @@ Route::controller(ShopController::class)->group(function () {
     Route::get('/payment/failure', function () {
         return 'Payment Failed!';
     })->name('payment.failure');
+
+    Route::get('cart', 'showCartTable')->name('cart');
+    Route::get('add-to-cart/{id}', 'addToCart')->name('add-to-cart');
+
+    Route::delete('remove-from-cart', 'removeCartItem');
+    Route::get('clear-cart', 'clearCart');
 });
 
 /* ----------- Admin Routes -------------- */
@@ -46,8 +53,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::resource('report', ReportController::class);
     Route::resource('supplier', SupplierController::class);
     Route::get('/setting', [SettingController::class, 'index'])->name('setting');
-});
-
-Route::get('/log', function(){
-    Log::info("This is a test log");
 });

@@ -49,6 +49,10 @@ ul {
     list-style-type: none;
 }
 
+select {
+    border: none;
+}
+
 .flex {
     display: flex;
     align-items: center;
@@ -163,6 +167,10 @@ nav ul li a.active {
 .nav-menu-social a i {
     font-size: 1.2rem;
     color: var(--black);
+}
+
+.nav-menu-social a i:hover{
+    color: var(--accent-color);
 }
 
 .breadcrumbs {

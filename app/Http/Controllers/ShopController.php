@@ -14,20 +14,9 @@ class ShopController extends Controller
     public function index(Request $request)
     {
         $categories = Category::all();
-        foreach ($categories as $key => $category) {
-            $count[] = Product::where('category_id', $category->id)->count();
-        }
         if (!empty($request->has('category'))) {
-            $slugs = explode(',', $request->input('category'));
-            $slugs = array_map('trim', $slugs);
-            $slugs = array_filter($slugs);
-
-            if (!empty($slugs)) {
-                $cat_ids = Category::whereIn('name', $slugs)->pluck('id')->all();
-                if (!empty($cat_ids)) {
-                    $products = Product::whereIn('category_id', $cat_ids)->with('images')->orderBy('id', 'desc')->get();
-                }
-            }
+            $cat_id = $request->input('category');
+            $products = Product::where('category_id', $cat_id)->with('images')->get();
         }
 
         if (!empty($request->has('price'))) {
@@ -45,23 +34,80 @@ class ShopController extends Controller
                 ->orderBy('id', 'desc')
                 ->get();
         }
+
+        // dd($products);
         return view('pages.shop')
             ->with('products', $products)
-            ->with('categories', $categories)
-            ->with('cat_count', $count);
+            ->with('categories', $categories);
+        // ->with('cat_count', $count);
     }
 
     public function detail($id)
     {
-        $product = DB::table('products')
-            ->join('product_images', 'products.id', '=', 'product_images.product_id')
-            ->where('products.id', $id)
-            ->get();
+        // $product = DB::table('products')
+        //     ->join('product_images', 'products.id', '=', 'product_images.product_id')
+        //     ->where('products.id', $id)
+        //     ->get();
+        $product = Product::where('id', $id)->with('images')->get();
+            // dd($product);
         return view('pages.detail')->with('product', $product);
     }
 
-    public function addToCart(){
-        return view('cart');
+    public function showCartTable()
+    {
+        $products = Product::all();
+        return view('pages.cart', compact('products'));
+    }
+
+    public function addToCart($id)
+    {
+        $product = Product::find($id);
+        // dd($product);
+
+        if (!$product) {
+            abort(404);
+        }
+
+        $cart = session()->get('cart');
+
+        if (!$cart) {
+
+            $cart = [
+                $id => [
+                    "name" => $product->name,
+                    "quantity" => 1,
+                    "price" => $product->price,
+                    "photo" => $product->photo
+                ]
+            ];
+
+            session()->put('cart', $cart);
+
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
+
+        if (isset($cart[$id])) {
+
+            $cart[$id]['quantity']++;
+
+            session()->put('cart', $cart);
+
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
+
+        $cart[$id] = [
+            "name" => $product->name,
+            "quantity" => 1,
+            "price" => $product->price,
+            "photo" => $product->photo
+        ];
+
+        session()->put('cart', $cart);
+        if (request()->wantsJson()) {
+            return response()->json(['message' => 'Product added to cart successfully!']);
+        }
+
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
     public function showPaymentForm()
@@ -85,7 +131,7 @@ class ShopController extends Controller
                         ],
                         'quantity'   => 1,
                     ],
-                     
+
                 ],
                 'mode'        => 'payment',
                 'success_url' => route('success'),

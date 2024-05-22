@@ -59,14 +59,18 @@
                 <span>Reports</span>
             </a>
         </li>
-        <li class="sidebar-item">
+        {{-- <li class="sidebar-item">
             <a href="{{route('setting')}}" class="sidebar-link d-flex align-items-center">
                 <i class="lni lni-cog"></i>
                 <span>Setting</span>
             </a>
-        </li>
+        </li> --}}
     </ul>
     <div class="sidebar-footer">
+        <a href="{{route('setting')}}" class="sidebar-link d-flex align-items-center">
+            <i class="lni lni-cog"></i>
+            <span>Setting</span>
+        </a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST">
             @csrf
             <a href="#" class="sidebar-link d-flex align-items-center" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

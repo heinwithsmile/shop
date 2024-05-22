@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -24,8 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('index')->with('categories', $categories);
+        // For Feature Category
+        $categories = Category::limit(5)->get();
+
+        // For New Products
+        $products_categories = Category::with(['products.images'])->get();
+        // dd($products_categories);
+        return view('index')
+            ->with('categories', $categories)
+            ->with('products_categories', $products_categories);
     }
 
     public function home(){
