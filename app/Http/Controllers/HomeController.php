@@ -30,13 +30,8 @@ class HomeController extends Controller
 
         // For New Products
         $products_categories = Category::with(['products.images'])->get();
-        // dd($products_categories);
         return view('index')
             ->with('categories', $categories)
             ->with('products_categories', $products_categories);
-    }
-
-    public function home(){
-        return view('home');
     }
 }

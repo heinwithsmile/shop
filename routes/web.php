@@ -13,9 +13,9 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\PaymentController;
 
 Auth::routes();
-// Frontend 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/home', 'index')->name('home');
@@ -24,22 +24,18 @@ Route::controller(HomeController::class)->group(function () {
 Route::controller(ShopController::class)->group(function () {
     Route::get('/shop', 'index')->name('shop');
     Route::get('/shop/detail/{id}', 'detail')->name('shop.detail');
-    // Route::get('/add-to-cart', 'addToCart')->name('add-to-cart');
-    Route::get('/payment', 'showPaymentForm')->name('payment.form');
-    Route::post('/process-payment', 'processPayment')->name('process.payment');
-    Route::get('/payment/success', function () {
-        return 'Payment Successful!';
-    })->name('payment.success');
     Route::get('/payment/failure', function () {
         return 'Payment Failed!';
     })->name('payment.failure');
-
     Route::get('cart', 'showCartTable')->name('cart');
     Route::get('add-to-cart/{id}', 'addToCart')->name('add-to-cart');
-
     Route::delete('remove-from-cart', 'removeCartItem');
     Route::get('clear-cart', 'clearCart');
 });
+
+Route::post('stripe', [PaymentController::class, 'stripe'])->name('stripe');
+Route::get('success', [PaymentController::class, 'success'])->name('success');
+Route::get('cancel', [PaymentController::class, 'cancel'])->name('cancel');
 
 /* ----------- Admin Routes -------------- */
 

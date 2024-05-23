@@ -1,5 +1,8 @@
 @extends('layouts.master')
 @section('content')
+
+<form action="{{ route('stripe') }}" method="post">
+    @csrf
     <table id="cart" class="table table-bordered table-hover table-condensed mt-3">
         <thead>
             <tr>
@@ -19,7 +22,8 @@
                     <tr>
                         <td data-th="Product">
                             <div class="row">
-                                <div class="col-sm-3 hidden-xs"><img src="{{ $details['photo'] }}" width="50"
+                                <div class="col-sm-3 hidden-xs">
+                                    <img src="{{ $details['photo'] }}" width="50"
                                         height="" class="img-responsive" />
 
                                 </div>
@@ -36,6 +40,9 @@
                         </td>
                         <td data-th="Subtotal" class="text-center">${{ $details['price'] * $details['quantity'] }}</td>
                     </tr>
+                    <input type="hidden" name="name" value="{{$details['name']}}">
+                    <input type="hidden" name="price" value="{{$details['price']}}">
+                    <input type="hidden" name="quantity" value="{{$details['quantity']}}">
                 @endforeach
             @endif
 
@@ -54,28 +61,9 @@
         </tfoot>
 
     </table>
-    <a href="{{route('shop')}}" class="btn shopping-btn">Continue Shopping</a>
-    <a href="#" class="btn btn-warning check-btn">Proceed Checkout</a>
-
+    <a href="{{ route('shop') }}" class="btn shopping-btn">Continue Shopping</a>
+    <button class="btn btn-submit" type="submit">Checkout</button>
+    </form>
 @endsection
 @push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('.add-to-cart-button').on('click', function() {
-                var productId = $(this).data('product-id');
-
-                $.ajax({
-                    type: 'GET',
-                    url: '/add-to-cart/' + productId,
-                    success: function(data) {
-                        $("#adding-cart-" + productId).show();
-                        $("#add-cart-btn-" + productId).hide();
-                    },
-                    error: function(error) {
-                        console.error('Error adding to cart:', error);
-                    }
-                });
-            });
-        });
-    </script>
 @endpush
