@@ -4,6 +4,15 @@
 @endsection
 @push('styles')
     <style>
+        #new-product {
+            padding-top: 20px;
+        }
+
+        #new-product h3{
+            font-size: 24px;
+            font-weight: bold;
+        }
+
         .tab-container {
             width: 100%;
             margin: auto;
@@ -12,12 +21,19 @@
         .tabs {
             display: flex;
             justify-content: center;
+            margin-top: 20px;
         }
 
         .tab-link {
             border: none;
             padding: 10px 20px;
             cursor: pointer;
+            background: none;
+        }
+
+        .tab-link:hover {
+            background-color: var(--accent-color);
+            color: var(--white);
         }
 
         .tab-content {
@@ -28,6 +44,10 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
+        }
+
+        .explore span i{
+            font-size: 24px;
         }
     </style>
 @endpush
@@ -72,9 +92,10 @@
                 </div>
             @endforeach
         </div>
-        <a href="#">Explore More</a>
+        <a href="#" class="text-center">Explore More <span><i class="fa-solid fa-arrow-right"></i></span></a>
     </div>
-    <div class="container">
+    <div id="new-product" class="container">
+        <h3 class="text-center">New Products</h3>
         <div class="tab-container">
             <div class="tabs">
                 @foreach ($products_categories as $category)

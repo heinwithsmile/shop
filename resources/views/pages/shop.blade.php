@@ -84,11 +84,6 @@
             align-items: stretch;
         }
 
-        /* .product-card {
-                            width: 315px;
-                            height: 400px;
-                        } */
-
         .product-card .img-card {
             height: 330px;
             background-color: var(--secondary-color);
