@@ -13,7 +13,7 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <input class="form-control" type="file" name="photo" id="photo" onchange="previewFile()">
+                    <input class="form-control" type="file" name="photo" id="photo" value="{{$photo->photo}}" onchange="previewFile()">
                     @if ($photo)
                         <img class="my-2" id="preview" src="{{ Storage::url($photo->photo) }}" alt="Current File"
                             style="max-width: 200px; max-height: 200px;">

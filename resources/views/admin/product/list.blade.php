@@ -3,8 +3,6 @@
 @section('page-name')
     Product Management
 @endsection
-@push('styles')
-@endpush
 @section('content')
     <section>
         <div class="d-flex justify-content-between align-items-center">
@@ -23,8 +21,8 @@
                 </a>
             </div>
         </div>
-        <div class="table-container tableBorder">
-            <table class="table shadow-sm mt-3 tableBorder table-custom table-borderless">
+        <div class="table-container tableBorder table-responsive py-5">
+            <table class="table shadow-sm mt-3 tableBorder table-custom table-borderless ">
                 <thead class="table-heading">
                     <tr>
                         <th scope="col">ID</th>

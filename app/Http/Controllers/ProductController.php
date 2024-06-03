@@ -35,25 +35,44 @@ class ProductController extends Controller
         return view('admin.product.add')->with("categories" ,$categories);
     }
 
+    public function send(Request $request){
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+        $imagePath = $request->file('image')->store('images/products', 'public');
+        return response()->json(['image' => $imagePath]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $products = $this->validate($request, [
             'name' => 'string|required',
             'category_id' => 'required',
             'price' => 'required|numeric',
             'description' => 'string|required',
+            // 'photo'=>'required|string'
         ]);
-        $photos = $this->validate($request, ['photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
-        if($request->hasFile('photo')){
-            $photos['photo'] = $request->file('photo')->store('images/products/', 'public');
-        }
+        // $photos = $this->validate($request, ['photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
+// dd($products['photo']);
+        // $photos = json_decode($products['photo'], true);
 
+        // dd($request->photo);
+
+        // if($request->hasFile('photo')){
+        //     $photos['photo'] = $request->file('photo')->store('images/products/', 'public');
+        // }
+        $photos = $request->photo;
         $product = Product::create($products);
-        $photos['product_id'] = $product->id;
-        ProductImage::create($photos);
+        foreach ($photos as $photo) {
+            ProductImage::create([
+                'product_id'=>$product->id,
+                'photo'=>$photo
+            ]);
+        }
         return redirect()->route('product.index')->with('message', 'Product Add Successful');
     }
 
@@ -92,7 +111,7 @@ class ProductController extends Controller
             'price' => 'required'
         ]);
 
-        $images = $request->validate(['photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
+        // $images = $request->validate(['photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
 
         if($request->hasFile('photo')){
             $images['photo'] = $request->file('photo')->store('images/products/', 'public');

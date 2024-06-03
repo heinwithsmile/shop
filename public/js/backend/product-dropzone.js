@@ -1,57 +1,41 @@
 Dropzone.autoDiscover = false;
-$('#formDropzone').dropzone({
-    previewTemplate: $('#dzPreviewContainer').html(),
-    url: '{{route("product.store")}}',
-    method: 'post',
+const dropzone = $("#image").dropzone({
+    uploadprogress: function (file, progress, bytesSent) {
+        $("input[type=submit]").prop('disabled', true);
+    },
+    url: "/admin/product/send",
+    type: 'post',
+    maxFiles: 10,
+    paramName: 'image',
     addRemoveLinks: true,
-    autoProcessQueue: false,
-    uploadMultiple: false,
-    parallelUploads: 1,
-    maxFiles: 1,
-    acceptedFiles: '.jpeg, .jpg, .png, .gif',
-    thumbnailWidth: 900,
-    thumbnailHeight: 600,
-    previewsContainer: "#previews",
-    timeout: 0,
-    init: function () {
-        myDropzone = this;
-
-        // when file is dragged in
-        this.on('addedfile', function (file) {
-            $('.dropzone-drag-area').removeClass('is-invalid').next('.invalid-feedback').hide();
-        });
+    acceptedFiles: "image/jpeg,image/png,image/gif",
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
     success: function (file, response) {
-        // hide form and show success message
-        $('#formDropzone').fadeOut(600);
-        setTimeout(function () {
-            $('#successMessage').removeClass('d-none');
-        }, 600);
+        const imageUrl = response.image;
+        // let hiddenInput = $('input[name="uploaded_images"]');
+        console.log(imageUrl);
+        // if (hiddenInput.length === 0) {
+            hiddenInput = $('<input>').attr({
+                type: 'hidden',
+                name: 'photo[]',
+                value: imageUrl
+            });
+            $('form').append(hiddenInput);
+            console.log("debug");
+        // } else {
+        //     console.log('test');
+        //     let currentValue = hiddenInput.val();
+        //     currentValue += ',' + imageUrl;
+        //     hiddenInput.val(currentValue);
+        // }
+        $("input[type=submit]").prop('disabled', false);
     }
 });
 
-$('#formSubmit').on('click', function (event) {
-    event.preventDefault();
-    var $this = $(this);
-
-    // show submit button spinner
-    $this.children('.spinner-border').removeClass('d-none');
-
-    // validate form & submit if valid
-    if ($('#formDropzone')[0].checkValidity() === false) {
-        event.stopPropagation();
-
-        // show error messages & hide button spinner    
-        $('#formDropzone').addClass('was-validated');
-        $this.children('.spinner-border').addClass('d-none');
-
-        // if dropzone is empty show error message
-        if (!myDropzone.getQueuedFiles().length > 0) {
-            $('.dropzone-drag-area').addClass('is-invalid').next('.invalid-feedback').show();
-        }
-    } else {
-
-        // if everything is ok, submit the form
-        myDropzone.processQueue();
+function deleteImage(id) {
+    if (confirm("Are you sure you want to delete?")) {
+        $("#product-image-row-" + id).remove();
     }
-});
+}

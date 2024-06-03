@@ -4,13 +4,7 @@
 @endpush
 @section('content')
     <div class="container">
-        <div class="breadcrumbs">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Bed</a></li>
-            </ul>
-        </div>
+        @include('layouts.breadcrumb')
         <div class="detail">
             @foreach ($product as $item)
                 @foreach ($item->images as $image)

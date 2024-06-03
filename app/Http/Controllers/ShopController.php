@@ -49,7 +49,7 @@ class ShopController extends Controller
         //     ->where('products.id', $id)
         //     ->get();
         $product = Product::where('id', $id)->with('images')->get();
-            // dd($product);
+        // dd($product);
         return view('pages.detail')->with('product', $product);
     }
 

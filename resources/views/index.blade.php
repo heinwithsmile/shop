@@ -1,57 +1,72 @@
 @extends('layouts.master')
-@section('title')
-    Home | Furniture Store
-@endsection
+@section('title','Home | Furniture Store')
 @push('styles')
-    <style>
-        #new-product {
-            padding-top: 20px;
-        }
+<style>
+    #new-product {
+        padding-top: 20px;
+    }
 
-        #new-product h3{
-            font-size: 24px;
-            font-weight: bold;
-        }
+    #new-product h3{
+        font-size: 24px;
+        font-weight: bold;
+    }
 
-        .tab-container {
-            width: 100%;
-            margin: auto;
-        }
+    .tab-container {
+        width: 100%;
+        margin: auto;
+    }
 
-        .tabs {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
+    .tabs {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
 
-        .tab-link {
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            background: none;
-        }
+    .tab-link {
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        background: none;
+    }
 
-        .tab-link:hover {
-            background-color: var(--accent-color);
-            color: var(--white);
-        }
+    .tab-link:hover {
+        background-color: var(--accent-color);
+        color: var(--white);
+    }
 
-        .tab-content {
-            display: none;
-        }
+    .tab-content {
+        display: none;
+    }
 
-        .tab-content.active {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
+    .tab-content.active {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
 
-        .explore span i{
-            font-size: 24px;
-        }
-    </style>
+    .explore span i{
+        font-size: 24px;
+    }
+
+    .promotion {
+        width: 100%;
+        height: 371px;
+        background-color: var(--lightsalmon);
+        background-image: url('{{ Storage::url("frontend/images/brown-couch.png") }}');
+        background-repeat: no-repeat;
+        /* background-size: 500px 400px; */
+        /* background-attachment: fixed; */
+        background-position: right;
+    }
+
+    .blog {
+        width: 100%;
+        height: 100vh;
+    }
+</style>
 @endpush
 @section('content')
+<section id="hero">
     <div class="container">
         <div class="hero">
             <div class="mySlides fade">
@@ -71,6 +86,8 @@
             </div>
         </div>
     </div>
+</section>
+<section id="category">
     <div class="container">
         @php
             $classNames = [
@@ -84,7 +101,7 @@
         <div class="categories">
             @foreach ($categories as $i => $category)
                 <div class="card {{ $classNames[$i] }}">
-                    <div class="cat-info">
+                     <div class="cat-info">
                         <h3>{{ $category->name }}</h3>
                         <p></p>
                     </div>
@@ -92,10 +109,14 @@
                 </div>
             @endforeach
         </div>
-        <a href="#" class="text-center">Explore More <span><i class="fa-solid fa-arrow-right"></i></span></a>
+        <div class="mt-2">
+            <a href="#">Explore More <span></span></a>
+        </div>
     </div>
-    <div id="new-product" class="container">
-        <h3 class="text-center">New Products</h3>
+</section>
+<section id="new-product">
+    <div class="container">
+        <h3 class="text-center">NEW PRODUCTS</h3>
         <div class="tab-container">
             <div class="tabs">
                 @foreach ($products_categories as $category)
@@ -103,7 +124,6 @@
                         onclick="openTab(event, '{{ $category->name }}')">{{ $category->name }}</button>
                 @endforeach
             </div>
-
             @foreach ($products_categories as $category)
                 <div id="{{ $category->name }}" class="tab-content">
                     @foreach ($category->products as $product)
@@ -127,28 +147,42 @@
             @endforeach
         </div>
     </div>
+</section>
+<section id="promotion" class="mt-2">
+    <div class="container">
+        <div class="promotion">
+            
+        </div>
     </div>
+</section>
+<section id="blog">
+    <div class="container">
+        <div class="blog">
+
+        </div>
+    </div>
+</section>
 @endsection
 @push('scripts')
-    <script>
-        function openTab(event, tabName) {
-            var i, tabContent, tabLinks;
+<script>
+    function openTab(event, tabName) {
+        var i, tabContent, tabLinks;
 
-            tabContent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabContent.length; i++) {
-                tabContent[i].style.display = "none";
-            }
-
-            tabLinks = document.getElementsByClassName("tab-link");
-            for (i = 0; i < tabLinks.length; i++) {
-                tabLinks[i].className = tabLinks[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).style.display = "flex";
-            event.currentTarget.className += " active";
+        tabContent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabContent.length; i++) {
+            tabContent[i].style.display = "none";
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelector('.tab-link').click();
-        });
-    </script>
+        tabLinks = document.getElementsByClassName("tab-link");
+        for (i = 0; i < tabLinks.length; i++) {
+            tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "flex";
+        event.currentTarget.className += " active";
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('.tab-link').click();
+    });
+</script>
 @endpush

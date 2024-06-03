@@ -15,7 +15,15 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PaymentController;
 
+// =============================================
+// Auth Routes
+// =============================================
 Auth::routes();
+
+// =============================================
+// Home Routes
+// =============================================
+// Show the homepage
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/home', 'index')->name('home');
@@ -37,13 +45,16 @@ Route::post('stripe', [PaymentController::class, 'stripe'])->name('stripe');
 Route::get('success', [PaymentController::class, 'success'])->name('success');
 Route::get('cancel', [PaymentController::class, 'cancel'])->name('cancel');
 
-/* ----------- Admin Routes -------------- */
-
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
+// =============================================
+// Admin Routes
+// =============================================
+// These routes are prefixed with 'admin' and require authentication
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin', 'admin:admin']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::resource('customer', UserController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('product', ProductController::class);
+    Route::post('product/send',[ProductController::class,'send'])->name('product.send');
     Route::resource('order', OrderController::class);
     Route::resource('staff', StaffController::class);
     Route::resource('report', ReportController::class);
