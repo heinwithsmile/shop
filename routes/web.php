@@ -14,6 +14,8 @@ use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 // =============================================
 // Auth Routes
@@ -49,7 +51,10 @@ Route::get('cancel', [PaymentController::class, 'cancel'])->name('cancel');
 // Admin Routes
 // =============================================
 // These routes are prefixed with 'admin' and require authentication
-Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin', 'admin:admin']], function () {
+// Route::group(['middleware' => 'auth:admin'], function () {
+//     Route::view('/admin', 'admin');
+// });
+Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::resource('customer', UserController::class);
     Route::resource('category', CategoryController::class);
@@ -61,3 +66,23 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin', 'admin:admin']
     Route::resource('supplier', SupplierController::class);
     Route::get('/setting', [SettingController::class, 'index'])->name('setting');
 });
+
+
+Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm'])->name('admin.login');
+Route::get('/login/customer', [LoginController::class, 'showCustomerLoginForm'])->name('login.customer');
+Route::get('/register/admin', [RegisterController::class, 'showAdminRegisterForm'])->name('register.admin');
+Route::get('/register/customer', [RegisterController::class, 'showCustomerRegisterForm'])->name('register.customer');
+
+// Route::post('/login/admin', 'LoginController@adminLogin');
+// Route::post('/login/customer', 'LoginController@customerLogin');
+// Route::post('/register/admin', 'RegisterController@createAdmin')->name('register.admin');
+// Route::post('/register/customer', 'RegisterController@createCustomer')->name('register.customer');
+
+// Route::view('/home', 'home')->middleware('auth');
+// Route::group(['middleware' => 'auth:admin'], function () {
+//     Route::view('/admin', 'admin');
+// });
+
+// Route::group(['middleware' => 'auth:customer'], function () {
+//     Route::view('/customer', 'customer');
+// });
