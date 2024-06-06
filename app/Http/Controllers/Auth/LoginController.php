@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Http\Request;
+use App\Models\Admin;
 
 class LoginController extends Controller
 {
@@ -48,9 +49,7 @@ class LoginController extends Controller
      */
     public function showAdminLoginForm()
     {
-        return view('auth.admin.login', [
-            'url' => Config::get('constants.guards.admin')
-        ]);
+        return view('auth.admin.login', ['url' => 'admin']);
     }
 
     /**
@@ -58,9 +57,7 @@ class LoginController extends Controller
      */
     public function showCustomerLoginForm()
     {
-        return view('auth.login', [
-            'url' => Config::get('constants.guards.writer')
-        ]);
+        return view('auth.login', ['url' => 'customer']);
     }
 
     /**
@@ -71,7 +68,7 @@ class LoginController extends Controller
     {
         return $this->validate($request, [
             'email'   => 'required|email',
-            'password' => 'required|min:6'
+            'password' => 'required'
         ]);
     }
 
@@ -100,11 +97,14 @@ class LoginController extends Controller
      */
     public function adminLogin(Request $request)
     {
-        if ($this->guardLogin($request, Config::get('constants.guards.admin'))) {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return redirect()->intended('/admin');
         }
-
-        return back()->withInput($request->only('email', 'remember'));
     }
 
 
@@ -116,10 +116,14 @@ class LoginController extends Controller
      */
     public function customerLogin(Request $request)
     {
-        if ($this->guardLogin($request,Config::get('constants.guards.writer'))) {
-            return redirect()->intended('/writer');
-        }
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required'
+        ]);
 
-        return back()->withInput($request->only('email', 'remember'));
+        if (Auth::guard('customer')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+
+            return redirect()->intended('/customer');
+        }
     }
 }

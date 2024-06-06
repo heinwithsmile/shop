@@ -13,7 +13,6 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::paginate(5);
-        // dd($categories);
         return view('admin.category.list')->with('categories', $categories);
     }
 
@@ -34,14 +33,10 @@ class CategoryController extends Controller
             'name' => 'required|string',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-        // dd('test');
         if($request->hasFile('photo')){
-            // dd('test');
             $data['photo'] = $request->file('photo')->store('images/categories/', 'public');
         }
-        // dd($data);
         Category::create($data);
-        // dd('testing');
         return redirect()->route('category.index')->with('message', 'Category Add Successful');
     }
 

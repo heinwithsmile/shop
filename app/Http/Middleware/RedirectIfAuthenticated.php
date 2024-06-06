@@ -15,29 +15,17 @@ class RedirectIfAuthenticated
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, string ...$guards): Response
+    public function handle($request, Closure $next, $guard = null)
     {
-        $guards = empty($guards) ? [null] : $guards;
-
-        foreach ($guards as $guard) {
-            // if (Auth::guard($guard)->check()) {
-            //     return redirect(RouteServiceProvider::HOME);
-            // }
-            switch ($guard) {
-                case 'admin':
-                    if (Auth::guard($guard)->check()) {
-                        return redirect()->route('admin.dashboard');
-                    }
-                    break;
-
-                default:
-                    if (Auth::guard($guard)->check()) {
-                        return redirect('/dashboard');
-                    }
-                    break;
-            }
+        if ($guard === 'admin' && Auth::guard($guard)->check()) {
+            return redirect('/');
         }
-
+        if ($guard === 'customer' && Auth::guard($guard)->check()) {
+            return redirect('/');
+        }
+        if (Auth::guard($guard)->check()) {
+            return redirect('/home');
+        }
         return $next($request);
     }
 }

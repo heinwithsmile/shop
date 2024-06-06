@@ -35,7 +35,6 @@ class ShopController extends Controller
                 ->get();
         }
 
-        // dd($products);
         return view('pages.shop')
             ->with('products', $products)
             ->with('categories', $categories);
@@ -44,12 +43,7 @@ class ShopController extends Controller
 
     public function detail($id)
     {
-        // $product = DB::table('products')
-        //     ->join('product_images', 'products.id', '=', 'product_images.product_id')
-        //     ->where('products.id', $id)
-        //     ->get();
         $product = Product::where('id', $id)->with('images')->get();
-        // dd($product);
         return view('pages.detail')->with('product', $product);
     }
 
@@ -62,7 +56,6 @@ class ShopController extends Controller
     public function addToCart($id)
     {
         $product = Product::find($id);
-        // dd($product);
 
         if (!$product) {
             abort(404);

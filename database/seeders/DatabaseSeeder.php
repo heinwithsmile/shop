@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Http\Middleware\Admin;
 use Illuminate\Database\Seeder;
 use App\Models\Product;
 use App\Models\Order;
@@ -20,7 +22,8 @@ class DatabaseSeeder extends Seeder
         Order::factory()->count(30)->create();
         $this->call([
             UserSeeder::class,
-            StaffSeeder::class
+            StaffSeeder::class,
+            AdminSeeder::class
         ]);
     }
 }

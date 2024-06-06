@@ -31,7 +31,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/home', 'index')->name('home');
 });
 
-Route::controller(ShopController::class)->group(function () {
+Route::controller(ShopController::class)->prefix('customer')->middleware(['auth:customer'])->group(function () {
     Route::get('/shop', 'index')->name('shop');
     Route::get('/shop/detail/{id}', 'detail')->name('shop.detail');
     Route::get('/payment/failure', function () {
@@ -54,7 +54,7 @@ Route::get('cancel', [PaymentController::class, 'cancel'])->name('cancel');
 // Route::group(['middleware' => 'auth:admin'], function () {
 //     Route::view('/admin', 'admin');
 // });
-Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function () {
+Route::group(['prefix' => 'admin', 'middleware'=>['auth:admin']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::resource('customer', UserController::class);
     Route::resource('category', CategoryController::class);
@@ -67,13 +67,13 @@ Route::group(['prefix' => 'admin', 'middleware'=>'auth'], function () {
     Route::get('/setting', [SettingController::class, 'index'])->name('setting');
 });
 
-
 Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm'])->name('admin.login');
 Route::get('/login/customer', [LoginController::class, 'showCustomerLoginForm'])->name('login.customer');
 Route::get('/register/admin', [RegisterController::class, 'showAdminRegisterForm'])->name('register.admin');
 Route::get('/register/customer', [RegisterController::class, 'showCustomerRegisterForm'])->name('register.customer');
 
-// Route::post('/login/admin', 'LoginController@adminLogin');
+Route::post('/login/admin', [LoginController::class, 'adminLogin'])->name('admin.login.process');
+Route::post('/login/customer', [LoginController::class, 'customerLogin'])->name('customer.login.process');
 // Route::post('/login/customer', 'LoginController@customerLogin');
 // Route::post('/register/admin', 'RegisterController@createAdmin')->name('register.admin');
 // Route::post('/register/customer', 'RegisterController@createCustomer')->name('register.customer');
@@ -86,3 +86,4 @@ Route::get('/register/customer', [RegisterController::class, 'showCustomerRegist
 // Route::group(['middleware' => 'auth:customer'], function () {
 //     Route::view('/customer', 'customer');
 // });
+

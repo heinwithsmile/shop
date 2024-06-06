@@ -48,23 +48,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $products = $this->validate($request, [
             'name' => 'string|required',
             'category_id' => 'required',
             'price' => 'required|numeric',
             'description' => 'string|required',
-            // 'photo'=>'required|string'
         ]);
-        // $photos = $this->validate($request, ['photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
-// dd($products['photo']);
-        // $photos = json_decode($products['photo'], true);
-
-        // dd($request->photo);
-
-        // if($request->hasFile('photo')){
-        //     $photos['photo'] = $request->file('photo')->store('images/products/', 'public');
-        // }
         $photos = $request->photo;
         $product = Product::create($products);
         foreach ($photos as $photo) {
