@@ -25,7 +25,6 @@ class ProductFactory extends Factory
         // ];
         
         return [
-            'product_id' => $this->faker->uuid,
             'name' => $this->faker->word,
             'description' => $this->faker->paragraph(),
             // 'photo' => $this->faker->randomElement($photos),

@@ -1,11 +1,10 @@
 @extends("admin.layouts.master")
-@section('title', 'Furniture Store | Detail')
+@section('title', 'Detail | Furniture Store')
 @section('content')
 <a href="{{url()->previous()}}">Back</a>
-<table>
+<table class="table">
         <tr>
             <th>ID</th>
-            <th>Product ID</th>
             <th>Name</th>
             <th>Category ID</th>
             <th>Description</th>
@@ -15,7 +14,6 @@
         </tr>
         <tr>
             <td>{{$product->id}}</td>
-            <td>{{$product->product_id}}</td>
             <td>{{$product->name}}</td>
             <td>{{$product->category_id ?? "NULL"}}</td>
             <td>{{$product->description}}</td>

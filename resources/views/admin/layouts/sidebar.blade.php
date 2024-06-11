@@ -1,72 +1,82 @@
-<div class="sidebar">
-    <div class="logo_content">
-        <div class="logo">
-            <img src="{{asset('storage/backend/images/icons/home.png')}}" alt="Dashboard Icon">
-            <div class="logo_name">Furniture</div>
+<aside id="sidebar">
+    <div class="d-flex">
+        <button class="toggle-btn" type="button">
+            <i class="lni lni-menu"></i>
+        </button>
+        <div class="sidebar-logo">
+            <a href="#">Furniture</a>
         </div>
     </div>
-    <img class="side-menu-bar" src="{{asset('storage/backend/images/icons/side_menu_bar.png')}}" alt="">
-
-    <ul class="nav_list">
-        <li>
-            <a href="{{route('admin')}}">
-                <img src="{{asset('storage/backend/images/icons/dashboard.png')}}" alt="">
-                <span class="links_name">Dashboard</span>
+    <ul class="sidebar-nav">
+        <li class="sidebar-item">
+            <a href="{{ route('admin') }}" class="sidebar-link d-flex align-items-center">
+                <i class="lni lni-dashboard"></i>
+                <span>Dashboard</span>
             </a>
-            <span class="tooltip">Dashboard</span>
         </li>
-        <li>
-            <a href="{{route('product.index')}}">
-                <img src="{{asset('storage/backend/images/icons/products.png')}}" alt="">
-                <span class="links_name">Products</span>
+        <li class="sidebar-item">
+            <a href="{{route('category.index')}}" class="sidebar-link d-flex align-items-center">
+                <i class="lni lni-layers"></i>
+                <span>Category</span>
             </a>
-            <span class="tooltip">Products</span>
         </li>
-        <li>
-            <a href="{{route('user.index')}}">
-                <img src="{{asset('storage/backend/images/icons/customers.png')}}" alt="">
-                <span class="links_name">Customers</span>
+        <li class="sidebar-item">
+            <a href="{{ route('product.index') }}" class="sidebar-link d-flex align-items-center">
+                <i class="lni lni-shopping-basket"></i>
+                <span>Products</span>
             </a>
-            <span class="tooltip">Customers</span>
         </li>
-        <li>
-            <a href="{{route('order.index')}}">
-                <img src="{{asset('storage/backend/images/icons/orders.png')}}" alt="">
-                <span class="links_name">Orders</span>
+        <li class="sidebar-item">
+            <a href="{{route('customer.index')}}" class="sidebar-link d-flex align-items-center" 
+                data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                <i class="lni lni-user"></i>
+                <span>Customers</span>
             </a>
-            <span class="tooltip">Orders</span>
         </li>
-        <li>
-            <a href="{{route('staff.index')}}">
-                <img src="{{asset('storage/backend/images/icons/staff_list.png')}}" alt="">
-                <span class="links_name">StaffList</span>
+        <li class="sidebar-item">
+            <a href="{{route('staff.index')}}" class="sidebar-link d-flex align-items-center" 
+                data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                <i class="lni lni-users"></i>
+                <span>Staffs</span>
             </a>
-            <span class="tooltip">Staff List</span>
         </li>
-        <li>
-            <a href="{{route('report.index')}}">
-                <img src="{{asset('storage/backend/images/icons/reports.png')}}" alt="">
-                <span class="links_name">Reports</span>
+        <li class="sidebar-item">
+            <a href="{{route('supplier.index')}}" class="sidebar-link d-flex align-items-center" 
+                data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+                <i class="lni lni-car"></i>
+                <span>Suppliers</span>
             </a>
-            <span class="tooltip">Reports</span>
         </li>
+        <li class="sidebar-item">
+            <a href="{{route('order.index')}}" class="sidebar-link d-flex align-items-center">
+                <i class="lni lni-clipboard"></i>
+                <span>Orders</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="{{route('report.index')}}" class="sidebar-link d-flex align-items-center">
+                <i class="lni lni-stats-up"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+        {{-- <li class="sidebar-item">
+            <a href="{{route('setting')}}" class="sidebar-link d-flex align-items-center">
+                <i class="lni lni-cog"></i>
+                <span>Setting</span>
+            </a>
+        </li> --}}
     </ul>
-    <div class="side-bar-bottom">
-        <ul>
-            <li>
-                <a href="{{'setting'}}">
-                    <img src="{{asset('storage/backend/images/icons/setting.png')}}" alt="">
-                    <span class="links_name">Setting</span>
-                </a>
-                <span class="tooltip">Setting</span>
-            </li>
-            <li>
-                <a href="{{'logout'}}">
-                    <img src="{{asset('storage/backend/images/icons/logout.png')}}" alt="">
-                    <span class="links_name">Logout</span>
-                </a>
-                <span class="tooltip">Logout</span>
-            </li>
-        </ul>
+    <div class="sidebar-footer">
+        <a href="{{route('setting')}}" class="sidebar-link d-flex align-items-center">
+            <i class="lni lni-cog"></i>
+            <span>Setting</span>
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+            @csrf
+            <a href="#" class="sidebar-link d-flex align-items-center" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="lni lni-exit"></i>
+                <span>Logout</span>
+            </a>
+        </form>
     </div>
-</div>
+</aside>

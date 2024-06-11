@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('product_id');
             $table->string('name');
-            $table->integer('category_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('category_id')->default(1);
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->text('description');
-            $table->text('photo')->nullable()->default(NULL);
             $table->string('stock')->nullable()->default(NULL);
             $table->float('price');
             $table->string('status')->default('active');

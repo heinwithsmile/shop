@@ -1,76 +1,85 @@
 @extends('admin.layouts.master')
+@push('styles')
+    <link rel="stylesheet" href="{{asset('css/backend/utilities/form.css')}}">
+@endpush
+@section('title', 'Edit | Furniture Store')
+@section('page-name')
+    Edit Product
+@endsection
 @section('content')
-    <div class="add-product-container">
-        <div class="add-product-heading">
-            <div class="add-product-heading-left">
-                <h3>Edit Product</h3>
-            </div>
-
-            <div class="add-product-heading-right">
-                <div class="noti-bell">
-                    <img src="./icons/noti_bell.png" alt="">
-                    <span></span>
-                </div>
-
-                <img src="{{ asset('storage/backend/images/profile.png') }}" alt="">
-            </div>
-        </div>
-
-        <!-- add-image -->
-        <div class="add-image-container">
+    <section>
+        <div class="container my-5">
             <form action="{{ route('product.update', $product->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="add-image">
-                    <input type="file" name="photo" id="photo">
-                    <img width="200" height="230"
-                        src="{{ $product->photo ? asset('storage/' . $product->photo) : ""}}"
-                        alt="" />
+                <div class="form-group">
+                    <input class="form-control" type="file" name="photo" id="photo" value="{{$photo->photo}}" onchange="previewFile()">
+                    @if ($photo)
+                        <img class="my-2" id="preview" src="{{ Storage::url($photo->photo) }}" alt="Current File"
+                            style="max-width: 200px; max-height: 200px;">
+                    @else
+                        <p>No file uploaded.</p>
+                    @endif
                     @error('photo')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="name">Product Name</label>
+                    <input class="form-control" type="text" name="name" id="name"
+                        value="{{ old('name') ?? $product->name }}">
+                    @error('name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="product-detail">
-                    <div class="input product-name form-group">
-                        <label for="name">Product Name</label>
-                        <input type="text" name="name" id="name" value="{{ old('name') ?? $product->name }}">
-                        @error('name')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="input cartagory form-group">
-                        <label for="category">category</label>
-                        <select name="category_id" id="category">
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                        @error('category')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="input price form-group">
-                        <label for="price">Price</label>
-                        <input type="text" name="price" id="price" value="{{ old('price') ?? $product->price }}">
-                        @error('price')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="input Description form-group">
-                        <label for="description">Description</label>
-                        <textarea name="description" id="description">{{ old('description') ?? $product->description }}</textarea>
-                        @error('description')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
+                <div class="form-group">
+                    <label for="category">category</label>
+                    <select class="form-control" name="category_id" id="category">
+                        <option value="">Select Category</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}"
+                                {{ $product->category_id === $category->id ? 'selected' : '' }}>{{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('category')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input class="form-control" type="text" name="price" id="price"
+                        value="{{ old('price') ?? $product->price }}">
+                    @error('price')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" name="description" id="description">{{ old('description') ?? $product->description }}</textarea>
+                    @error('description')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <a class="btn btn-warning" href="{{ url()->previous() }}">Cancel</a>
+                <input type="submit" value="Update" class="btn btn-primary">
+            </form>
         </div>
-    </div>
-
-    <div class="add-product-btn form-group">
-        <button class="cancel-btn"><a href="{{ url()->previous() }}">Cancel</a></button>
-        <input type="submit" value="Update" class="publish-btn">
-    </div>
-    </form>
+    </section>
 @endsection
+@push('scripts')
+    <script>
+        function previewFile() {
+            const file = document.getElementById('photo').files[0];
+            const preview = document.getElementById('preview');
+            const reader = new FileReader();
+
+            reader.addEventListener('load', function() {
+                preview.src = reader.result;
+            }, false);
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+@endpush

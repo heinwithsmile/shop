@@ -1,136 +1,65 @@
 @extends('admin.layouts.master')
-@section('title', 'Furniture Store | Product List')
-@push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://cdn.datatables.net/v/dt/dt-2.0.0/datatables.min.css" rel="stylesheet">
-@endpush
+@section('title', 'Product Management | Furniture Store')
+@section('page-name')
+    Product Management
+@endsection
 @section('content')
-    <div class="profile">
-        <div class="add-product-heading">
-            <div class="add-product-heading-left">
-                <h3>Product Management</h3>
+    <section>
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="p-1 rounded bg-light my-3">
+                <form action="{{ route('product.index') }}" method="GET">
+                    <div class="input-group">
+                        <input type="search" name="search" placeholder="Search" aria-describedby="button-addon1"
+                            class="form-control border-0 bg-light">
+                    </div>
+                </form>
             </div>
-            <div class="add-product-heading-right">
-                <div class="noti-bell">
-                    <img src="{{ asset('storage/backend/images/icons/noti_bell.png') }}" alt="">
-                    <span></span>
-                </div>
-
-                <img src="{{ asset('storage/backend/images/profile.png') }}" alt="">
-            </div>
-        </div>
-    </div>
-    <div class="product-mng-container">
-        <div class="product-mng">
-            <div class="product-mng-search">
-                <input type="text" placeholder="Search...">
-                <img src="{{ asset('storage/backend/images/icons/search.png') }}" alt="">
-            </div>
-
-            <div class="new-product-btn">
-                <button><a href="{{ route('product.create') }}"><img
-                            src="{{ asset('storage/backend/images/icons/new_product.png') }}" alt=""> New Product
-                    </a></button>
+            <div>
+                <a class="my-btn d-flex justify-content-around align-items-center" href="{{ route('product.create') }}">
+                    <i class="lni lni-circle-plus"></i> 
+                    Add Product
+                </a>
             </div>
         </div>
-
-        <div class="product_table">
-            <table id="product-datatable" width="100%" cellspacing="0">
-                <thead>
+        <div class="table-container tableBorder table-responsive py-5">
+            <table class="table shadow-sm mt-3 tableBorder table-custom table-borderless ">
+                <thead class="table-heading">
                     <tr>
-                        <th>
-                            <input type="checkbox" name="" id="">
-                        </th>
-                        <th>
-                            <img src="{{ asset('storage/backend/images/icons/sample_image.png') }}" alt="">
-                        </th>
-                        <th>
-                            ID
-                        </th>
-                        <th>
-                            Product Name
-                        </th>
-                        <th>
-                            Catagory
-                        </th>
-                        <th>
-                            Description
-                        </th>
-                        <th>
-                            Photo
-                        </th>
-                        <th>
-                            Stock
-                        </th>
-                        <th>
-                            Price
-                        </th>
-                        <th>
-                            Date
-                        </th>
-                        <th>
-                            Action
-                        </th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
-                @foreach ($products as $product)
-                    <tbody>
+                <tbody>
+                    @foreach ($products as $product)
                         <tr>
-                            <td>
-                                <input type="checkbox" name="" id="">
-                            </td>
-                            <td>
-                                <img src="{{ asset('storage/' . $product->photo) }}" alt="" width="100"
-                                    height="100">
-                            </td>
-                            <td>{{ $product->product_id }}</td>
-                            <td><a href="{{route('product.show', ['product' => $product->id])}}">{{ $product->name }}</a></td>
-                            <td>{{ $product->category_id }}</td>
+                            <td>{{ $product->id }}</td>
+                            <td><a href="{{ route('product.show', ['product' => $product->id]) }}">{{ $product->name }}</a></td>
+                            <td>{{ $product->category->name ?? '' }}</td>
                             <td>{{ $product->description }}</td>
-                            <td>{{ $product->photo }}</td>
+                            <td>{{ $product->images->first()->photo ?? ''}}</td>
                             <td>{{ $product->stock }}</td>
-                            <td>{{ $product->price }}</td>
-                            <td>{{ $product->created_at }}</td>
-                            <td>
+                            <td class="d-flex align-items-center">
                                 <a href="{{ route('product.edit', ['product' => $product->id]) }}">
-                                    {{-- <img src="{{ asset('storage/backend/images/icons/action.png') }}" alt=""> --}}
-                                    Edit
-                                    </a>
-                                        <form method="POST" action="{{ route('product.destroy', ['product' => $product->id]) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button><i class="fa-solid fa-trash" style="color: red"></i></button>
-                                          </form>
-                                        {{-- <a href="{{ route('product.destroy', ['product' => $product->id]) }}">
-                                        <img src="{{ asset('storage/backend/images/icons/bin.png') }}" alt=""></a> --}}
+                                    <i class="lni lni-pencil-alt btn"></i>
+                                </a>
+                                <form class="d-inline-block" method="POST" action="{{ route('product.destroy', ['product' => $product->id]) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn-transparent">
+                                        <i class="lni lni-trash-can btn"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
-                    </tbody>
+                </tbody>
                 @endforeach
             </table>
         </div>
-    </div>
+        {{ $products->links("vendor.pagination.default") }}
+    </section>
 @endsection
-
-@push('scripts')
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/v/dt/dt-2.0.0/datatables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
-    <script>
-        // $('#product-datatable').DataTable({
-        //     "scrollX": false "columnDefs": [{
-        //         "orderable": false,
-        //         "targets": [10, 11, 12]
-        //     }]
-        // });
-        new DataTable('#product-datatable', {
-            order: [
-                [3, 'desc']
-            ]
-        });
-    </script>
-@endpush

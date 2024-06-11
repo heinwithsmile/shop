@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('order_id');
             $table->integer('status')->nullable()->default(NULL);
             $table->float('amount');
+            $table->integer('quantity')->default(1);
             $table->timestamps();
         });
     }

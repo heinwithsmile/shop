@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -11,10 +12,18 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
-        return view('admin.product.list')->with("products", $products);
+        $search = $request->input('search');
+        $products = Product::with('images')->with('category')->orderBy('id', 'desc')->paginate(10);
+        if(isset($search)){
+            $products = Product::where('name', 'like', "%$search%")
+                    ->with('images')
+                    ->with('category')
+                    ->paginate(10);
+        }
+        return view('admin.product.list')
+                ->with("products", $products);
     }
 
     /**
@@ -26,23 +35,33 @@ class ProductController extends Controller
         return view('admin.product.add')->with("categories" ,$categories);
     }
 
+    public function send(Request $request){
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+        $imagePath = $request->file('image')->store('images/products', 'public');
+        return response()->json(['image' => $imagePath]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $data = $this->validate($request, [
-            'photo' => 'required',
+        $products = $this->validate($request, [
             'name' => 'string|required',
             'category_id' => 'required',
             'price' => 'required|numeric',
             'description' => 'string|required',
         ]);
-        if($request->hasFile('photo')){
-            $data['photo'] = $request->file('photo')->store('images/products/', 'public');
+        $photos = $request->photo;
+        $product = Product::create($products);
+        foreach ($photos as $photo) {
+            ProductImage::create([
+                'product_id'=>$product->id,
+                'photo'=>$photo
+            ]);
         }
-
-        Product::create($data);
         return redirect()->route('product.index')->with('message', 'Product Add Successful');
     }
 
@@ -60,9 +79,11 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $category = Category::findOrFail($product->category_id);
+        $photo = ProductImage::where('product_id', $product->id)->first();
         $categories = Category::all();
         return view('admin.product.edit')
             ->with('product', $product)
+            ->with('photo', $photo)
             ->with('category', $category)
             ->with('categories', $categories);
     }
@@ -79,11 +100,15 @@ class ProductController extends Controller
             'price' => 'required'
         ]);
 
+        // $images = $request->validate(['photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
+
         if($request->hasFile('photo')){
-            $formFields['photo'] = $request->file('photo')->store('images/products/', 'public');
+            $images['photo'] = $request->file('photo')->store('images/products/', 'public');
         }
         
         $product->update($formFields);
+        $productImage = new ProductImage();
+        $productImage->update($images);
         return redirect()->route('product.index')->with('message', 'product Updated');
     }
 

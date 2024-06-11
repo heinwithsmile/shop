@@ -16,10 +16,9 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
-        // $categories = ['Bed', 'Cabinet', 'Sofa', 'Kitchen', 'Office', 'Chair'];
-
         return [
             'name' => $this->faker->word,
+            'photo' => 'default_photo.jpg'
         ];
     }
 }
