@@ -28,11 +28,7 @@ Auth::routes();
 // Show the homepage
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('index');
-<<<<<<< HEAD
-    // Route::get('/home', 'home')->name('home');
-=======
     Route::get('/home', 'index')->name('home');
->>>>>>> auth
 });
 
 Route::controller(ShopController::class)->prefix('customer')->middleware(['auth:customer'])->group(function () {

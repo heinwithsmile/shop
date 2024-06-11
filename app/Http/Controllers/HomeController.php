@@ -25,9 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        return view('index');
-=======
         // For Feature Category
         $categories = Category::limit(5)->get();
 
@@ -36,6 +33,5 @@ class HomeController extends Controller
         return view('index')
             ->with('categories', $categories)
             ->with('products_categories', $products_categories);
->>>>>>> auth
     }
 }

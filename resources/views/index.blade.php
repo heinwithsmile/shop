@@ -66,12 +66,6 @@
 </style>
 @endpush
 @section('content')
-<<<<<<< HEAD
-    
-@endsection
-@push('scripts')
-@endpush
-=======
 <section id="hero">
     <div class="container">
         <div class="hero">
@@ -192,4 +186,3 @@
     });
 </script>
 @endpush
->>>>>>> auth

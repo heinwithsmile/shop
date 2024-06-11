@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-@stack('scripts')
-=======
 <footer>
     <div class="container">
         <div class="upper flex">
@@ -26,4 +23,3 @@
 @stack('scripts')
 </body>
 </html>
->>>>>>> auth

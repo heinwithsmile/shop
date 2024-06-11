@@ -97,11 +97,6 @@
 </style>
 @endpush
 @section('content')
-<<<<<<< HEAD
-    
-@endsection
-@push('scripts')
-=======
 <section id="carousel">
     <div class="wrapper">
         <i id="left" class="fa-solid fa-angle-left"></i>
@@ -273,5 +268,4 @@
     document.addEventListener("mouseup", dragStop);
     carousel.addEventListener("touchend", dragStop);
 </script>
->>>>>>> auth
 @endpush

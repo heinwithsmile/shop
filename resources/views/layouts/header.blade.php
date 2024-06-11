@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <div class="container">
     <div class="top-bar">
         <ul>
@@ -47,4 +45,3 @@
         </div>
     </div>
 </div>
->>>>>>> auth

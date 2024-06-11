@@ -4,12 +4,6 @@
     Dashboard
 @endsection
 @push('styles')
-<<<<<<< HEAD
-
-@endpush
-@section('content')
-@endsection
-=======
 @endpush
 @section('content')
     @include('admin.layouts.calendar')
@@ -177,4 +171,3 @@
         });
     </script>
 @endpush
->>>>>>> auth

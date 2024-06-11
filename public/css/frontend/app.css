@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;700&display=swap");
 
-<<<<<<< HEAD
-=======
 :root {
     --primary-color: #FFFFFF;
     --secondary-color: #F4F5F7;
@@ -17,7 +15,6 @@
     --rich-black: #202020;
 }
 
->>>>>>> auth
 * {
     margin: 0;
     padding: 0;
@@ -27,12 +24,6 @@
 body {
     font-family: "Lato", sans-serif;
     font-size: 1rem;
-<<<<<<< HEAD
-}
-
-
-
-=======
     line-height: 1.5;
 }
 
@@ -382,4 +373,3 @@ footer .second,
 footer .third {
     flex: 1;
 }
->>>>>>> auth
