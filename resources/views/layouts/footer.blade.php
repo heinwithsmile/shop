@@ -14,7 +14,7 @@
         <div class="lower flex space-between">
             <p>&copy; 2024 All Rights Reserved.</p>
             <div class="payments">
-                PalPal
+                <p>Payment Method Section</p>
             </div>
         </div>
     </div>

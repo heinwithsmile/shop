@@ -22,10 +22,10 @@ class StaffSeeder extends Seeder
                 'role'=>'admin'
             ),
             array(
-                'name'=>'User',
-                'email'=>'user@gmail.com',
+                'name'=>'Manager',
+                'email'=>'manager@gmail.com',
                 'password'=>Hash::make('1111'),
-                'role'=>'user'
+                'role'=>'manager'
             ),
         );
         DB::table('staffs')->insert($data);

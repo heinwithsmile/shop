@@ -10,7 +10,7 @@
             <a class="home p-2" href="{{route('index')}}"><i class="lni lni-home"></i></a>
         </div>
         <div class="profile">
-            <a href="#">
+            <a href="{{route('admin.profile')}}">
                 <img src="{{ asset('storage/backend/images/profile.png') }}">
             </a>
         </div>

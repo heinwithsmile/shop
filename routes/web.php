@@ -65,6 +65,7 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:admin']], function () {
     Route::resource('report', ReportController::class);
     Route::resource('supplier', SupplierController::class);
     Route::get('/setting', [SettingController::class, 'index'])->name('setting');
+    Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
 });
 
 Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm'])->name('admin.login');
