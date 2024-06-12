@@ -16,6 +16,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BannerController;
 
 // =============================================
 // Auth Routes
@@ -31,7 +32,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/home', 'index')->name('home');
 });
 
-Route::controller(ShopController::class)->prefix('customer')->middleware(['auth:customer'])->group(function () {
+Route::controller(ShopController::class)->group(function () {
     Route::get('/shop', 'index')->name('shop');
     Route::get('/shop/detail/{id}', 'detail')->name('shop.detail');
     Route::get('/payment/failure', function () {
@@ -66,6 +67,7 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:admin']], function () {
     Route::resource('supplier', SupplierController::class);
     Route::get('/setting', [SettingController::class, 'index'])->name('setting');
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::resource('banner', BannerController::class);
 });
 
 Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm'])->name('admin.login');
@@ -75,16 +77,3 @@ Route::get('/register/customer', [RegisterController::class, 'showCustomerRegist
 
 Route::post('/login/admin', [LoginController::class, 'adminLogin'])->name('admin.login.process');
 Route::post('/login/customer', [LoginController::class, 'customerLogin'])->name('customer.login.process');
-// Route::post('/login/customer', 'LoginController@customerLogin');
-// Route::post('/register/admin', 'RegisterController@createAdmin')->name('register.admin');
-// Route::post('/register/customer', 'RegisterController@createCustomer')->name('register.customer');
-
-// Route::view('/home', 'home')->middleware('auth');
-// Route::group(['middleware' => 'auth:admin'], function () {
-//     Route::view('/admin', 'admin');
-// });
-
-// Route::group(['middleware' => 'auth:customer'], function () {
-//     Route::view('/customer', 'customer');
-// });
-

@@ -373,3 +373,10 @@ footer .second,
 footer .third {
     flex: 1;
 }
+
+/* Tablet & Mobile */
+@media (max-width: 768px) {
+    .top-bar {
+        flex-direction: column;
+    }
+}

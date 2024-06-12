@@ -131,32 +131,21 @@
             <div class="dropdown">
                 <form action="" method="get">
                     <select name="category" id="category" onchange="this.form.submit();">
-                        <option value="">CATEGORIES</option>
+                        <option value="" selected>CATEGORIES</option>
                         @foreach ($categories as $category)
                             <option value="{{$category->id}}">{{ $category->name }}
                             </option>
                         @endforeach
                     </select>
+                    <select name="price" id="price" onchange="this.form.submit();">
+                        <option selected>Price</option>
+                        <option value="one">100,00MMK - 100,000MMK</option>
+                        <option value="two">100,000MMK - 500,000MMK</option>
+                    </select>
+                    <select name="color" id="color" onchange="this.form.submit();">
+                        <option value="" selected>Color</option>
+                    </select>
                 </form>
-                <select name="price" id="price">
-                    <option value="">PRICE</option>
-                    <option value="">High To Low
-                    </option>
-                    <option value="">Low To High
-                    </option>
-                </select>
-                <select name="color" id="color">
-                    <option value="">COLOR</option>
-                    <option value=""></option>
-                </select>
-                <select name="material" id="material">
-                    <option value="">MATERIAL</option>
-                    <option value=""></option>
-                </select>
-                <select name="sort" id="sort">
-                    <option value="">SORT BY LATEST</option>
-                    <option value=""></option>
-                </select>
             </div>
         </div>
         <div class="product-gallery mt-2">
