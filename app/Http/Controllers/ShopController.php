@@ -21,17 +21,10 @@ class ShopController extends Controller
 
         if (!empty($request->has('price'))) {
             $slug = trim($request->input('price'));
-            switch ($slug) {
-                case 'one':
-                    $products = Product::whereBetween('price', [10000, 100000])->get();
-                    break;
-                
-                case 'two':
-                    $products = Product::whereBetween('price', [100000, 500000])->get();
-                    break;
-                default:
-                    $products = [];
-                    break;
+            if (!empty($slug) && $slug === "htl") {
+                $products = Product::orderByDesc('price')->get();
+            } elseif (!empty($slug) && $slug === "lth") {
+                $products = Product::orderBy('price')->get();
             }
         }
 
@@ -45,6 +38,7 @@ class ShopController extends Controller
         return view('pages.shop')
             ->with('products', $products)
             ->with('categories', $categories);
+        // ->with('cat_count', $count);
     }
 
     public function detail($id)
