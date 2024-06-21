@@ -58,6 +58,6 @@ Update the .env file with your database and other configuration details.
 9. **Access the application**
     Open your browser and navigate to http://localhost:8000 to see your Furniture Store application in action.
 
-##Good Luck !
+## Good Luck!
 
 
