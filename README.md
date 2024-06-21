@@ -11,3 +11,53 @@ Welcome to our Furniture Store, a modern and user-friendly e-commerce platform b
 - **Order Management**: Track orders and view purchase history with ease.
 - **Admin Dashboard**: Manage products, categories, orders, and customers through an intuitive admin interface.
 
+## Installation
+
+To set up the Furniture Store project locally, follow these steps:
+
+1. **Clone the repository**
+
+   ```sh
+   git clone https://github.com/otechhein/Furniture-Store.git
+   cd furniture-store
+
+2. **Install dependencies**
+   Make sure you have Composer installed. Then, run:
+    ```sh
+    composer install
+
+3. **Set up the environment variables**
+   Copy the .env.example file to .env and modify the necessary environment settings:
+   ```sh
+   cp .env.example .env
+   
+Update the .env file with your database and other configuration details.
+
+4. **Generate an application key**
+   ```sh
+   php artisan key:generate
+
+5. **Run the database migrations**
+   Make sure your database is running, then run:
+   ```sh
+   php artisan migrate
+
+6. **Install front-end dependencies**
+   Make sure you have Node.js and NPM installed. Then, run:
+    ```sh
+    npm install
+
+7. **Compile the assets**
+   ```sh
+   npm run dev
+
+8. **Start the development serve**
+   ```sh
+   php artisan  serve
+
+9. **Access the application**
+    Open your browser and navigate to http://localhost:8000 to see your Furniture Store application in action.
+
+##Good Luck !
+
+
