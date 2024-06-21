@@ -23,14 +23,13 @@ use App\Http\Controllers\Auth\RegisterController;
 Auth::routes();
 
 // =============================================
-// Home Routes
+// Shop Routes
 // =============================================
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/home', 'index')->name('home');
 });
-
-Route::controller(ShopController::class)->prefix('customer')->middleware(['auth:customer'])->group(function () {
+Route::controller(ShopController::class)->prefix('customer')->group(function () {
     Route::get('/shop', 'index')->name('shop');
     Route::get('/shop/detail/{id}', 'detail')->name('shop.detail');
     Route::get('/payment/failure', function () {
@@ -41,7 +40,6 @@ Route::controller(ShopController::class)->prefix('customer')->middleware(['auth:
     Route::delete('remove-from-cart', 'removeCartItem');
     Route::get('clear-cart', 'clearCart');
 });
-
 Route::post('stripe', [PaymentController::class, 'stripe'])->name('stripe');
 Route::get('success', [PaymentController::class, 'success'])->name('success');
 Route::get('cancel', [PaymentController::class, 'cancel'])->name('cancel');
@@ -66,7 +64,6 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth:admin']], function () {
     Route::get('/setting', [SettingController::class, 'index'])->name('setting');
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
 });
-
 
 // ========================================
 // Custom Auth Routes

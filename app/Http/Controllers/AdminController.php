@@ -10,7 +10,7 @@ class AdminController extends Controller
     public function index(Request $request){
         
 
-        $monthly_sale_data = [
+        $chartData = [
             'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep'],
             'data' => [100000, 80000, 84000, 75000, 80000, 50000, 70000, 80000, 70000]
         ];
@@ -48,7 +48,11 @@ class AdminController extends Controller
        $latest_orders = Order::paginate(5);
         return view('admin.index')
             ->with('orders', $orders)
-            ->with('monthly_sale_data', $monthly_sale_data)
+            ->with('chartData', $chartData)
             ->with('pieChartData', $pieChartData);
+    }
+
+    public function profile(){
+        echo "Profile";
     }
 }

@@ -20,8 +20,8 @@
         <div class="col-md-3">
             <div class="p-3 shadow-sm d-flex justify-content-around align-items-center rounded my-card">
                 <div>
-                    <h3 class="fs-2">4920</h3>
-                    <p class="fs-5">Sales</p>
+                    <h3 class="fs-2">0</h3>
+                    <p class="fs-5">Something</p>
                 </div>
             </div>
         </div>
@@ -29,8 +29,8 @@
         <div class="col-md-3">
             <div class="p-3 shadow-sm d-flex justify-content-around align-items-center rounded my-card">
                 <div>
-                    <h3 class="fs-2">3899</h3>
-                    <p class="fs-5">Delivery</p>
+                    <h3 class="fs-2">0</h3>
+                    <p class="fs-5">Something</p>
                 </div>
             </div>
         </div>
@@ -38,8 +38,8 @@
         <div class="col-md-3">
             <div class="p-3 shadow-sm d-flex justify-content-around align-items-center rounded my-card">
                 <div>
-                    <h3 class="fs-2">%25</h3>
-                    <p class="fs-5">Increase</p>
+                    <h3 class="fs-2">0</h3>
+                    <p class="fs-5">Something</p>
                 </div>
             </div>
         </div>

@@ -13,13 +13,19 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <input class="form-control" type="file" name="photo" id="photo" value="{{$photo->photo}}" onchange="previewFile()">
-                    @if ($photo)
-                        <img class="my-2" id="preview" src="{{ Storage::url($photo->photo) }}" alt="Current File"
-                            style="max-width: 200px; max-height: 200px;">
-                    @else
+                    <div id="image" class="dropzone dz-clickable">
+                        <div class="dz-message needsclick">
+                            <br>Drop files here or click to upload.
+                        </div>
+                    </div>
+                    {{-- <input class="form-control" type="file" name="photo" id="photo" value="{{$photo->photo}}" onchange="previewFile()">
+                    @if ($photo) --}}
+                        {{-- <img class="my-2" id="preview" src="{{ Storage::url($photo->photo) }}" alt="Current File"
+                            style="max-width: 200px; max-height: 200px;"> --}}
+                    {{-- @else
                         <p>No file uploaded.</p>
-                    @endif
+                    @endif --}}
+
                     @error('photo')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
