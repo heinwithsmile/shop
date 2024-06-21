@@ -1,4 +1,4 @@
-# Laravel 11 Furniture Store
+# Laravel 10 Furniture Store
 
 Welcome to our Furniture Store, a modern and user-friendly e-commerce platform built with Laravel. Our platform offers a wide range of high-quality furniture products, making it easy for customers to browse, purchase, and enjoy stylish and functional pieces for their homes and offices.
 
