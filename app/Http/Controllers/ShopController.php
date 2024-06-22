@@ -103,6 +103,17 @@ class ShopController extends Controller
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
+    public function removeCartItem($id){
+        // dd($id);
+        if($id){
+            // dd(session('cart'));
+            $products = session('cart');
+            unset($products[$id]);
+            session()->put('cart', $products);
+        }
+        return redirect()->route('cart');
+    }
+
     public function showPaymentForm()
     {
         return view('pages.payment');

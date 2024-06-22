@@ -15,6 +15,12 @@
             </a>
         </li>
         <li class="sidebar-item">
+            <a href="{{route('banner.index')}}" class="sidebar-link d-flex align-items-center">
+                <i class="lni lni-image"></i>
+                <span>Banner</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
             <a href="{{route('category.index')}}" class="sidebar-link d-flex align-items-center">
                 <i class="lni lni-layers"></i>
                 <span>Category</span>
@@ -59,12 +65,6 @@
                 <span>Reports</span>
             </a>
         </li>
-        {{-- <li class="sidebar-item">
-            <a href="{{route('setting')}}" class="sidebar-link d-flex align-items-center">
-                <i class="lni lni-cog"></i>
-                <span>Setting</span>
-            </a>
-        </li> --}}
     </ul>
     <div class="sidebar-footer">
         <a href="{{route('setting')}}" class="sidebar-link d-flex align-items-center">

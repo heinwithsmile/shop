@@ -16,6 +16,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BannerController;
 
 // =============================================
 // Auth Routes
@@ -37,7 +38,7 @@ Route::controller(ShopController::class)->prefix('customer')->group(function () 
     })->name('payment.failure');
     Route::get('cart', 'showCartTable')->name('cart');
     Route::get('add-to-cart/{id}', 'addToCart')->name('add-to-cart');
-    Route::delete('remove-from-cart', 'removeCartItem');
+    Route::get('remove-from-cart/{id}', 'removeCartItem')->name('remove-from-cart');
     Route::get('clear-cart', 'clearCart');
 });
 Route::post('stripe', [PaymentController::class, 'stripe'])->name('stripe');
@@ -47,12 +48,9 @@ Route::get('cancel', [PaymentController::class, 'cancel'])->name('cancel');
 // =============================================
 // Admin Routes
 // =============================================
-// These routes are prefixed with 'admin' and require authentication
-// Route::group(['middleware' => 'auth:admin'], function () {
-//     Route::view('/admin', 'admin');
-// });
 Route::group(['prefix' => 'admin', 'middleware'=>['auth:admin']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
+    Route::resource('banner', BannerController::class);
     Route::resource('customer', UserController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('product', ProductController::class);

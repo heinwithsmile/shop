@@ -31,8 +31,7 @@
     
                                     <div class="col-sm-9">
                                         <p class="nomargin">{{ $details['name'] }}</p>
-                                        <p class="remove-from-cart cart-delete" data-id="{{ $id }}" title="Delete">
-                                            Remove</p>
+                                            <a href="{{route('remove-from-cart', ['id'=>$id])}}">Remove</a>
                                     </div>
                                 </div>
                             </td>

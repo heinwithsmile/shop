@@ -12,7 +12,7 @@ class BannerController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.banner.list');
     }
 
     /**
@@ -20,7 +20,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.banner.add');
     }
 
     /**
@@ -28,7 +28,19 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $this->validate($request,
+            [
+                'title' => 'required|string',
+                'description' => 'required|string',
+                'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]
+        );
+        if($request->hasFile('photo')){
+            $validated['photo'] = $request->file('photo')->store('images/banners', 'public');
+        }
+        // dd($validated);
+        Banner::create($validated);
+        return redirect()->route('banner.index');
     }
 
     /**

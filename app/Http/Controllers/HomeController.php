@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -25,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // Hero section slider
+        $banners = Banner::all();
+
         // For Feature Category
         $categories = Category::limit(5)->get();
 
@@ -32,6 +36,7 @@ class HomeController extends Controller
         $products_categories = Category::with(['products.images'])->get();
         return view('index')
             ->with('categories', $categories)
-            ->with('products_categories', $products_categories);
+            ->with('products_categories', $products_categories)
+            ->with('banners', $banners);
     }
 }

@@ -33,7 +33,16 @@
         </nav>
         <div class="nav-menu-social flex">
             <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="{{route('cart')}}"><i class="fa-solid fa-basket-shopping"></i></a>
+            @php
+                $carts = session('cart');
+                $count = (isset($carts)) ? count($carts) : 0;
+                // dd($count);
+                if($count == 0){
+                    $count = '';
+                }
+                // dd($count);
+            @endphp
+            <a href="{{route('cart')}}"><i class="fa-solid fa-basket-shopping"></i><span>{{$count ?? ''}}</span></a>
             <a href="#"><i class="fa-solid fa-user"></i></a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
