@@ -13,10 +13,6 @@
     box-sizing: border-box;
 }
 
-body {
-    color: var(--white) !important;
-}
-
 ::after,
 ::before {
     box-sizing: border-box;
@@ -184,13 +180,11 @@ section {
 }
 
 .sale-card {
-    width: 689px;
-    height: 305px;
+    flex-basis: 65%;
 }
 
 .order-type-card {
-    width: 337px;
-    height: 305px;
+    flex-basis: 35%;
 }
 
 .statistic {

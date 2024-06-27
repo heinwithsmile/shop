@@ -36,11 +36,9 @@
             @php
                 $carts = session('cart');
                 $count = (isset($carts)) ? count($carts) : 0;
-                // dd($count);
                 if($count == 0){
                     $count = '';
                 }
-                // dd($count);
             @endphp
             <a href="{{route('cart')}}"><i class="fa-solid fa-basket-shopping"></i><span>{{$count ?? ''}}</span></a>
             <a href="#"><i class="fa-solid fa-user"></i></a>

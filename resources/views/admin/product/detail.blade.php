@@ -4,7 +4,7 @@
 <a href="{{url()->previous()}}">Back</a>
 <table class="table">
         <tr>
-            <th>ID</th>
+            <th>#</th>
             <th>Name</th>
             <th>Category ID</th>
             <th>Description</th>

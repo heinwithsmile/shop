@@ -12,7 +12,9 @@ class BannerController extends Controller
      */
     public function index()
     {
-        return view('admin.banner.list');
+        $banners = Banner::all();
+        
+        return view('admin.banner.list')->with('banners', $banners);
     }
 
     /**
@@ -38,7 +40,6 @@ class BannerController extends Controller
         if($request->hasFile('photo')){
             $validated['photo'] = $request->file('photo')->store('images/banners', 'public');
         }
-        // dd($validated);
         Banner::create($validated);
         return redirect()->route('banner.index');
     }
@@ -72,6 +73,10 @@ class BannerController extends Controller
      */
     public function destroy(Banner $banner)
     {
-        //
+        if(!empty($banner)){
+            $banner->delete();
+            return redirect()->route('banner.index')->with('message', 'Deleted');
+        }
+        return redirect()->route('banner.index')->with('message', 'Could not delete!');
     }
 }

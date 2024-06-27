@@ -25,7 +25,7 @@
             <table class="table shadow-sm mt-3 tableBorder table-custom table-borderless ">
                 <thead class="table-heading">
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Category</th>
                         <th scope="col">Description</th>

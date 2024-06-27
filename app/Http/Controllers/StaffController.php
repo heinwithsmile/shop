@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use Illuminate\Http\Request;
-use App\Models\User;
 
 class StaffController extends Controller
 {
@@ -13,7 +13,7 @@ class StaffController extends Controller
     }
 
     public function index(){
-        $staffs = User::all();
+        $staffs = Admin::all();
         return view('admin.staff.list')->with('staffs', $staffs);
     }
 }

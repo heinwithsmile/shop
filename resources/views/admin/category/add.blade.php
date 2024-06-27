@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label for="photo">Photo</label>
-                <input type="file" name="photo" id="photo">
+                <input type="file" name="photo" id="photo" class="form-control">
             </div>
             <a class="btn btn-warning" href="{{ url()->previous() }}">Cancel</a>
             <input class="btn btn-primary" type="submit" value="Publish" class="publish-btn">

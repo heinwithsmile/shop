@@ -2,6 +2,14 @@
 @section('title', 'Home | Furniture Store')
 @push('styles')
     <style>
+        /* Hero Slider */
+        .slick-prev:before,
+        .slick-next:before {
+            color: var(--accent-color) !important;
+        }
+
+        /* New Product Section */
+
         #new-product {
             padding-top: 20px;
         }
@@ -71,7 +79,14 @@
             <div class="hero-slider">
                 @foreach ($banners as $banner)
                     <div>
-                        <img src="{{ Storage::url($banner->photo) }}" alt="{{ $banner->title }}">
+                        <img src="{{ Storage::url($banner->photo) }}" alt="{{ $banner->title }}" width="100%">
+                        <div class="slide-content">
+                            <h1>{{ $banner->title }}</h1>
+                            <p>{{ $banner->description }}</p>
+                            <a class="btn btn-primary" href="{{ route('shop') }}">
+                                Shop Now
+                            </a>
+                        </div>
                     </div>
                 @endforeach
             </div>
@@ -120,13 +135,17 @@
                         @foreach ($category->products as $product)
                             @php
                                 $images = $product->images;
+                                // dd($images);
+                                $image = $images[0];
                             @endphp
                             <div class="product-card">
                                 <div class="img-card">
                                     <a href="{{ route('shop.detail', ['id' => $product->id]) }}">
-                                        @foreach ($images as $image)
-                                            <img src="{{ asset("storage/$image->photo") }}" alt="" />
-                                        @endforeach
+                                        {{-- @foreach ($images as $image)
+                                            @dd($image);
+                                            
+                                        @endforeach --}}
+                                        <img src="{{ asset("storage/$image->photo") }}" alt="" />
                                     </a>
                                 </div>
                                 <p class="my-1"><a
@@ -184,7 +203,7 @@
                 infinite: true,
                 speed: 300,
                 slidesToShow: 1,
-                adaptiveHeight: true
+                arrows: true,
             });
         });
     </script>

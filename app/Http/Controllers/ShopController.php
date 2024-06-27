@@ -104,9 +104,7 @@ class ShopController extends Controller
     }
 
     public function removeCartItem($id){
-        // dd($id);
         if($id){
-            // dd(session('cart'));
             $products = session('cart');
             unset($products[$id]);
             session()->put('cart', $products);
