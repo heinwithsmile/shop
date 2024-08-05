@@ -101,7 +101,8 @@ class LoginController extends Controller
             'email'   => 'required|email',
             'password' => 'required'
         ]);
-
+        // dd($request->password);
+        // dd(Auth::guard('admin'));
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return redirect()->intended('/admin');
         }
@@ -120,9 +121,8 @@ class LoginController extends Controller
             'email'   => 'required|email',
             'password' => 'required'
         ]);
-
+        // dd(Auth::guard('customer'));
         if (Auth::guard('customer')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
             return redirect()->intended('/');
         }
     }

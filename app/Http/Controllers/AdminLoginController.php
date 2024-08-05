@@ -23,7 +23,7 @@ class AdminLoginController extends Controller
 
         $email = $request->email;
         $password = $request->password;
-
+        dd($password);
         if(Auth::guard('admin')->attempt(['email'=>$email, 'password'=>$password])){
             return redirect()->intended(route('admin.dashboard'));
         }

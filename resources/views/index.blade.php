@@ -2,6 +2,9 @@
 @section('title', 'Home | Furniture Store')
 @push('styles')
     <style>
+        .top-wrapper {
+            background-color: var(--secondary-color);
+        }
         /* Hero Slider */
         .slick-prev:before,
         .slick-next:before {
@@ -75,21 +78,19 @@
 @endpush
 @section('content')
     <section id="hero">
-        <div class="container">
-            <div class="hero-slider">
-                @foreach ($banners as $banner)
-                    <div>
-                        <img src="{{ Storage::url($banner->photo) }}" alt="{{ $banner->title }}" width="100%">
-                        <div class="slide-content">
-                            <h1>{{ $banner->title }}</h1>
-                            <p>{{ $banner->description }}</p>
-                            <a class="btn btn-primary" href="{{ route('shop') }}">
-                                Shop Now
-                            </a>
-                        </div>
+        <div class="hero-slider">
+            @foreach ($banners as $banner)
+                <div>
+                    <img src="{{ Storage::url($banner->photo) }}" alt="{{ $banner->title }}" width="100%">
+                    <div class="slide-content">
+                        <h1>{{ $banner->title }}</h1>
+                        <p>{{ $banner->description }}</p>
+                        <a class="btn btn-primary" href="{{ route('shop') }}">
+                            Shop Now
+                        </a>
                     </div>
-                @endforeach
-            </div>
+                </div>
+            @endforeach
         </div>
     </section>
     <section id="category">

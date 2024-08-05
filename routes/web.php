@@ -30,7 +30,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/home', 'index')->name('home');
 });
-Route::controller(ShopController::class)->prefix('customer')->group(function () {
+Route::controller(ShopController::class)->prefix('customer')->group( function () {
     Route::get('/shop', 'index')->name('shop');
     Route::get('/shop/detail/{id}', 'detail')->name('shop.detail');
     Route::get('/payment/failure', function () {
