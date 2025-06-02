@@ -4,7 +4,7 @@
             <i class="lni lni-menu"></i>
         </button>
         <div class="sidebar-logo">
-            <a href="#">Furniture</a>
+            <a href="#">Shop</a>
         </div>
     </div>
     <ul class="sidebar-nav">
