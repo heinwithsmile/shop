@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    Banner List | Furniture Store
+    Banner List | Shop
 @endsection
 @section('page-name')
     Banner Management

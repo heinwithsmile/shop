@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @push('styles')
 @endpush
-@section('title', 'Furniture Store | Customer List')
+@section('title', 'Shop | Customer List')
 @section('page-name')
 Customer Management
 @endsection

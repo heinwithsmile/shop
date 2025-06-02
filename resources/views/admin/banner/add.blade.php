@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    Add Banner | Furniture Store
+    Add Banner | Shop
 @endsection
 @section('page-name')
     Add Banner

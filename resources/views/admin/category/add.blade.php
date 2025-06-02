@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    Add Category | Furniture Store
+    Add Category | Shop
 @endsection
 @section('page-name')
     Add Category

@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Shop | Furniture Store')
+@section('title','Shop | Shop')
 @push('styles')
 <style>
     .wrapper {

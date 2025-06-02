@@ -1,5 +1,5 @@
 @extends("admin.layouts.master")
-@section('title', 'Detail | Furniture Store')
+@section('title', 'Detail | Shop')
 @section('content')
 <a href="{{url()->previous()}}">Back</a>
 <table class="table">

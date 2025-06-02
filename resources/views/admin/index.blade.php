@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Dashboard | Furniture Store ')
+@section('title', 'Dashboard | Shop ')
 @section('page-name')
     Dashboard
 @endsection

@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Supplier Management | Furniture Store')
+@section('title', 'Supplier Management | Shop')
 @section('page-name')
     Supplier Management
 @endsection

@@ -1,10 +1,10 @@
-# Laravel 10 Furniture Store
+# Laravel 10 Store
 
-Welcome to our Furniture Store, a modern and user-friendly e-commerce platform built with Laravel. Our platform offers a wide range of high-quality furniture products, making it easy for customers to browse, purchase, and enjoy stylish and functional pieces for their homes and offices.
+Welcome to our Store, a modern and user-friendly e-commerce platform built with Laravel. Our platform offers a wide range of high-quality products, making it easy for customers to browse, purchase, and enjoy stylish and functional pieces for their homes and offices.
 
 ## Features
 
-- **Product Catalog**: Explore a diverse selection of furniture items categorized by type, style, and room.
+- **Product Catalog**: Explore a diverse selection of items categorized by type, style, and room.
 - **User Accounts**: Create and manage user profiles for a personalized shopping experience.
 - **Shopping Cart**: Add items to your cart and manage your selections before checkout.
 - **Secure Payments**: Enjoy safe and secure payment processing through integrated payment gateways.
@@ -13,13 +13,13 @@ Welcome to our Furniture Store, a modern and user-friendly e-commerce platform b
 
 ## Installation
 
-To set up the Furniture Store project locally, follow these steps:
+To set up the Store project locally, follow these steps:
 
 1. **Clone the repository**
 
    ```sh
-   git clone https://github.com/otechhein/Furniture-Store.git
-   cd furniture-store
+   git clone https://github.com/heinwithsmile/shop.git
+   cd shop
 
 2. **Install dependencies**
    Make sure you have Composer installed. Then, run:
@@ -56,7 +56,7 @@ Update the .env file with your database and other configuration details.
    php artisan  serve
 
 9. **Access the application**
-    Open your browser and navigate to http://localhost:8000 to see your Furniture Store application in action.
+    Open your browser and navigate to http://localhost:8000 to see your Store application in action.
 
 ## Good Luck!
 

@@ -2,7 +2,7 @@
 @push('styles')
     <link rel="stylesheet" href="{{asset('css/backend/utilities/form.css')}}">
 @endpush
-@section('title', 'Edit | Furniture Store')
+@section('title', 'Edit | Shop')
 @section('page-name')
     Edit Product
 @endsection

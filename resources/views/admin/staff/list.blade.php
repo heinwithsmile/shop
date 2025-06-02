@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @push('styles')
 @endpush
-@section('title', 'Furniture Store | staff List')
+@section('title', 'Shop | staff List')
 @section('page-name')
 Staffs Management
 @endsection

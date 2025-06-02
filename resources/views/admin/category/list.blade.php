@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    Category Management | Furniture Store
+    Category Management | Shop
 @endsection
 @section('page-name')
     Category Management

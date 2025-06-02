@@ -25,7 +25,7 @@
     <div class="container">
         <div class="navbar">
             <div class="sitename">
-                <a class="site-name" href="{{ route('index') }}">Furniture Store</a>
+                <a class="site-name" href="{{ route('index') }}">Shop</a>
             </div>
             <nav>
                 <ul class="navigation">

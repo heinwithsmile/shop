@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @push('styles')
 @endpush
-@section('title', 'Furniture Store | Report')
+@section('title', 'Shop | Report')
 @section('page-name')
 Report
 @endsection
