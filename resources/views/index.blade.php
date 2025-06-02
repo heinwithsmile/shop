@@ -136,19 +136,13 @@
                         @foreach ($category->products as $product)
                             @php
                                 $images = $product->images;
-                                // dd($images);
-                                $image = $images[0];
+                                $image = $images[0] ?? null;
                             @endphp
                             <div class="product-card">
-                                <div class="img-card">
-                                    <a href="{{ route('shop.detail', ['id' => $product->id]) }}">
-                                        {{-- @foreach ($images as $image)
-                                            @dd($image);
-                                            
-                                        @endforeach --}}
-                                        <img src="{{ asset("storage/$image->photo") }}" alt="" />
-                                    </a>
-                                </div>
+                                @if($image)
+                                    <img src="{{ Storage::url($image->photo) }}" alt="{{ $product->name }}"
+                                        class="product-image">
+                                @endif
                                 <p class="my-1"><a
                                         href="{{ route('shop.detail', $product->id) }}">{{ $product->name }}</a>
                                 </p>

@@ -163,15 +163,14 @@
             @foreach ($products as $product)
                 @php
                     $images = $product->images;
-                    $image = $images[0];
+                    $image = $images[0] ?? null;
                 @endphp
                 <div class="product-card">
                     <div class="img-card">
                         <a href="{{ route('shop.detail', ['id' => $product->id]) }}">
-                            {{-- @foreach ($images as $image)
-                                <img src="{{ asset("storage/$image->photo") }}" alt="" />
-                            @endforeach --}}
+                            @if($image)
                             <img src="{{ asset("storage/$image->photo") }}" alt="" />
+                            @endif
                         </a>
                     </div>
                     <p class="my-1"><a href="{{ route('shop.detail', $product->id) }}">{{ $product->name }}</a></p>
